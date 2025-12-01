@@ -48,5 +48,9 @@ public class InicioSesion extends JPanel{
 		btnNewButton.setFont(new Font("Arial", Font.BOLD, 20));
 		btnNewButton.setBounds(280, 406, 133, 48);
 		add(btnNewButton);
+	
 	}
+
+	
+	
 }

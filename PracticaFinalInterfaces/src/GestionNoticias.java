@@ -3,11 +3,15 @@ import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
 
 import Sesion.InicioSesion;
 
 public class GestionNoticias extends JFrame{
 
+	private static JPanel miPantallaCarga;
+	private static JPanel miPanel;
+	
 	public GestionNoticias() {
 		
 		setTitle("Enviar email");
@@ -20,8 +24,8 @@ public class GestionNoticias extends JFrame{
 		layeredPane.setBounds(0,0,700,600);
 		getContentPane().add(layeredPane);
 		
-		PantallaCarga miPantallaCarga = new PantallaCarga();
-		InicioSesion miPanel = new InicioSesion();
+		miPantallaCarga = new PantallaCarga();
+		miPanel = new InicioSesion();
 		
 		miPantallaCarga.setBounds(0,0,700,600);
 		miPanel.setBounds(0,0,700,600);
@@ -30,6 +34,13 @@ public class GestionNoticias extends JFrame{
 		layeredPane.add(miPanel);
 		
 		miPanel.setVisible(false);
+		
+	}
+	
+	public static void mostrarInicioSesion() {
+		
+		miPantallaCarga.setVisible(false);
+		miPanel.setVisible(true);
 		
 	}
 	
