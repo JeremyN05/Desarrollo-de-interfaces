@@ -37,8 +37,9 @@ public class PantallaCarga extends JPanel{
 
 	    // Crear y añadir componentes dentro del fondo (NO al panel principal)
 	    JProgressBar progressBar = new JProgressBar();
+	    progressBar.setBackground(new Color(102, 0, 0));
 	    progressBar.setFont(new Font("Arial", Font.BOLD, 14));
-	    progressBar.setForeground(new Color(0, 255, 255));
+	    progressBar.setForeground(new Color(204, 0, 0));
 	    progressBar.setBounds(10, 499, 662, 34);
 	    fondo.add(progressBar);
 
