@@ -5,10 +5,16 @@ import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+
+import App.GestionNoticias;
+import DatosUsuarios.LeerUsuario;
+import DatosUsuarios.Usuarios;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class InicioSesion extends JPanel{
@@ -49,16 +55,49 @@ public class InicioSesion extends JPanel{
 		add(passwordField);
 		
 		JButton btnNewButton = new JButton("Pulsa");
+		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				String nombre = textField.getText();
-				String contraseña = passwordField.getText();
+				String contraseña = new String(passwordField.getPassword());
 				
+				 ArrayList<Usuarios> listaUsuarios = LeerUsuario.leerUsuarios("src/usuarios.txt");
 				
+				Usuarios usuarioLogueado = null;
+
+				for (Usuarios u : listaUsuarios) {
+				    if (u.getNombre().equals(nombre) && u.getContraseña().equals(contraseña)) {
+				        usuarioLogueado = u;
+				        break;
+				    }
+				}
+				
+				if (usuarioLogueado != null) {
+		           
+					System.out.println("Usuario válido: " + usuarioLogueado.getNombre());
+		           
+		            if (usuarioLogueado.isAdmin()) {
+		           
+		            	System.out.println("Es ADMIN");
+		           
+		            } else {
+		            
+		            	System.out.println("Es USUARIO normal");
+		            
+		            }
+
+		        } else {
+		          
+		        	System.out.println("Usuario o contraseña incorrectos");
+		        
+		        }
+				
+				GestionNoticias.mostrarPreferencia();
 				
 			}
 		});
+		
 		btnNewButton.setFont(new Font("Arial", Font.BOLD, 20));
 		btnNewButton.setBounds(280, 406, 133, 48);
 		add(btnNewButton);

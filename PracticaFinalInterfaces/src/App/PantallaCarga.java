@@ -1,3 +1,4 @@
+package App;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.imageio.ImageIO;
@@ -19,16 +20,13 @@ import java.awt.Color;
 
 public class PantallaCarga extends JPanel{
 	
-	private GestionNoticias gestion;
 	private JPanel fondo;
 	Timer tiempo;
 	int i = 0;
 	
-	public PantallaCarga(GestionNoticias gestion) {
+	public PantallaCarga() {
 		
-	   this.gestion = gestion;
-	            
-		setLayout(null);
+	    setLayout(null);
 	    
 	    // Crear el panel de fondo
 	    fondo = (JPanel) buscarImagen();

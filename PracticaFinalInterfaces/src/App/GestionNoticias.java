@@ -1,3 +1,4 @@
+package App;
 
 import java.awt.Toolkit;
 
@@ -20,14 +21,13 @@ public class GestionNoticias extends JFrame{
 		setSize(700, 600);
 		setResizable(false);
 		setLocationRelativeTo(null);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setIconImage(Toolkit.getDefaultToolkit().getImage("src/noticias.png"));
 		
 		JLayeredPane layeredPane = new JLayeredPane();
 		layeredPane.setBounds(0,0,700,600);
 		getContentPane().add(layeredPane);
 		
-		miPantallaCarga = new PantallaCarga(this);
+		miPantallaCarga = new PantallaCarga();
 		miPanel = new InicioSesion();
 		preferencia = new Preferencia();
 		
