@@ -5,12 +5,14 @@ import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
+import Preferencias.Preferencia;
 import Sesion.InicioSesion;
 
 public class GestionNoticias extends JFrame{
 
-	private static JPanel miPantallaCarga;
+	private static JFrame miPantallaCarga;
 	private static JPanel miPanel;
+	private static JPanel preferencia;
 	
 	public GestionNoticias() {
 		
@@ -26,14 +28,19 @@ public class GestionNoticias extends JFrame{
 		
 		miPantallaCarga = new PantallaCarga();
 		miPanel = new InicioSesion();
+		preferencia = new Preferencia();
 		
 		miPantallaCarga.setBounds(0,0,700,600);
 		miPanel.setBounds(0,0,700,600);
+		preferencia.setBounds(0,0,700,600);
 		
-		layeredPane.add(miPantallaCarga);
-		layeredPane.add(miPanel);
+		miPantallaCarga.setVisible(true);
 		
 		miPanel.setVisible(false);
+		layeredPane.add(miPanel);
+		
+		preferencia.setVisible(false);
+		layeredPane.add(preferencia);
 		
 	}
 	
@@ -41,6 +48,15 @@ public class GestionNoticias extends JFrame{
 		
 		miPantallaCarga.setVisible(false);
 		miPanel.setVisible(true);
+		preferencia.setVisible(false);
+		
+	}
+	
+	public static void mostrarPreferencia() {
+		
+		miPantallaCarga.setVisible(false);
+		miPanel.setVisible(false);
+		preferencia.setVisible(true);
 		
 	}
 	

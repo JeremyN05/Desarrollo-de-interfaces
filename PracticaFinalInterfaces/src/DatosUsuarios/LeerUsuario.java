@@ -2,7 +2,7 @@ package DatosUsuarios;
 
 import java.util.ArrayList;
 
-public class CrearUsuarios {
+public class LeerUsuario {
 	
 	public static void comprobarUsuario() {
 		

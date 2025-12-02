@@ -1,8 +1,8 @@
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.imageio.ImageIO;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
 import java.awt.Component;
 import java.awt.Font;
@@ -19,7 +19,7 @@ import javax.swing.Timer;
 import Sesion.InicioSesion;
 import java.awt.Color;
 
-public class PantallaCarga extends JPanel{
+public class PantallaCarga extends JFrame{
 	
 	private JPanel fondo;
 	Timer tiempo;
