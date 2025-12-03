@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 import App.GestionNoticias;
+import DatosUsuarios.GuardarUsuario;
 import DatosUsuarios.LeerUsuario;
 import DatosUsuarios.Usuarios;
 
@@ -71,19 +72,15 @@ public class InicioSesion extends JPanel{
 				String nombre = textField.getText();
 				String contraseña = new String(passwordField.getPassword());
 				
-				 ArrayList<Usuarios> listaUsuarios = LeerUsuario.leerUsuarios("src/usuarios.txt");
-				
-				Usuarios usuarioLogueado = null;
+				ArrayList<Usuarios> listaUsuarios = LeerUsuario.leerUsuarios("src/Usuarios.txt");
 
-				for (Usuarios u : listaUsuarios) {
-				    if (u.getNombre().equals(nombre) && u.getContraseña().equals(contraseña)) {
-				        usuarioLogueado = u;
-				        break;
-				    }
-				}
+				Usuarios usuarioLogueado = LeerUsuario.comprobarUsuario(nombre, contraseña, listaUsuarios);
 				
 				if (usuarioLogueado != null) {
 		           
+				    GuardarUsuario.setUsuarioActual(usuarioLogueado);
+
+					
 					System.out.println("Usuario válido: " + usuarioLogueado.getNombre());
 		           
 		            if (usuarioLogueado.isAdmin()) {

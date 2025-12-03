@@ -1,0 +1,6 @@
+Nombre: Pedro
+Correo: Pedrogomez@gmail.com
+Preferencias:
+Economía
+Deportes
+Nacional

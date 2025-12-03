@@ -60,6 +60,7 @@ public class GestionNoticias extends JFrame{
 		miPantallaCarga.setVisible(false);
 		miPanel.setVisible(true);
 		preferencia.setVisible(false);
+		noticia.setVisible(false);
 		
 	}
 	
@@ -70,6 +71,18 @@ public class GestionNoticias extends JFrame{
 		miPantallaCarga.setVisible(false);
 		miPanel.setVisible(false);
 		preferencia.setVisible(true);
+		noticia.setVisible(false);
+		
+	}
+	
+	public void mostrarNoticia() {
+		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		miPantallaCarga.setVisible(false);
+		miPanel.setVisible(false);
+		preferencia.setVisible(false);
+		noticia.setVisible(true);
 		
 	}
 	

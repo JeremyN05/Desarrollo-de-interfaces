@@ -7,10 +7,15 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 
 import App.GestionNoticias;
+import DatosUsuarios.GuardarPreferencias;
+import DatosUsuarios.GuardarUsuario;
+import DatosUsuarios.Usuarios;
 
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionEvent;
 
 public class Preferencia extends JPanel{
@@ -81,6 +86,26 @@ public class Preferencia extends JPanel{
 		add(Anime);
 		
 		JButton btnNewButton = new JButton("Aceptar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			    Usuarios usuario = GuardarUsuario.getUsuarioActual();
+
+			    // Crear lista de preferencias seleccionadas
+			    List<String> prefs = new ArrayList<>();
+			    if (Economia.isSelected()) prefs.add("Economía");
+			    if (Deportes.isSelected()) prefs.add("Deportes");
+			    if (Nacional.isSelected()) prefs.add("Nacional");
+			    if (Internacional.isSelected()) prefs.add("Internacional");
+			    if (Videojuegos.isSelected()) prefs.add("Videojuegos");
+			    if (Anime.isSelected()) prefs.add("Anime");
+
+			    // Guardar todo en el archivo
+			    GuardarPreferencias.guardarPreferencias(usuario, prefs);
+			    
+                gestion.mostrarNoticia();
+			}
+		});
 		btnNewButton.setFont(new Font("Arial", Font.BOLD, 16));
 		btnNewButton.setBounds(530, 464, 97, 35);
 		add(btnNewButton);
