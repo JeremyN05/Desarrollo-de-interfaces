@@ -20,25 +20,28 @@ import java.awt.Color;
 
 public class PantallaCarga extends JPanel{
 	
+	private GestionNoticias gestion;
 	private JPanel fondo;
 	Timer tiempo;
 	int i = 0;
 	
-	public PantallaCarga() {
+	public PantallaCarga(GestionNoticias gestion) {
+		
+		this.gestion = gestion;
 		
 	    setLayout(null);
 	    
-	    // Crear el panel de fondo
+
 	    fondo = (JPanel) buscarImagen();
 	    fondo.setLayout(null);
 	    fondo.setBounds(0, 0, 700, 600);
 	    add(fondo);
 
-	    // Crear y añadir componentes dentro del fondo (NO al panel principal)
+
 	    JProgressBar progressBar = new JProgressBar();
-	    progressBar.setBackground(new Color(102, 0, 0));
+	    progressBar.setBackground(new Color(255, 255, 255));
 	    progressBar.setFont(new Font("Arial", Font.BOLD, 14));
-	    progressBar.setForeground(new Color(204, 0, 0));
+	    progressBar.setForeground(new Color(204, 51, 51));
 	    progressBar.setBounds(10, 499, 662, 34);
 	    fondo.add(progressBar);
 
@@ -60,7 +63,7 @@ public class PantallaCarga extends JPanel{
 				if(i >= 100) {
 					
 					tiempo.stop();
-					GestionNoticias.mostrarInicioSesion();
+					gestion.mostrarInicioSesion();
 					
 				}
 				

@@ -11,6 +11,10 @@ import DatosUsuarios.LeerUsuario;
 import DatosUsuarios.Usuarios;
 
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
@@ -19,15 +23,20 @@ import java.awt.event.ActionEvent;
 
 public class InicioSesion extends JPanel{
 	
+	private GestionNoticias gestion;
 	private JTextField textField;
 	private JLabel lblNewLabel_1;
 	private JLabel lblNewLabel_2;
 	private JPasswordField passwordField;
+	private JButton btnNewButton_1;
 	
-	public InicioSesion() {
+	public InicioSesion(GestionNoticias gestion) {
+		
+		this.gestion = gestion;
 		
 		setBackground(new Color(204, 51, 51));
 		setLayout(null);
+		
 		
 		textField = new JTextField();
 		textField.setBounds(172, 208, 340, 33);
@@ -83,7 +92,7 @@ public class InicioSesion extends JPanel{
 		           
 		            } else {
 		            
-		            	System.out.println("Es USUARIO normal");
+		            	gestion.mostrarPreferencia();
 		            
 		            }
 
@@ -93,8 +102,6 @@ public class InicioSesion extends JPanel{
 		        
 		        }
 				
-				GestionNoticias.mostrarPreferencia();
-				
 			}
 		});
 		
@@ -102,7 +109,11 @@ public class InicioSesion extends JPanel{
 		btnNewButton.setBounds(280, 406, 133, 48);
 		add(btnNewButton);
 		
-	
+		btnNewButton_1 = new JButton("");
+		btnNewButton_1.setBounds(546, 318, 41, 33);
+		btnNewButton_1.setIcon(new ImageIcon("src/esconder.png"));
+		add(btnNewButton_1);
+		
 	}
 
 }
