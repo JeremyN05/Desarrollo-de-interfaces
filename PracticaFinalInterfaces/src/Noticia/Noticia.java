@@ -89,6 +89,30 @@ public class Noticia extends JPanel{
 		add(btEconomia);
 		
 		JButton btDeportes = new JButton("");
+		btDeportes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Usuarios usuario = GuardarUsuario.getUsuarioActual();
+
+			    if (usuario == null) {
+			     
+			    	System.out.println("No hay usuario logueado");
+			        return;
+			    
+			    }
+
+			    int id = usuario.getId();
+
+			    List<String> cargarPreferencias = CargarPreferencias.cargarPreferencias(id);
+				
+			    if (cargarPreferencias.contains("D")) {
+				    
+			    	gestion.mostrarDeportes();
+			    
+			    }
+			
+			}
+		});
 		btDeportes.setBorder(null);
 		btDeportes.setBackground(new Color(255, 160, 122));
 		btDeportes.setBounds(274, 162, 144, 144);
@@ -96,6 +120,30 @@ public class Noticia extends JPanel{
 		add(btDeportes);
 		
 		JButton btNacional = new JButton("");
+		btNacional.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Usuarios usuario = GuardarUsuario.getUsuarioActual();
+
+			    if (usuario == null) {
+			     
+			    	System.out.println("No hay usuario logueado");
+			        return;
+			    
+			    }
+
+			    int id = usuario.getId();
+
+			    List<String> cargarPreferencias = CargarPreferencias.cargarPreferencias(id);
+			    
+			    if (cargarPreferencias.contains("N")) {
+				    
+			    	gestion.mostrarNacional();
+			    
+			    }
+				
+			}
+		});
 		btNacional.setBackground(new Color(255, 160, 122));
 		btNacional.setBorder(null);
 		btNacional.setBounds(504, 162, 144, 144);
@@ -124,6 +172,30 @@ public class Noticia extends JPanel{
 		add(Anime);
 		
 		JButton btInternacional = new JButton("");
+		btInternacional.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Usuarios usuario = GuardarUsuario.getUsuarioActual();
+
+			    if (usuario == null) {
+			     
+			    	System.out.println("No hay usuario logueado");
+			        return;
+			    
+			    }
+
+			    int id = usuario.getId();
+
+			    List<String> cargarPreferencias = CargarPreferencias.cargarPreferencias(id);
+			    
+			    if (cargarPreferencias.contains("I")) {
+				    
+			    	gestion.mostrarInternacional();
+			    
+			    }
+				
+			}
+		});
 		btInternacional.setBorder(null);
 		btInternacional.setBackground(new Color(255, 160, 122));
 		btInternacional.setBounds(34, 394, 144, 144);
@@ -131,6 +203,30 @@ public class Noticia extends JPanel{
 		add(btInternacional);
 		
 		JButton btVideojuegos = new JButton("");
+		btVideojuegos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Usuarios usuario = GuardarUsuario.getUsuarioActual();
+
+			    if (usuario == null) {
+			     
+			    	System.out.println("No hay usuario logueado");
+			        return;
+			    
+			    }
+
+			    int id = usuario.getId();
+
+			    List<String> cargarPreferencias = CargarPreferencias.cargarPreferencias(id);
+			    
+			    if (cargarPreferencias.contains("V")) {
+				    
+			    	gestion.mostrarVideojuegos();
+			    
+			    }
+				
+			}
+		});
 		btVideojuegos.setBorder(null);
 		btVideojuegos.setBackground(new Color(255, 160, 122));
 		btVideojuegos.setBounds(274, 394, 144, 144);
@@ -138,6 +234,30 @@ public class Noticia extends JPanel{
 		add(btVideojuegos);
 		
 		JButton btAnime = new JButton("");
+		btAnime.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Usuarios usuario = GuardarUsuario.getUsuarioActual();
+
+			    if (usuario == null) {
+			     
+			    	System.out.println("No hay usuario logueado");
+			        return;
+			    
+			    }
+
+			    int id = usuario.getId();
+
+			    List<String> cargarPreferencias = CargarPreferencias.cargarPreferencias(id);
+			    
+			    if (cargarPreferencias.contains("A")) {
+				    
+			    	gestion.mostrarAnime();
+			    
+			    }
+				
+			}
+		});
 		btAnime.setBackground(new Color(255, 160, 122));
 		btAnime.setBorder(null);
 		btAnime.setBounds(504, 394, 144, 144);

@@ -73,12 +73,12 @@ public class InicioSesion extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				
 				String nombre = textField.getText();
-				String contraseña = new String(passwordField.getPassword());
+				String contrasena = new String(passwordField.getPassword());
 				
 				ArrayList<Usuarios> listaUsuarios = LeerUsuario.leerUsuarios("src/Usuarios.txt");
 
 
-				Usuarios usuarioLogueado = LeerUsuario.comprobarUsuario(nombre, contraseña, listaUsuarios);
+				Usuarios usuarioLogueado = LeerUsuario.comprobarUsuario(nombre, contrasena, listaUsuarios);
 				
 				if (usuarioLogueado != null) {
 
