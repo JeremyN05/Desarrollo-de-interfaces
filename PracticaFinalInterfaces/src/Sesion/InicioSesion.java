@@ -7,8 +7,10 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 import App.GestionNoticias;
+import DatosUsuarios.CargarPreferencias;
 import DatosUsuarios.GuardarUsuario;
 import DatosUsuarios.LeerUsuario;
+import DatosUsuarios.Preferencias;
 import DatosUsuarios.Usuarios;
 
 import java.awt.Font;
@@ -20,6 +22,7 @@ import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionEvent;
 
 public class InicioSesion extends JPanel{
@@ -35,7 +38,7 @@ public class InicioSesion extends JPanel{
 		
 		this.gestion = gestion;
 		
-		setBackground(new Color(204, 51, 51));
+		setBackground(new Color(255, 127, 80));
 		setLayout(null);
 		
 		
@@ -74,30 +77,39 @@ public class InicioSesion extends JPanel{
 				
 				ArrayList<Usuarios> listaUsuarios = LeerUsuario.leerUsuarios("src/Usuarios.txt");
 
+
 				Usuarios usuarioLogueado = LeerUsuario.comprobarUsuario(nombre, contraseña, listaUsuarios);
 				
 				if (usuarioLogueado != null) {
-		           
+
 				    GuardarUsuario.setUsuarioActual(usuarioLogueado);
+				    System.out.println("Usuario válido: " + usuarioLogueado.getNombre());
 
-					
-					System.out.println("Usuario válido: " + usuarioLogueado.getNombre());
-		           
-		            if (usuarioLogueado.isAdmin()) {
-		           
-		            	System.out.println("Es ADMIN");
-		           
-		            } else {
-		            
-		            	gestion.mostrarPreferencia();
-		            
-		            }
+				    if (usuarioLogueado.isAdmin()) {
 
-		        } else {
-		          
-		        	System.out.println("Usuario o contraseña incorrectos");
-		        
-		        }
+				        System.out.println("Es ADMIN");
+
+				    } else {
+
+				    	List<String> cargarPreferencias = CargarPreferencias.cargarPreferencias(usuarioLogueado.getId());
+
+				        if (cargarPreferencias != null && !cargarPreferencias.isEmpty()) {
+				         
+				        	gestion.mostrarNoticia();
+				        
+				        } else {
+				        
+				        	gestion.mostrarPreferencia();
+				       
+				        }
+				   
+				    }
+
+				} else {
+				  
+					System.out.println("Usuario o contraseña incorrectos");
+				
+				}
 				
 			}
 		});

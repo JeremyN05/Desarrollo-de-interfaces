@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class LeerUsuario {
 	
@@ -14,7 +15,7 @@ public class LeerUsuario {
 	   
 		for (Usuarios u : listaUsuarios) {
 	       
-	    	if (u.getNombre().equals(nombre) && u.getContraseña().equals(contraseña)) {
+	    	if (u.getNombre().equals(nombre) && u.getContrasena().equals(contraseña)) {
 	           
 	    		return u;
 	       
@@ -35,34 +36,51 @@ public class LeerUsuario {
         	String linea;
             
         	while ((linea = br.readLine()) != null) {
-                linea = linea.trim();
-                if (linea.isEmpty()) continue;
+                
+        		linea = linea.trim();
+                
+                if (linea.isEmpty()) {
+                
+                	 continue;
+                
+                }
 
                 boolean esAdmin = false;
 
                 if (linea.startsWith("##")) {
-                    esAdmin = true;
+                 
+                	esAdmin = true;
                     linea = linea.substring(2).trim();
+                
                 } else if (linea.startsWith("**")) {
-                    esAdmin = false;
+                
+                	esAdmin = false;
                     linea = linea.substring(2).trim();
+              
                 }
 
-                String[] partes = linea.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
+                String[] partes = linea.split(",");
 
                 for (int i = 0; i < partes.length; i++) {
-                    partes[i] = partes[i].trim().replaceAll("^\"|\"$", "");
+                   
+                	partes[i] = partes[i];
+                
                 }
 
-                String nombre = partes[0];
-                String contraseña = partes[1];
-                String gmail = partes[2];
+                int id = Integer.parseInt(partes[0]);
+                String nombre = partes[1];
+                String contraseña = partes[2];
+                String gmail = partes[3];
 
-                ArrayList<Preferencias> preferencias = new ArrayList<>();
+                List<String> preferencias = new ArrayList<>();
 
-                Usuarios u = new Usuarios(nombre, contraseña, gmail, esAdmin, preferencias);
+                Usuarios u = new Usuarios(id,nombre, contraseña, gmail, esAdmin, preferencias);
+                
                 listaUsuarios.add(u);
-            }
+                
+                u.setPreferencias(preferencias);
+            
+        	}
         
         } catch (IOException e) {
            

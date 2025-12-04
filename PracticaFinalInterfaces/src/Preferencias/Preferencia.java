@@ -26,7 +26,7 @@ public class Preferencia extends JPanel{
 		
 		this.gestion = gestion;
 		
-		setBackground(new Color(204, 51, 51));
+		setBackground(new Color(255, 127, 80));
 		setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Preferencias");
@@ -45,7 +45,7 @@ public class Preferencia extends JPanel{
 		
 		JCheckBox Economia = new JCheckBox("Economía");
 		Economia.setHorizontalAlignment(SwingConstants.CENTER);
-		Economia.setBackground(new Color(204, 51, 51));
+		Economia.setBackground(new Color(255, 127, 80));
 		Economia.setFont(new Font("Arial", Font.BOLD, 18));
 		Economia.setBounds(57, 230, 138, 35);
 		add(Economia);
@@ -53,35 +53,35 @@ public class Preferencia extends JPanel{
 		JCheckBox Deportes = new JCheckBox("Deportes");
 		Deportes.setHorizontalAlignment(SwingConstants.CENTER);
 		Deportes.setFont(new Font("Arial", Font.BOLD, 18));
-		Deportes.setBackground(new Color(204, 51, 51));
+		Deportes.setBackground(new Color(255, 127, 80));
 		Deportes.setBounds(290, 230, 130, 35);
 		add(Deportes);
 		
 		JCheckBox Nacional = new JCheckBox("Nacional");
 		Nacional.setHorizontalAlignment(SwingConstants.CENTER);
 		Nacional.setFont(new Font("Arial", Font.BOLD, 18));
-		Nacional.setBackground(new Color(204, 51, 51));
+		Nacional.setBackground(new Color(255, 127, 80));
 		Nacional.setBounds(507, 230, 130, 35);
 		add(Nacional);
 		
 		JCheckBox Internacional = new JCheckBox("Internacional");
 		Internacional.setHorizontalAlignment(SwingConstants.CENTER);
 		Internacional.setFont(new Font("Arial", Font.BOLD, 18));
-		Internacional.setBackground(new Color(204, 51, 51));
+		Internacional.setBackground(new Color(255, 127, 80));
 		Internacional.setBounds(60, 358, 156, 35);
 		add(Internacional);
 		
 		JCheckBox Videojuegos = new JCheckBox("Videojuegos");
 		Videojuegos.setHorizontalAlignment(SwingConstants.CENTER);
 		Videojuegos.setFont(new Font("Arial", Font.BOLD, 18));
-		Videojuegos.setBackground(new Color(204, 51, 51));
+		Videojuegos.setBackground(new Color(255, 127, 80));
 		Videojuegos.setBounds(301, 358, 138, 35);
 		add(Videojuegos);
 		
 		JCheckBox Anime = new JCheckBox("Anime");
 		Anime.setHorizontalAlignment(SwingConstants.CENTER);
 		Anime.setFont(new Font("Arial", Font.BOLD, 18));
-		Anime.setBackground(new Color(204, 51, 51));
+		Anime.setBackground(new Color(255, 127, 80));
 		Anime.setBounds(503, 358, 124, 35);
 		add(Anime);
 		
@@ -91,16 +91,44 @@ public class Preferencia extends JPanel{
 				
 			    Usuarios usuario = GuardarUsuario.getUsuarioActual();
 
-			    // Crear lista de preferencias seleccionadas
 			    List<String> prefs = new ArrayList<>();
-			    if (Economia.isSelected()) prefs.add("Economía");
-			    if (Deportes.isSelected()) prefs.add("Deportes");
-			    if (Nacional.isSelected()) prefs.add("Nacional");
-			    if (Internacional.isSelected()) prefs.add("Internacional");
-			    if (Videojuegos.isSelected()) prefs.add("Videojuegos");
-			    if (Anime.isSelected()) prefs.add("Anime");
+			    
+			    if (Economia.isSelected()) {
+			    	
+			    	prefs.add("E");
+			    	
+			    }
+			    
+			    if (Deportes.isSelected()) {
+			    	
+			    	prefs.add("D");
+			    	
+			    }
+			   
+			    if (Nacional.isSelected()) {
+			    	
+			    	prefs.add("N");
+			    	
+			    }
+			    
+			    if (Internacional.isSelected()) {
+			    	
+			    	prefs.add("I");
+			    	
+			    }
+			    
+			    if (Videojuegos.isSelected()) {
+			    	
+			    	prefs.add("V");
+			    	
+			    }
+			    
+			    if (Anime.isSelected()) {
+			    	
+			    	prefs.add("A");
+			    	
+			    }
 
-			    // Guardar todo en el archivo
 			    GuardarPreferencias.guardarPreferencias(usuario, prefs);
 			    
                 gestion.mostrarNoticia();

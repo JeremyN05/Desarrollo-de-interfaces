@@ -7,7 +7,7 @@ import java.util.List;
 
 public class GuardarPreferencias {
 	
-	private static final String CARPETA = "Data";
+	private static final String CARPETA = "src/Data";
     private static final String ARCHIVO = CARPETA + File.separator + "preferencias.txt";
 
     public static void guardarPreferencias(Usuarios usuario, List<String> preferencias) {
@@ -19,13 +19,11 @@ public class GuardarPreferencias {
 
         try (FileWriter fw = new FileWriter(fichero)) {
 
-            fw.write("Nombre: " + usuario.getNombre() + "\n");
-            fw.write("Correo: " + usuario.getGmail() + "\n");
-            fw.write("Preferencias:\n");
+            fw.write("id: "+ usuario.getId() + "-");
 
             for (String pref : preferencias) {
              
-            	fw.write(pref + "\n");
+            	fw.write(pref + ",");
             
             }
 

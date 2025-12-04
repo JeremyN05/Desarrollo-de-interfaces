@@ -1,23 +1,32 @@
 package DatosUsuarios;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Usuarios {
 
+	int id;
 	String nombre;
-	String contraseña;
+	String contrasena;
 	String gmail;
 	boolean admin;
-	ArrayList <Preferencias> preferencias = new ArrayList<>();
+	List <String> preferencias;
 	
-	public Usuarios(String nombre, String contraseña, String gmail, boolean admin,
-			ArrayList<Preferencias> preferencias) {
+	public Usuarios(int id, String nombre, String contrasena, String gmail, boolean admin, List<String> preferencias) {
 		super();
+		this.id = id;
 		this.nombre = nombre;
-		this.contraseña = contraseña;
+		this.contrasena = contrasena;
 		this.gmail = gmail;
 		this.admin = admin;
 		this.preferencias = preferencias;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getNombre() {
@@ -28,12 +37,12 @@ public class Usuarios {
 		this.nombre = nombre;
 	}
 
-	public String getContraseña() {
-		return contraseña;
+	public String getContrasena() {
+		return contrasena;
 	}
 
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+	public void setContraseña(String contrasena) {
+		this.contrasena = contrasena;
 	}
 
 	public String getGmail() {
@@ -52,20 +61,20 @@ public class Usuarios {
 		this.admin = admin;
 	}
 
-	public ArrayList<Preferencias> getPreferencias() {
+	public List<String> getPreferencias() {
 		return preferencias;
 	}
 
-	public void setPreferencias(ArrayList<Preferencias> preferencias) {
+	public void setPreferencias(List<String> preferencias) {
 		this.preferencias = preferencias;
 	}
 
 	@Override
 	public String toString() {
-		return "Usuarios [nombre=" + nombre + ", contraseña=" + contraseña + ", gmail=" + gmail + ", admin=" + admin
-				+ ", preferencias=" + preferencias + ", getNombre()=" + getNombre() + ", getContraseña()="
-				+ getContraseña() + ", getGmail()=" + getGmail() + ", isAdmin()=" + isAdmin() + ", getPreferencias()="
-				+ getPreferencias() + "]";
+		return "Usuarios [id=" + id + ", nombre=" + nombre + ", contraseña=" + contrasena + ", gmail=" + gmail
+				+ ", admin=" + admin + ", preferencias=" + preferencias + ", getId()=" + getId() + ", getNombre()="
+				+ getNombre() + ", getContraseña()=" + getContrasena() + ", getGmail()=" + getGmail() + ", isAdmin()="
+				+ isAdmin() + ", getPreferencias()=" + getPreferencias() + "]";
 	}
 	
 }
