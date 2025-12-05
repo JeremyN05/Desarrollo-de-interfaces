@@ -51,7 +51,7 @@ public class PantallaCarga extends JPanel{
 	    lblNewLabel.setBounds(272, 454, 146, 32);
 	    fondo.add(lblNewLabel);
 	    
-	    tiempo = new Timer(60, new ActionListener() {
+	    tiempo = new Timer(50, new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {

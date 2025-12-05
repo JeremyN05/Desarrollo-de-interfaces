@@ -3,6 +3,7 @@ package Sesion;
 import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.JTextField;
+import javax.swing.JToggleButton;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
@@ -10,12 +11,9 @@ import App.GestionNoticias;
 import DatosUsuarios.CargarPreferencias;
 import DatosUsuarios.GuardarUsuario;
 import DatosUsuarios.LeerUsuario;
-import DatosUsuarios.Preferencias;
 import DatosUsuarios.Usuarios;
 
 import java.awt.Font;
-import java.awt.Image;
-import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -32,7 +30,7 @@ public class InicioSesion extends JPanel{
 	private JLabel lblNewLabel_1;
 	private JLabel lblNewLabel_2;
 	private JPasswordField passwordField;
-	private JButton btnNewButton_1;
+	private JToggleButton btnNewButton_1;
 	
 	public InicioSesion(GestionNoticias gestion) {
 		
@@ -43,6 +41,7 @@ public class InicioSesion extends JPanel{
 		
 		
 		textField = new JTextField();
+		textField.setFont(new Font("Arial", Font.PLAIN, 14));
 		textField.setBounds(172, 208, 340, 33);
 		add(textField);
 		textField.setColumns(10);
@@ -64,6 +63,7 @@ public class InicioSesion extends JPanel{
 		add(lblNewLabel_2);
 		
 		passwordField = new JPasswordField();
+		passwordField.setFont(new Font("Arial", Font.PLAIN, 14));
 		passwordField.setBounds(172, 318, 340, 33);
 		add(passwordField);
 		
@@ -118,8 +118,26 @@ public class InicioSesion extends JPanel{
 		btnNewButton.setBounds(280, 406, 133, 48);
 		add(btnNewButton);
 		
-		btnNewButton_1 = new JButton("");
-		btnNewButton_1.setBounds(546, 318, 41, 33);
+		btnNewButton_1 = new JToggleButton("");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			
+			char i = passwordField.getEchoChar();
+			
+			public void actionPerformed(ActionEvent e) {
+			    
+				if (btnNewButton_1.isSelected()) {
+			      
+			    	passwordField.setEchoChar((char) 0);
+			    
+			    } else {
+
+			        passwordField.setEchoChar(i);
+			    
+			    }
+				
+			}
+		});
+		btnNewButton_1.setBounds(528, 317, 34, 34);
 		btnNewButton_1.setIcon(new ImageIcon("src/esconder.png"));
 		add(btnNewButton_1);
 		
