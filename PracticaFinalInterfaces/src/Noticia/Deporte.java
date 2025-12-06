@@ -8,15 +8,22 @@ import java.io.IOException;
 
 import javax.swing.JTextArea;
 
+import App.GestionNoticias;
 import Titulares.TituDeporte;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Deporte extends JPanel{
 	
-	JTextArea noticiaDep;
-	JTextArea noticiaDep_2;
+	private GestionNoticias gestion;
+	private JTextArea noticiaDep;
+	private JTextArea noticiaDep_2;
 	
-	public Deporte() {
+	public Deporte(GestionNoticias gestionNoticias) {
+		
+		this.gestion = gestionNoticias;
+		
 		setBackground(new Color(255, 160, 122));
 		setLayout(null);
 		
@@ -27,7 +34,7 @@ public class Deporte extends JPanel{
 		
 		JLabel Marca = new JLabel("Marca:");
 		Marca.setFont(new Font("Arial", Font.BOLD, 24));
-		Marca.setBounds(41, 136, 86, 24);
+		Marca.setBounds(41, 130, 86, 24);
 		add(Marca);
 		
 		noticiaDep = new JTextArea();
@@ -36,7 +43,7 @@ public class Deporte extends JPanel{
 		noticiaDep.setFont(new Font("Arial", Font.PLAIN, 18));
 		noticiaDep.setEditable(false);
 		noticiaDep.setBackground(new Color(255, 160, 122));
-		noticiaDep.setBounds(41, 174, 618, 52);
+		noticiaDep.setBounds(41, 164, 617, 75);
 		
 		try {
 			
@@ -52,7 +59,7 @@ public class Deporte extends JPanel{
 		
 		JLabel As = new JLabel("As:");
 		As.setFont(new Font("Arial", Font.BOLD, 24));
-		As.setBounds(41, 234, 86, 24);
+		As.setBounds(41, 251, 86, 24);
 		add(As);
 		
 		noticiaDep_2 = new JTextArea();
@@ -62,7 +69,7 @@ public class Deporte extends JPanel{
 		noticiaDep_2.setFont(new Font("Arial", Font.PLAIN, 18));
 		noticiaDep_2.setEditable(false);
 		noticiaDep_2.setBackground(new Color(255, 160, 122));
-		noticiaDep_2.setBounds(41, 269, 618, 52);
+		noticiaDep_2.setBounds(41, 285, 617, 75);
 		
 		try {
 			
@@ -78,7 +85,7 @@ public class Deporte extends JPanel{
 		
 		JLabel Sport = new JLabel("Sport:");
 		Sport.setFont(new Font("Arial", Font.BOLD, 24));
-		Sport.setBounds(41, 332, 86, 24);
+		Sport.setBounds(41, 370, 86, 24);
 		add(Sport);
 		
 		JTextArea noticiaDep_3 = new JTextArea();
@@ -88,7 +95,7 @@ public class Deporte extends JPanel{
 		noticiaDep_3.setFont(new Font("Arial", Font.PLAIN, 18));
 		noticiaDep_3.setEditable(false);
 		noticiaDep_3.setBackground(new Color(255, 160, 122));
-		noticiaDep_3.setBounds(41, 367, 618, 52);
+		noticiaDep_3.setBounds(41, 404, 617, 75);
 		
 		try {
 			
@@ -103,9 +110,31 @@ public class Deporte extends JPanel{
 		add(noticiaDep_3);
 		
 		JButton btnNewButton = new JButton("Atrás");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				gestion.mostrarNoticia();
+				
+			}
+		});
 		btnNewButton.setFont(new Font("Arial", Font.BOLD, 14));
 		btnNewButton.setBounds(41, 505, 102, 36);
 		add(btnNewButton);
+		
+		JButton cerrarSesion = new JButton("Cerrar Sesión");
+		cerrarSesion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				gestion.mostrarInicioSesion();
+				
+			}
+		});
+		cerrarSesion.setForeground(Color.BLACK);
+		cerrarSesion.setFont(new Font("Arial", Font.BOLD, 10));
+		cerrarSesion.setBorder(null);
+		cerrarSesion.setBackground(new Color(255, 160, 122));
+		cerrarSesion.setBounds(557, 28, 101, 20);
+		add(cerrarSesion);
 	
 	}
 }

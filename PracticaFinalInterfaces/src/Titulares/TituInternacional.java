@@ -6,15 +6,15 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
-public class TituEconomia {
+public class TituInternacional {
 
 	public static String cargarTitulares() throws IOException {
 		
-		String web = "https://www.expansion.com/";
+		String web = "https://cnnespanol.cnn.com";
 		
         Document document = Jsoup.connect(web).get();
 		
-		Element element = document.select("h2.ue-c-cover-content__headline").get(0);
+        Element element = document.select("a.container__title-url h2").get(0);
 		
 		String elementos = element.html().toUpperCase();
         
@@ -24,11 +24,11 @@ public class TituEconomia {
 	
 	public static String cargarTitulares2() throws IOException {
 		
-		String web = "http://libertaddigital.com/libremercado/";
+		String web = "https://es.euronews.com";
 		
         Document document = Jsoup.connect(web).get();
 		
-		Element element = document.select("header h2").get(0);
+        Element element = document.select("h2.tc-hero__title").get(0);
 		
 		String elementos = element.html().toUpperCase();
         
@@ -38,11 +38,11 @@ public class TituEconomia {
 	
 	public static String cargarTitulares3() throws IOException {
 		
-		String web = "https://www.economiadigital.es/";
+		String web = "https://www.telemundo.com";
 		
         Document document = Jsoup.connect(web).get();
 		
-		Element element = document.select("h2.entry-title a").get(0);
+        Element element = document.select("span.tease-card__headline").get(0);
 		
 		String elementos = element.html().toUpperCase();
         

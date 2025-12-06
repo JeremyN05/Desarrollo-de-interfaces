@@ -46,12 +46,12 @@ public class GestionNoticias extends JFrame{
         miPanel = new InicioSesion(this);
         preferencia = new Preferencia(this);
         noticia = new Noticia(this);
-        economia = new Economia();
-        deporte = new Deporte();
-        nacional = new Nacional();
-        internacional = new Internacional();
-        videojuegos = new Videojuegos();
-        anime = new Anime();
+        economia = new Economia(this);
+        deporte = new Deporte(this);
+        nacional = new Nacional(this);
+        internacional = new Internacional(this);
+        videojuegos = new Videojuegos(this);
+        anime = new Anime(this);
 
         JPanel[] paneles = { miPantallaCarga, miPanel, preferencia, noticia, economia, deporte, nacional, internacional, videojuegos, anime };
 

@@ -8,15 +8,22 @@ import java.io.IOException;
 
 import javax.swing.SwingConstants;
 
+import App.GestionNoticias;
 import Titulares.TituDeporte;
 import Titulares.TituEconomia;
 
 import javax.swing.JTextArea;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Economia extends JPanel{
 	
-	public Economia() {
+	private GestionNoticias gestion;
+	
+	public Economia(GestionNoticias gestionNoticias) {
+		
+		this.gestion = gestionNoticias;
 		
 		setBackground(new Color(255, 160, 122));
 		setLayout(null);
@@ -29,7 +36,7 @@ public class Economia extends JPanel{
 		
 		JLabel expansion = new JLabel("Expansión:");
 		expansion.setFont(new Font("Arial", Font.BOLD, 24));
-		expansion.setBounds(41, 136, 143, 24);
+		expansion.setBounds(41, 130, 143, 24);
 		add(expansion);
 		
 		JTextArea noticiaEc = new JTextArea();
@@ -38,7 +45,7 @@ public class Economia extends JPanel{
 		noticiaEc.setBackground(new Color(255, 160, 122));
 		noticiaEc.setWrapStyleWord(true);
 		noticiaEc.setLineWrap(true);
-		noticiaEc.setBounds(41, 174, 618, 52);
+		noticiaEc.setBounds(41, 164, 617, 75);
 		
 		try {
 			
@@ -54,7 +61,7 @@ public class Economia extends JPanel{
 		
 		JLabel cincoDias = new JLabel("CincoDías:");
 		cincoDias.setFont(new Font("Arial", Font.BOLD, 24));
-		cincoDias.setBounds(41, 234, 143, 24);
+		cincoDias.setBounds(41, 251, 143, 24);
 		add(cincoDias);
 		
 		JTextArea noticiaEc_2 = new JTextArea();
@@ -63,7 +70,7 @@ public class Economia extends JPanel{
 		noticiaEc_2.setWrapStyleWord(true);
 		noticiaEc_2.setLineWrap(true);
 		noticiaEc_2.setBackground(new Color(255, 160, 122));
-		noticiaEc_2.setBounds(41, 269, 618, 52);
+		noticiaEc_2.setBounds(41, 285, 617, 75);
 		
 		try {
 			
@@ -79,7 +86,7 @@ public class Economia extends JPanel{
 		
 		JLabel ecDig = new JLabel("Economía Digital:");
 		ecDig.setFont(new Font("Arial", Font.BOLD, 24));
-		ecDig.setBounds(41, 332, 220, 24);
+		ecDig.setBounds(41, 370, 220, 24);
 		add(ecDig);
 		
 		JTextArea noticiaEc_3 = new JTextArea();
@@ -88,7 +95,7 @@ public class Economia extends JPanel{
 		noticiaEc_3.setWrapStyleWord(true);
 		noticiaEc_3.setLineWrap(true);
 		noticiaEc_3.setBackground(new Color(255, 160, 122));
-		noticiaEc_3.setBounds(41, 367, 618, 52);
+		noticiaEc_3.setBounds(41, 404, 617, 75);
 		
 		try {
 			
@@ -103,9 +110,31 @@ public class Economia extends JPanel{
 		add(noticiaEc_3);
 		
 		JButton btnNewButton = new JButton("Atrás");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				gestion.mostrarNoticia();
+				
+			}
+		});
 		btnNewButton.setFont(new Font("Arial", Font.BOLD, 14));
 		btnNewButton.setBounds(41, 505, 102, 36);
 		add(btnNewButton);
+		
+		JButton cerrarSesion = new JButton("Cerrar Sesión");
+		cerrarSesion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				gestion.mostrarInicioSesion();
+				
+			}
+		});
+		cerrarSesion.setForeground(Color.BLACK);
+		cerrarSesion.setFont(new Font("Arial", Font.BOLD, 10));
+		cerrarSesion.setBorder(null);
+		cerrarSesion.setBackground(new Color(255, 160, 122));
+		cerrarSesion.setBounds(557, 28, 101, 20);
+		add(cerrarSesion);
 	}
 
 	

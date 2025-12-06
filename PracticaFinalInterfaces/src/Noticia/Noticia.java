@@ -264,5 +264,20 @@ public class Noticia extends JPanel{
 		btAnime.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/IconoAnime.png")));
 		add(btAnime);
 		
+		JButton cerrarSesion = new JButton("Cerrar Sesión");
+		cerrarSesion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				gestion.mostrarInicioSesion();
+				
+			}
+		});
+		cerrarSesion.setForeground(Color.BLACK);
+		cerrarSesion.setFont(new Font("Arial", Font.BOLD, 10));
+		cerrarSesion.setBorder(null);
+		cerrarSesion.setBackground(new Color(255, 160, 122));
+		cerrarSesion.setBounds(547, 28, 101, 20);
+		add(cerrarSesion);
+		
 	}
 }

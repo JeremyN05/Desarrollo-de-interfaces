@@ -1,0 +1,5 @@
+email_salida=jeremy.narvaez.dosa@gmail.com
+email_pass=zemqstfootdrvsem
+smtp=smtp.gmail.com
+puerto_ssl=465
+tls=false
