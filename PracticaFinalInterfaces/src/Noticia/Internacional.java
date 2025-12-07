@@ -56,10 +56,10 @@ public class Internacional extends JPanel{
 		
 		add(noticiaInt);
 		
-		JLabel euronews = new JLabel("Euronews: ");
-		euronews.setFont(new Font("Arial", Font.BOLD, 24));
-		euronews.setBounds(41, 251, 137, 24);
-		add(euronews);
+		JLabel laRazon = new JLabel("La Razón:");
+		laRazon.setFont(new Font("Arial", Font.BOLD, 24));
+		laRazon.setBounds(41, 251, 137, 24);
+		add(laRazon);
 		
 		JTextArea noticiaInt_2 = new JTextArea();
 		noticiaInt_2.setWrapStyleWord(true);

@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
+import Admin.AgregarUsuario;
+import Admin.MenuAdmin;
 import Noticia.Anime;
 import Noticia.Deporte;
 import Noticia.Economia;
@@ -28,6 +30,8 @@ public class GestionNoticias extends JFrame{
 	private JPanel internacional;
 	private JPanel videojuegos;
 	private JPanel anime;
+	private JPanel menuAdmin;
+	private JPanel agregarUsuario;
 	
 	public GestionNoticias() {
 
@@ -52,8 +56,10 @@ public class GestionNoticias extends JFrame{
         internacional = new Internacional(this);
         videojuegos = new Videojuegos(this);
         anime = new Anime(this);
+        menuAdmin = new MenuAdmin(this);
+        agregarUsuario = new AgregarUsuario(this);
 
-        JPanel[] paneles = { miPantallaCarga, miPanel, preferencia, noticia, economia, deporte, nacional, internacional, videojuegos, anime };
+        JPanel[] paneles = { miPantallaCarga, miPanel, preferencia, noticia, economia, deporte, nacional, internacional, videojuegos, anime, menuAdmin, agregarUsuario };
 
         for (JPanel panel : paneles) {
          
@@ -69,7 +75,7 @@ public class GestionNoticias extends JFrame{
 
     private void mostrarPanel(JPanel panel) {
         
-    	JPanel[] todos = { miPantallaCarga, miPanel, preferencia, noticia, economia, deporte, nacional, internacional, videojuegos, anime };
+    	JPanel[] todos = { miPantallaCarga, miPanel, preferencia, noticia, economia, deporte, nacional, internacional, videojuegos, anime, menuAdmin, agregarUsuario };
         
         for (JPanel p : todos) {
            
@@ -118,5 +124,12 @@ public class GestionNoticias extends JFrame{
         mostrarPanel(anime);
     }
 
-	
+    public void mostrarMenuAdmin() {
+        mostrarPanel(menuAdmin);
+    }
+    
+    public void AgregarUsuario() {
+        mostrarPanel(agregarUsuario);
+    }
+    
 }

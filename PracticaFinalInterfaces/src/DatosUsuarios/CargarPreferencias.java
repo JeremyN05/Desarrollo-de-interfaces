@@ -27,7 +27,7 @@ public class CargarPreferencias {
 	        
 	        while ((linea = br.readLine()) != null) {
 	            
-	            if (linea.startsWith("id: " + idUsuario + "-")) {
+	            if (linea.startsWith("id:" + idUsuario + "-")) {
 
 	                String datos = linea.substring(linea.indexOf('-') + 1);
 

@@ -32,9 +32,9 @@ public class InicioSesion extends JPanel{
 	private JPasswordField passwordField;
 	private JToggleButton btnNewButton_1;
 	
-	public InicioSesion(GestionNoticias gestion) {
+	public InicioSesion(GestionNoticias gestionNoticias) {
 		
-		this.gestion = gestion;
+		this.gestion = gestionNoticias;
 		
 		setBackground(new Color(255, 127, 80));
 		setLayout(null);
@@ -87,7 +87,7 @@ public class InicioSesion extends JPanel{
 
 				    if (usuarioLogueado.isAdmin()) {
 
-				        System.out.println("Es ADMIN");
+				    	gestionNoticias.mostrarMenuAdmin();
 
 				    } else {
 
@@ -95,11 +95,11 @@ public class InicioSesion extends JPanel{
 
 				        if (cargarPreferencias != null && !cargarPreferencias.isEmpty()) {
 				         
-				        	gestion.mostrarNoticia();
+				        	gestionNoticias.mostrarNoticia();
 				        
 				        } else {
 				        
-				        	gestion.mostrarPreferencia();
+				        	gestionNoticias.mostrarPreferencia();
 				       
 				        }
 				   

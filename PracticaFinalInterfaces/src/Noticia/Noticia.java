@@ -74,7 +74,7 @@ public class Noticia extends JPanel{
 
 			    List<String> cargarPreferencias = CargarPreferencias.cargarPreferencias(id);
 
-			    if (cargarPreferencias.contains("E")) {
+			    if (usuario.isAdmin() || cargarPreferencias.contains("E")) {
 			    
 			    	gestion.mostrarEconomia();
 			    
@@ -105,7 +105,7 @@ public class Noticia extends JPanel{
 
 			    List<String> cargarPreferencias = CargarPreferencias.cargarPreferencias(id);
 				
-			    if (cargarPreferencias.contains("D")) {
+			    if (usuario.isAdmin() || cargarPreferencias.contains("D")) {
 				    
 			    	gestion.mostrarDeportes();
 			    
@@ -136,7 +136,7 @@ public class Noticia extends JPanel{
 
 			    List<String> cargarPreferencias = CargarPreferencias.cargarPreferencias(id);
 			    
-			    if (cargarPreferencias.contains("N")) {
+			    if (usuario.isAdmin() || cargarPreferencias.contains("N")) {
 				    
 			    	gestion.mostrarNacional();
 			    
@@ -188,7 +188,7 @@ public class Noticia extends JPanel{
 
 			    List<String> cargarPreferencias = CargarPreferencias.cargarPreferencias(id);
 			    
-			    if (cargarPreferencias.contains("I")) {
+			    if (usuario.isAdmin() || cargarPreferencias.contains("I")) {
 				    
 			    	gestion.mostrarInternacional();
 			    
@@ -219,7 +219,7 @@ public class Noticia extends JPanel{
 
 			    List<String> cargarPreferencias = CargarPreferencias.cargarPreferencias(id);
 			    
-			    if (cargarPreferencias.contains("V")) {
+			    if (usuario.isAdmin() || cargarPreferencias.contains("V")) {
 				    
 			    	gestion.mostrarVideojuegos();
 			    
@@ -250,7 +250,7 @@ public class Noticia extends JPanel{
 
 			    List<String> cargarPreferencias = CargarPreferencias.cargarPreferencias(id);
 			    
-			    if (cargarPreferencias.contains("A")) {
+			    if (usuario.isAdmin() || cargarPreferencias.contains("A")) {
 				    
 			    	gestion.mostrarAnime();
 			    

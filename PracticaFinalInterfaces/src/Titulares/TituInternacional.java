@@ -24,11 +24,11 @@ public class TituInternacional {
 	
 	public static String cargarTitulares2() throws IOException {
 		
-		String web = "https://es.euronews.com";
+		String web = "https://www.larazon.es/internacional/";
 		
         Document document = Jsoup.connect(web).get();
 		
-        Element element = document.select("h2.tc-hero__title").get(0);
+        Element element = document.select("h2.article__title a").get(0);
 		
 		String elementos = element.html().toUpperCase();
         
