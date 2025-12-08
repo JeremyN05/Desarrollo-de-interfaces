@@ -32,12 +32,12 @@ public class MenuAdmin extends JPanel{
 		lblMenAdmin.setBounds(192, 44, 298, 48);
 		add(lblMenAdmin);
 		
-		JLabel noticias = new JLabel("Noticias");
-		noticias.setHorizontalAlignment(SwingConstants.CENTER);
-		noticias.setForeground(Color.BLACK);
-		noticias.setFont(new Font("Arial", Font.BOLD, 20));
-		noticias.setBounds(34, 117, 144, 38);
-		add(noticias);
+		JLabel test = new JLabel("test");
+		test.setHorizontalAlignment(SwingConstants.CENTER);
+		test.setForeground(Color.BLACK);
+		test.setFont(new Font("Arial", Font.BOLD, 20));
+		test.setBounds(34, 117, 144, 38);
+		add(test);
 		
 		JButton btNoticias = new JButton("");
 		btNoticias.addActionListener(new ActionListener() {
@@ -82,6 +82,13 @@ public class MenuAdmin extends JPanel{
 		add(eliminarUsu);
 		
 		JButton btEliminarUsu = new JButton("");
+		btEliminarUsu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				gestionNoticias.EliminarUsuario();
+				
+			}
+		});
 		btEliminarUsu.setIcon(new ImageIcon(MenuAdmin.class.getResource("/Imagenes/eliminarUsu.png")));
 		btEliminarUsu.setBorder(null);
 		btEliminarUsu.setBackground(new Color(255, 160, 122));

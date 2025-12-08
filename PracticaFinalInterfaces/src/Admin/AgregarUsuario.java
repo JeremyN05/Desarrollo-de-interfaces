@@ -111,5 +111,32 @@ public class AgregarUsuario extends JPanel{
 		btnNewButton.setBounds(566, 502, 98, 42);
 		add(btnNewButton);
 		
+		JButton atras = new JButton("Atrás");
+		atras.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				gestionNoticias.mostrarMenuAdmin();
+				
+			}
+		});
+		atras.setFont(new Font("Arial", Font.BOLD, 14));
+		atras.setBounds(38, 503, 97, 41);
+		add(atras);
+		
+		JButton cerrarSesion = new JButton("Cerrar Sesión");
+		cerrarSesion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				gestionNoticias.mostrarInicioSesion();
+				
+			}
+		});
+		cerrarSesion.setForeground(Color.BLACK);
+		cerrarSesion.setFont(new Font("Arial", Font.BOLD, 10));
+		cerrarSesion.setBorder(null);
+		cerrarSesion.setBackground(new Color(255, 160, 122));
+		cerrarSesion.setBounds(566, 36, 101, 20);
+		add(cerrarSesion);
+		
 	}
 }

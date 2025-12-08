@@ -7,6 +7,7 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
 import Admin.AgregarUsuario;
+import Admin.EliminacionUsuario;
 import Admin.MenuAdmin;
 import Noticia.Anime;
 import Noticia.Deporte;
@@ -32,6 +33,7 @@ public class GestionNoticias extends JFrame{
 	private JPanel anime;
 	private JPanel menuAdmin;
 	private JPanel agregarUsuario;
+	private JPanel eliminarUsuario;
 	
 	public GestionNoticias() {
 
@@ -41,6 +43,34 @@ public class GestionNoticias extends JFrame{
         setLocationRelativeTo(null);
         setIconImage(Toolkit.getDefaultToolkit().getImage("src/Imagenes/noticias.png"));
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+
+                if (miPantallaCarga.isVisible()) {
+                   
+                	return;
+                
+                }
+
+                int opcion = javax.swing.JOptionPane.showConfirmDialog(
+                        
+                		GestionNoticias.this,
+                        "¿Está usted seguro de cerrar el programa?",
+                        "Confirmar salida",
+                        javax.swing.JOptionPane.YES_NO_OPTION,
+                        javax.swing.JOptionPane.WARNING_MESSAGE
+                );
+
+                if (opcion == javax.swing.JOptionPane.YES_OPTION) {
+                    System.exit(0);
+                
+                }
+
+            }
+       
+        });
 
         JLayeredPane layeredPane = new JLayeredPane();
         layeredPane.setBounds(0, 0, 700, 600);
@@ -58,8 +88,9 @@ public class GestionNoticias extends JFrame{
         anime = new Anime(this);
         menuAdmin = new MenuAdmin(this);
         agregarUsuario = new AgregarUsuario(this);
+        eliminarUsuario = new EliminacionUsuario(this);
 
-        JPanel[] paneles = { miPantallaCarga, miPanel, preferencia, noticia, economia, deporte, nacional, internacional, videojuegos, anime, menuAdmin, agregarUsuario };
+        JPanel[] paneles = { miPantallaCarga, miPanel, preferencia, noticia, economia, deporte, nacional, internacional, videojuegos, anime, menuAdmin, agregarUsuario, eliminarUsuario };
 
         for (JPanel panel : paneles) {
          
@@ -75,15 +106,13 @@ public class GestionNoticias extends JFrame{
 
     private void mostrarPanel(JPanel panel) {
         
-    	JPanel[] todos = { miPantallaCarga, miPanel, preferencia, noticia, economia, deporte, nacional, internacional, videojuegos, anime, menuAdmin, agregarUsuario };
+    	JPanel[] todos = { miPantallaCarga, miPanel, preferencia, noticia, economia, deporte, nacional, internacional, videojuegos, anime, menuAdmin, agregarUsuario, eliminarUsuario };
         
         for (JPanel p : todos) {
            
         	p.setVisible(p == panel);
       
         }
-      
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     
     }
 
@@ -130,6 +159,10 @@ public class GestionNoticias extends JFrame{
     
     public void AgregarUsuario() {
         mostrarPanel(agregarUsuario);
+    }
+    
+    public void EliminarUsuario() {
+        mostrarPanel(eliminarUsuario);
     }
     
 }
