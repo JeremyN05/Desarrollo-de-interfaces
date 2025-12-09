@@ -94,5 +94,17 @@ public class MenuAdmin extends JPanel{
 		btEliminarUsu.setBackground(new Color(255, 160, 122));
 		btEliminarUsu.setBounds(504, 162, 144, 144);
 		add(btEliminarUsu);
+		
+		JButton btnNewButton = new JButton("Atrás");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				gestionNoticias.mostrarInicioSesion();
+				
+			}
+		});
+		btnNewButton.setFont(new Font("Arial", Font.BOLD, 14));
+		btnNewButton.setBounds(41, 505, 101, 36);
+		add(btnNewButton);
 	}
 }

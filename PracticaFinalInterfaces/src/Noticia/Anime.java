@@ -11,6 +11,7 @@ import java.awt.Font;
 import java.io.IOException;
 
 import javax.swing.JTextArea;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -135,6 +136,33 @@ public class Anime extends JPanel{
 		cerrarSesion.setForeground(new Color(0, 0, 0));
 		cerrarSesion.setBounds(557, 28, 101, 20);
 		add(cerrarSesion);
+		
+		JButton cerrarPrograma = new JButton("");
+		cerrarPrograma.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				int opcion = javax.swing.JOptionPane.showConfirmDialog(
+                        
+                		Anime.this,
+                        "¿Está usted seguro de cerrar el programa?",
+                        "Confirmar salida",
+                        javax.swing.JOptionPane.YES_NO_OPTION,
+                        javax.swing.JOptionPane.WARNING_MESSAGE
+                );
+
+                if (opcion == javax.swing.JOptionPane.YES_OPTION) {
+                    System.exit(0);
+                
+                }
+				
+				System.exit(0);
+				
+			}
+		});
+		cerrarPrograma.setBorder(null);
+		cerrarPrograma.setBackground(new Color(255, 160, 122));
+		cerrarPrograma.setBounds(519, 28, 28, 22);
+		cerrarPrograma.setIcon(new ImageIcon("src/Imagenes/apagar.png"));
+		add(cerrarPrograma);
 	}
-	
 }

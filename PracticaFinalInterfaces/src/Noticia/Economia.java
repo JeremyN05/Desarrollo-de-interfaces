@@ -13,6 +13,7 @@ import Titulares.TituDeporte;
 import Titulares.TituEconomia;
 
 import javax.swing.JTextArea;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -135,8 +136,33 @@ public class Economia extends JPanel{
 		cerrarSesion.setBackground(new Color(255, 160, 122));
 		cerrarSesion.setBounds(557, 28, 101, 20);
 		add(cerrarSesion);
-	}
+		
+		JButton cerrarPrograma = new JButton("");
+		cerrarPrograma.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				int opcion = javax.swing.JOptionPane.showConfirmDialog(
+                        
+                		Economia.this,
+                        "¿Está usted seguro de cerrar el programa?",
+                        "Confirmar salida",
+                        javax.swing.JOptionPane.YES_NO_OPTION,
+                        javax.swing.JOptionPane.WARNING_MESSAGE
+                );
 
-	
-	
+                if (opcion == javax.swing.JOptionPane.YES_OPTION) {
+                    System.exit(0);
+                
+                }
+				
+				System.exit(0);
+				
+			}
+		});
+		cerrarPrograma.setBorder(null);
+		cerrarPrograma.setBackground(new Color(255, 160, 122));
+		cerrarPrograma.setBounds(519, 28, 28, 22);
+		cerrarPrograma.setIcon(new ImageIcon("src/Imagenes/apagar.png"));
+		add(cerrarPrograma);
+	}
 }

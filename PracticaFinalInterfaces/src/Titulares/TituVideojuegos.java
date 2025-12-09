@@ -10,11 +10,11 @@ public class TituVideojuegos {
 
 	public static String cargarTitulares() throws IOException {
 		
-		String web = "https://www.hobbyconsolas.com";
+		String web = "https://as.com/meristation/juegos/free-fire/noticias/";
 		
         Document document = Jsoup.connect(web).get();
 		
-        Element element = document.select("a.size-m").get(0);
+        Element element = document.select("h2.s__tl a").get(0);
 		
 		String elementos = element.html().toUpperCase();
         
@@ -24,11 +24,11 @@ public class TituVideojuegos {
 	
 	public static String cargarTitulares2() throws IOException {
 		
-		String web = "https://www.gamereactor.es";
+		String web = "https://theobjective.com/tecnologia/videojuegos/";
 		
         Document document = Jsoup.connect(web).get();
 		
-        Element element = document.select("h2.font-weight-bold").get(0);
+        Element element = document.select("h2.tno-article-general__content__title a").get(0);
 		
 		String elementos = element.html().toUpperCase();
         

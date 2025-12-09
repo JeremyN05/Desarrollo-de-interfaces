@@ -10,6 +10,8 @@ import javax.swing.JTextArea;
 
 import App.GestionNoticias;
 import Titulares.TituVideojuegos;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -30,10 +32,10 @@ public class Videojuegos extends JPanel{
 		lblNoticiasVideojuegos.setBounds(202, 62, 313, 36);
 		add(lblNoticiasVideojuegos);
 		
-		JLabel lblHobbyconsolas = new JLabel("HobbyConsolas:");
-		lblHobbyconsolas.setFont(new Font("Arial", Font.BOLD, 24));
-		lblHobbyconsolas.setBounds(41, 130, 196, 28);
-		add(lblHobbyconsolas);
+		JLabel lblAs = new JLabel("As:");
+		lblAs.setFont(new Font("Arial", Font.BOLD, 24));
+		lblAs.setBounds(41, 130, 52, 28);
+		add(lblAs);
 		
 		JTextArea noticiaVid = new JTextArea();
 		noticiaVid.setWrapStyleWord(true);
@@ -56,10 +58,10 @@ public class Videojuegos extends JPanel{
 		
 		add(noticiaVid);
 		
-		JLabel lblGamerReactor = new JLabel("GamerReactor:");
-		lblGamerReactor.setFont(new Font("Arial", Font.BOLD, 24));
-		lblGamerReactor.setBounds(41, 251, 196, 28);
-		add(lblGamerReactor);
+		JLabel lblTheObjetive = new JLabel("The Objetive:");
+		lblTheObjetive.setFont(new Font("Arial", Font.BOLD, 24));
+		lblTheObjetive.setBounds(41, 251, 196, 28);
+		add(lblTheObjetive);
 		
 		JTextArea noticiaVid_2 = new JTextArea();
 		noticiaVid_2.setWrapStyleWord(true);
@@ -134,5 +136,33 @@ public class Videojuegos extends JPanel{
 		cerrarSesion.setBackground(new Color(255, 160, 122));
 		cerrarSesion.setBounds(557, 28, 101, 20);
 		add(cerrarSesion);
+		
+		JButton cerrarPrograma = new JButton("");
+		cerrarPrograma.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				int opcion = javax.swing.JOptionPane.showConfirmDialog(
+                        
+                		Videojuegos.this,
+                        "¿Está usted seguro de cerrar el programa?",
+                        "Confirmar salida",
+                        javax.swing.JOptionPane.YES_NO_OPTION,
+                        javax.swing.JOptionPane.WARNING_MESSAGE
+                );
+
+                if (opcion == javax.swing.JOptionPane.YES_OPTION) {
+                    System.exit(0);
+                
+                }
+				
+				System.exit(0);
+				
+			}
+		});
+		cerrarPrograma.setBorder(null);
+		cerrarPrograma.setBackground(new Color(255, 160, 122));
+		cerrarPrograma.setBounds(519, 28, 28, 22);
+		cerrarPrograma.setIcon(new ImageIcon("src/Imagenes/apagar.png"));
+		add(cerrarPrograma);
 	}
 }
