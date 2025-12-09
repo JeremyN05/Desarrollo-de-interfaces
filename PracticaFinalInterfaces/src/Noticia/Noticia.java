@@ -7,6 +7,7 @@ import DatosUsuarios.CargarPreferencias;
 import DatosUsuarios.GuardarUsuario;
 import DatosUsuarios.LeerUsuario;
 import DatosUsuarios.Usuarios;
+import Mail.EnviarCorreo;
 
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -278,6 +279,29 @@ public class Noticia extends JPanel{
 		cerrarSesion.setBackground(new Color(255, 160, 122));
 		cerrarSesion.setBounds(547, 28, 101, 20);
 		add(cerrarSesion);
+		
+		JButton btEnviarCorreo = new JButton("Enviar correo");
+		btEnviarCorreo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Usuarios usuario = GuardarUsuario.getUsuarioActual();
+		        
+		        if (usuario == null) {
+		           
+		        	System.out.println("No hay usuario logueado");
+		            return;
+		        
+		        }
+				
+				EnviarCorreo.crearEMAIL(usuario);
+				
+			}
+		});
+		btEnviarCorreo.setFont(new Font("Arial", Font.BOLD, 10));
+		btEnviarCorreo.setBackground(new Color(255, 160, 122));
+		btEnviarCorreo.setBorder(null);
+		btEnviarCorreo.setBounds(34, 28, 101, 20);
+		add(btEnviarCorreo);
 		
 	}
 }
