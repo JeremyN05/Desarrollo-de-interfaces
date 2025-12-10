@@ -1,6 +1,9 @@
 package Titulares;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
+import java.util.Properties;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -10,11 +13,13 @@ public class TituDeporte {
 
 	public static String cargarTitulares() throws IOException {
 		
-		String web = "https://www.marca.com/";
+		Properties config = leerConfig("src/Titulares/URLDeporte.txt");
+		
+		String web = config.getProperty("url1");
 		
         Document document = Jsoup.connect(web).get();
 		
-		Element element = document.select("h2.ue-c-cover-content__headline").get(0);
+		Element element = document.select(config.getProperty("class1")).get(0);
 		
 		String elementos = element.html().toUpperCase();
         
@@ -24,11 +29,13 @@ public class TituDeporte {
 	
 	public static String cargarTitulares2() throws IOException {
 		
-		String web = "https://as.com/";
+		Properties config = leerConfig("src/Titulares/URLDeporte.txt");
+		
+		String web = config.getProperty("url2");
 		
         Document document = Jsoup.connect(web).get();
 		
-		Element element = document.select("h3.s_t a").get(0);
+		Element element = document.select(config.getProperty("class2")).get(0);
 		
 		String elementos = element.html().toUpperCase();
         
@@ -38,16 +45,55 @@ public class TituDeporte {
 	
 	public static String cargarTitulares3() throws IOException {
 		
-		String web = "https://www.sport.es/es/";
+		Properties config = leerConfig("src/Titulares/URLDeporte.txt");
+		
+		String web = config.getProperty("url3");
 		
         Document document = Jsoup.connect(web).get();
 		
-		Element element = document.select("a.ft-link").get(0);
+		Element element = document.select(config.getProperty("class3")).get(0);
 		
 		String elementos = element.html().toUpperCase();
         
         return elementos;
     
 	}
+	
+	public static Properties leerConfig(String rutaArchivo) {
+		
+        Properties props = new Properties();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivo))) {
+           
+        	String linea;
+           
+            while ((linea = br.readLine()) != null) {
+                
+            	linea = linea.trim();
+                
+                if (linea.isEmpty() || linea.startsWith("#")) {
+                	
+                	 continue;
+                	
+                }
+               
+                String[] partes = linea.split("=", 2);
+               
+                if (partes.length == 2) {
+                  
+                	props.setProperty(partes[0].trim(), partes[1].trim());
+                
+                }
+            
+            }
+       
+        } catch (IOException e) {
+       
+        	e.printStackTrace();
+        
+        }
+
+        return props;
+    }
 	
 }

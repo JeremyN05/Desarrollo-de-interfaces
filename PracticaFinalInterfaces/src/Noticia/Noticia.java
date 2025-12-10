@@ -148,7 +148,7 @@ public class Noticia extends JPanel{
 		btNacional.setBackground(new Color(255, 160, 122));
 		btNacional.setBorder(null);
 		btNacional.setBounds(520, 162, 112, 112);
-		btEconomia.setIcon(new ImageIcon("src/Imagenes/iconoEconomia.png"));
+		btNacional.setIcon(new ImageIcon("src/Imagenes/iconoNacional.png"));
 		add(btNacional);
 		
 		JLabel Internacional = new JLabel("Internacional");
@@ -200,7 +200,7 @@ public class Noticia extends JPanel{
 		btInternacional.setBorder(null);
 		btInternacional.setBackground(new Color(255, 160, 122));
 		btInternacional.setBounds(48, 368, 112, 112);
-		btEconomia.setIcon(new ImageIcon("src/Imagenes/iconoEconomia.png"));
+		btInternacional.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/IconoInternacional.png")));
 		add(btInternacional);
 		
 		JButton btVideojuegos = new JButton("");
@@ -231,6 +231,7 @@ public class Noticia extends JPanel{
 		btVideojuegos.setBorder(null);
 		btVideojuegos.setBackground(new Color(255, 160, 122));
 		btVideojuegos.setBounds(288, 368, 112, 112);
+		btVideojuegos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/IconoVideojuegos.png")));
 		add(btVideojuegos);
 		
 		JButton btAnime = new JButton("");
@@ -261,7 +262,7 @@ public class Noticia extends JPanel{
 		btAnime.setBackground(new Color(255, 160, 122));
 		btAnime.setBorder(null);
 		btAnime.setBounds(520, 368, 112, 112);
-		btEconomia.setIcon(new ImageIcon("src/Imagenes/iconoEconomia.png"));
+		btAnime.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/IconoAnime.png")));
 		add(btAnime);
 		
 		JButton cerrarSesion = new JButton("Cerrar Sesión");
@@ -301,6 +302,61 @@ public class Noticia extends JPanel{
 		btEnviarCorreo.setBorder(null);
 		btEnviarCorreo.setBounds(34, 28, 101, 20);
 		add(btEnviarCorreo);
+		
+		JButton btnNewButton = new JButton("Atrás");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Usuarios usuario = GuardarUsuario.getUsuarioActual();
+
+			    if (usuario == null) {
+			     
+			    	System.out.println("No hay usuario logueado");
+			        return;
+			    
+			    }
+
+			    int id = usuario.getId();
+			    
+			    if (usuario.isAdmin() ) {
+				    
+			    	gestion.mostrarMenuAdmin();
+			    
+			    }
+				
+			}
+		});
+		btnNewButton.setFont(new Font("Arial", Font.BOLD, 14));
+		btnNewButton.setBounds(34, 510, 102, 36);
+		add(btnNewButton);
+		
+		JButton cerrarPrograma = new JButton("");
+		cerrarPrograma.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				int opcion = javax.swing.JOptionPane.showConfirmDialog(
+                        
+                		Noticia.this,
+                        "¿Está usted seguro de cerrar el programa?",
+                        "Confirmar salida",
+                        javax.swing.JOptionPane.YES_NO_OPTION,
+                        javax.swing.JOptionPane.WARNING_MESSAGE
+                );
+
+                if (opcion == javax.swing.JOptionPane.YES_OPTION) {
+                    System.exit(0);
+                
+                }
+				
+				System.exit(0);
+				
+			}
+		});
+		cerrarPrograma.setIcon(new ImageIcon("src/Imagenes/apagar.png"));
+		cerrarPrograma.setBorder(null);
+		cerrarPrograma.setBackground(new Color(255, 160, 122));
+		cerrarPrograma.setBounds(509, 26, 28, 22);
+		add(cerrarPrograma);
 		
 	}
 }

@@ -9,8 +9,12 @@ import java.util.List;
 import java.util.Properties;
 
 import javax.mail.Authenticator;
+import javax.mail.Message;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 import DatosUsuarios.CargarPreferencias;
 import DatosUsuarios.Usuarios;
@@ -27,17 +31,17 @@ public class EnviarCorreo{
        
     	try{
            
-    		javax.mail.internet.MimeMessage msg = new javax.mail.internet.MimeMessage(session);
+    		MimeMessage msg = new MimeMessage(session);
             msg.addHeader("Content-type", "text/HTML; charset=UTF-8");
             msg.addHeader("format", "flowed");
             msg.addHeader("Content-Transfer-Encoding", "8bit");
-            msg.setFrom(new javax.mail.internet.InternetAddress("no_reply@example.com", "NO BIZUM NO RESPONDER"));
-            msg.setReplyTo(javax.mail.internet.InternetAddress.parse("no_reply_DOSA@DAM.com", false));
+            msg.setFrom(new InternetAddress("no_reply@example.com", "NO BIZUM NO RESPONDER"));
+            msg.setReplyTo(InternetAddress.parse("no_reply_DOSA@DAM.com", false));
             msg.setSubject(subject, "UTF-8");
             msg.setText(body, "UTF-8");
-            msg.setRecipients(javax.mail.Message.RecipientType.TO, javax.mail.internet.InternetAddress.parse(toEmail, false));
+            msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail, false));
             System.out.println("MENSAJE CREADO");
-            javax.mail.Transport.send(msg);
+            Transport.send(msg);
             System.out.println("¡EMAIL ENVIADO!");
         
     	} catch (Exception e) {
@@ -146,17 +150,32 @@ public class EnviarCorreo{
         Properties props = new Properties();
 
         try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivo))) {
-            String linea;
+            
+        	String linea;
+           
             while ((linea = br.readLine()) != null) {
-                linea = linea.trim();
-                if (linea.isEmpty() || linea.startsWith("#")) continue;
+                
+            	linea = linea.trim();
+                
+                if (linea.isEmpty() || linea.startsWith("#")) {
+                	
+                	continue;
+                	
+                }
+                
                 String[] partes = linea.split("=", 2);
+                
                 if (partes.length == 2) {
                     props.setProperty(partes[0].trim(), partes[1].trim());
+               
                 }
+          
             }
+        
         } catch (IOException e) {
-            e.printStackTrace();
+        
+        	e.printStackTrace();
+        
         }
 
         return props;
