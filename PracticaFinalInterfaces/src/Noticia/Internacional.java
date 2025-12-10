@@ -86,7 +86,7 @@ public class Internacional extends JPanel{
 		
 		JLabel telemundo = new JLabel("Telemundo: ");
 		telemundo.setFont(new Font("Arial", Font.BOLD, 24));
-		telemundo.setBounds(41, 370, 141, 24);
+		telemundo.setBounds(41, 370, 152, 24);
 		add(telemundo);
 		
 		JTextArea noticiaInt_3 = new JTextArea();

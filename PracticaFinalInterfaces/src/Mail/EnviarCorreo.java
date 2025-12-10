@@ -149,7 +149,7 @@ public class EnviarCorreo{
             String linea;
             while ((linea = br.readLine()) != null) {
                 linea = linea.trim();
-                if (linea.isEmpty() || linea.startsWith("#")) continue; // Ignorar comentarios
+                if (linea.isEmpty() || linea.startsWith("#")) continue;
                 String[] partes = linea.split("=", 2);
                 if (partes.length == 2) {
                     props.setProperty(partes[0].trim(), partes[1].trim());

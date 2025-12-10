@@ -85,7 +85,7 @@ public class Noticia extends JPanel{
 		});
 		btEconomia.setBackground(new Color(255, 160, 122));
 		btEconomia.setBorder(null);
-		btEconomia.setBounds(34, 162, 144, 144);
+		btEconomia.setBounds(48, 167, 112, 112);
 		btEconomia.setIcon(new ImageIcon("src/Imagenes/iconoEconomia.png"));
 		add(btEconomia);
 		
@@ -116,7 +116,7 @@ public class Noticia extends JPanel{
 		});
 		btDeportes.setBorder(null);
 		btDeportes.setBackground(new Color(255, 160, 122));
-		btDeportes.setBounds(274, 162, 144, 144);
+		btDeportes.setBounds(288, 167, 112, 112);
 		btDeportes.setIcon(new ImageIcon("src/Imagenes/iconoDeportes.png"));
 		add(btDeportes);
 		
@@ -147,29 +147,29 @@ public class Noticia extends JPanel{
 		});
 		btNacional.setBackground(new Color(255, 160, 122));
 		btNacional.setBorder(null);
-		btNacional.setBounds(504, 162, 144, 144);
-		btNacional.setIcon(new ImageIcon("src/Imagenes/iconoNacional.png"));
+		btNacional.setBounds(520, 162, 112, 112);
+		btEconomia.setIcon(new ImageIcon("src/Imagenes/iconoEconomia.png"));
 		add(btNacional);
 		
 		JLabel Internacional = new JLabel("Internacional");
 		Internacional.setForeground(new Color(0, 0, 0));
 		Internacional.setHorizontalAlignment(SwingConstants.CENTER);
 		Internacional.setFont(new Font("Arial", Font.BOLD, 20));
-		Internacional.setBounds(34, 344, 144, 39);
+		Internacional.setBounds(34, 318, 144, 39);
 		add(Internacional);
 		
 		JLabel Videojuegos = new JLabel("VideoJuegos");
 		Videojuegos.setForeground(new Color(0, 0, 0));
 		Videojuegos.setHorizontalAlignment(SwingConstants.CENTER);
 		Videojuegos.setFont(new Font("Arial", Font.BOLD, 20));
-		Videojuegos.setBounds(274, 344, 144, 39);
+		Videojuegos.setBounds(274, 318, 144, 39);
 		add(Videojuegos);
 		
 		JLabel Anime = new JLabel("Anime");
 		Anime.setForeground(new Color(0, 0, 0));
 		Anime.setHorizontalAlignment(SwingConstants.CENTER);
 		Anime.setFont(new Font("Arial", Font.BOLD, 20));
-		Anime.setBounds(504, 344, 144, 39);
+		Anime.setBounds(504, 318, 144, 39);
 		add(Anime);
 		
 		JButton btInternacional = new JButton("");
@@ -199,8 +199,8 @@ public class Noticia extends JPanel{
 		});
 		btInternacional.setBorder(null);
 		btInternacional.setBackground(new Color(255, 160, 122));
-		btInternacional.setBounds(34, 394, 144, 144);
-		btInternacional.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/IconoInternacional.png")));
+		btInternacional.setBounds(48, 368, 112, 112);
+		btEconomia.setIcon(new ImageIcon("src/Imagenes/iconoEconomia.png"));
 		add(btInternacional);
 		
 		JButton btVideojuegos = new JButton("");
@@ -230,8 +230,7 @@ public class Noticia extends JPanel{
 		});
 		btVideojuegos.setBorder(null);
 		btVideojuegos.setBackground(new Color(255, 160, 122));
-		btVideojuegos.setBounds(274, 394, 144, 144);
-		btVideojuegos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/IconoVideojuegos.png")));
+		btVideojuegos.setBounds(288, 368, 112, 112);
 		add(btVideojuegos);
 		
 		JButton btAnime = new JButton("");
@@ -261,8 +260,8 @@ public class Noticia extends JPanel{
 		});
 		btAnime.setBackground(new Color(255, 160, 122));
 		btAnime.setBorder(null);
-		btAnime.setBounds(504, 394, 144, 144);
-		btAnime.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/IconoAnime.png")));
+		btAnime.setBounds(520, 368, 112, 112);
+		btEconomia.setIcon(new ImageIcon("src/Imagenes/iconoEconomia.png"));
 		add(btAnime);
 		
 		JButton cerrarSesion = new JButton("Cerrar Sesión");
