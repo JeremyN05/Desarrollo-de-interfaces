@@ -11,6 +11,7 @@ import java.util.Properties;
 import javax.mail.Authenticator;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
+import javax.swing.JOptionPane;
 
 import DatosUsuarios.CargarPreferencias;
 import DatosUsuarios.Usuarios;
@@ -39,6 +40,8 @@ public class EnviarCorreo{
             System.out.println("MENSAJE CREADO");
             javax.mail.Transport.send(msg);
             System.out.println("¡EMAIL ENVIADO!");
+            
+            JOptionPane.showMessageDialog(null, "Correo electrónico enviado correctamente."); //Ventana emergente indicando el envío del correo
         
     	} catch (Exception e) {
             
