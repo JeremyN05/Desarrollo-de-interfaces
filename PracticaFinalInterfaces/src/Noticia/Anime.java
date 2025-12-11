@@ -3,12 +3,16 @@ package Noticia;
 import javax.swing.JPanel;
 
 import App.GestionNoticias;
+import DatosUsuarios.CargarPreferencias;
+import DatosUsuarios.GuardarUsuario;
+import DatosUsuarios.Usuarios;
 import Titulares.TituAnime;
 
 import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.io.IOException;
+import java.util.List;
 
 import javax.swing.JTextArea;
 import javax.swing.ImageIcon;
@@ -19,6 +23,9 @@ import java.awt.event.ActionEvent;
 public class Anime extends JPanel{
 	
 	private GestionNoticias gestion;
+	private JTextArea noticiaAn;
+	private JTextArea noticiaAn_2;
+	private JTextArea noticiaAn_3;
 	
 	public Anime(GestionNoticias gestionNoticias) {
 		
@@ -37,7 +44,7 @@ public class Anime extends JPanel{
 		kudasai.setBounds(41, 130, 110, 24);
 		add(kudasai);
 		
-		JTextArea noticiaAn = new JTextArea();
+		noticiaAn = new JTextArea();
 		noticiaAn.setWrapStyleWord(true);
 		noticiaAn.setText("¡ALONSO ENTRA CUARTO EN Q3!");
 		noticiaAn.setLineWrap(true);
@@ -45,14 +52,26 @@ public class Anime extends JPanel{
 		noticiaAn.setEditable(false);
 		noticiaAn.setBackground(new Color(255, 160, 122));
 		noticiaAn.setBounds(41, 164, 617, 75);
+
+		Usuarios usuario = GuardarUsuario.getUsuarioActual();
 		
-		try {
-			
-			noticiaAn.setText(TituAnime.cargarTitulares());
-		
-		} catch (IOException e) {
-			
-			e.printStackTrace();
+		if (usuario != null) {
+		    
+			List<String> prefs = CargarPreferencias.cargarPreferencias(usuario.getId());
+
+		    if (prefs.contains("A1")) {
+		      
+		    	try {
+		         
+		    		noticiaAn.setText(TituAnime.cargarTitulares());
+		        
+		    	} catch (IOException e) {
+		           
+		    		e.printStackTrace();
+		        
+		    	}
+		    
+		    }
 		
 		}
 		
@@ -63,7 +82,7 @@ public class Anime extends JPanel{
 		elPais.setBounds(41, 251, 90, 24);
 		add(elPais);
 		
-		JTextArea noticiaAn_2 = new JTextArea();
+		noticiaAn_2 = new JTextArea();
 		noticiaAn_2.setWrapStyleWord(true);
 		noticiaAn_2.setText("¡ALONSO ENTRA CUARTO EN Q3!");
 		noticiaAn_2.setLineWrap(true);
@@ -71,14 +90,24 @@ public class Anime extends JPanel{
 		noticiaAn_2.setEditable(false);
 		noticiaAn_2.setBackground(new Color(255, 160, 122));
 		noticiaAn_2.setBounds(41, 285, 617, 75);
-		
-		try {
-			
-			noticiaAn_2.setText(TituAnime.cargarTitulares2());
-		
-		} catch (IOException e) {
-			
-			e.printStackTrace();
+
+		if (usuario != null) {
+		    
+			List<String> prefs = CargarPreferencias.cargarPreferencias(usuario.getId());
+
+		    if (prefs.contains("A2")) {
+		      
+				try {
+					
+					noticiaAn_2.setText(TituAnime.cargarTitulares2());
+				
+				} catch (IOException e) {
+					
+					e.printStackTrace();
+				
+				}
+		    
+		    }
 		
 		}
 		
@@ -89,7 +118,7 @@ public class Anime extends JPanel{
 		milenio.setBounds(41, 370, 101, 24);
 		add(milenio);
 		
-		JTextArea noticiaAn_3 = new JTextArea();
+		noticiaAn_3 = new JTextArea();
 		noticiaAn_3.setWrapStyleWord(true);
 		noticiaAn_3.setText("¡ALONSO ENTRA CUARTO EN Q3!");
 		noticiaAn_3.setLineWrap(true);
@@ -98,13 +127,23 @@ public class Anime extends JPanel{
 		noticiaAn_3.setBackground(new Color(255, 160, 122));
 		noticiaAn_3.setBounds(41, 404, 617, 75);
 		
-		try {
-			
-			noticiaAn_3.setText(TituAnime.cargarTitulares3());
-		
-		} catch (IOException e) {
-			
-			e.printStackTrace();
+		if (usuario != null) {
+		    
+			List<String> prefs = CargarPreferencias.cargarPreferencias(usuario.getId());
+
+		    if (prefs.contains("A3")) {
+		      
+				try {
+					
+					noticiaAn_3.setText(TituAnime.cargarTitulares3());
+				
+				} catch (IOException e) {
+					
+					e.printStackTrace();
+				
+				}
+		    
+		    }
 		
 		}
 		
@@ -165,4 +204,40 @@ public class Anime extends JPanel{
 		cerrarPrograma.setIcon(new ImageIcon("src/Imagenes/apagar.png"));
 		add(cerrarPrograma);
 	}
+	
+	public void actualizarNoticias() {
+
+	    Usuarios usuario = GuardarUsuario.getUsuarioActual();
+	    if (usuario == null) return;
+
+	    List<String> prefs = CargarPreferencias.cargarPreferencias(usuario.getId());
+
+	    noticiaAn.setVisible(false);
+	    noticiaAn_2.setVisible(false);
+	    noticiaAn_3.setVisible(false);
+
+	    try {
+	        if (prefs.contains("A1")) {
+	        	noticiaAn.setText(TituAnime.cargarTitulares());
+	        	noticiaAn.setVisible(true);
+	        }
+
+	        if (prefs.contains("A2")) {
+	        	noticiaAn_2.setText(TituAnime.cargarTitulares2());
+	        	noticiaAn_2.setVisible(true);
+	        }
+
+	        if (prefs.contains("A3")) {
+	        	noticiaAn_3.setText(TituAnime.cargarTitulares3());
+	            noticiaAn_3.setVisible(true);
+	        }
+
+	    } catch (IOException e) {
+	    
+	    	e.printStackTrace();
+	   
+	    }
+
+	}
+	
 }

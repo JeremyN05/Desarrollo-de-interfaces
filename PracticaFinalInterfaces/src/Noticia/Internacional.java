@@ -5,10 +5,15 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.io.IOException;
+import java.util.List;
 
 import javax.swing.JTextArea;
 
 import App.GestionNoticias;
+import DatosUsuarios.CargarPreferencias;
+import DatosUsuarios.GuardarUsuario;
+import DatosUsuarios.Usuarios;
+import Titulares.TituEconomia;
 import Titulares.TituInternacional;
 
 import javax.swing.ImageIcon;
@@ -19,6 +24,9 @@ import java.awt.event.ActionEvent;
 public class Internacional extends JPanel{
 	
 	private GestionNoticias gestion;
+	private JTextArea noticiaInt;
+	private JTextArea noticiaInt_2;
+	private JTextArea noticiaInt_3;
 	
 	public Internacional(GestionNoticias gestionNoticias) {
 		
@@ -37,7 +45,7 @@ public class Internacional extends JPanel{
 		cnn.setBounds(41, 130, 85, 24);
 		add(cnn);
 		
-		JTextArea noticiaInt = new JTextArea();
+		noticiaInt = new JTextArea();
 		noticiaInt.setWrapStyleWord(true);
 		noticiaInt.setText("ALONSO EL INVITADO SORPRESA EN LA PELEA POR EL TÍTULO");
 		noticiaInt.setLineWrap(true);
@@ -45,17 +53,6 @@ public class Internacional extends JPanel{
 		noticiaInt.setEditable(false);
 		noticiaInt.setBackground(new Color(255, 160, 122));
 		noticiaInt.setBounds(41, 164, 617, 75);
-		
-		try {
-			
-			noticiaInt.setText(TituInternacional.cargarTitulares());
-		
-		} catch (IOException e) {
-			
-			e.printStackTrace();
-		
-		}
-		
 		add(noticiaInt);
 		
 		JLabel laRazon = new JLabel("La Razón:");
@@ -63,7 +60,7 @@ public class Internacional extends JPanel{
 		laRazon.setBounds(41, 251, 137, 24);
 		add(laRazon);
 		
-		JTextArea noticiaInt_2 = new JTextArea();
+		noticiaInt_2 = new JTextArea();
 		noticiaInt_2.setWrapStyleWord(true);
 		noticiaInt_2.setText("UN SORTEO CONDICIONADO Y CON TRAMPAS");
 		noticiaInt_2.setLineWrap(true);
@@ -71,17 +68,6 @@ public class Internacional extends JPanel{
 		noticiaInt_2.setEditable(false);
 		noticiaInt_2.setBackground(new Color(255, 160, 122));
 		noticiaInt_2.setBounds(41, 285, 617, 75);
-		
-		try {
-			
-			noticiaInt_2.setText(TituInternacional.cargarTitulares2());
-		
-		} catch (IOException e) {
-			
-			e.printStackTrace();
-		
-		}
-		
 		add(noticiaInt_2);
 		
 		JLabel telemundo = new JLabel("Telemundo: ");
@@ -89,7 +75,7 @@ public class Internacional extends JPanel{
 		telemundo.setBounds(41, 370, 152, 24);
 		add(telemundo);
 		
-		JTextArea noticiaInt_3 = new JTextArea();
+		noticiaInt_3 = new JTextArea();
 		noticiaInt_3.setWrapStyleWord(true);
 		noticiaInt_3.setText("UN SORTEO CONDICIONADO Y CON TRAMPAS");
 		noticiaInt_3.setLineWrap(true);
@@ -97,17 +83,6 @@ public class Internacional extends JPanel{
 		noticiaInt_3.setEditable(false);
 		noticiaInt_3.setBackground(new Color(255, 160, 122));
 		noticiaInt_3.setBounds(41, 404, 617, 75);
-		
-		try {
-			
-			noticiaInt_3.setText(TituInternacional.cargarTitulares3());
-		
-		} catch (IOException e) {
-			
-			e.printStackTrace();
-		
-		}
-		
 		add(noticiaInt_3);
 		
 		JButton btnNewButton = new JButton("Atrás");
@@ -165,4 +140,40 @@ public class Internacional extends JPanel{
 		cerrarPrograma.setIcon(new ImageIcon("src/Imagenes/apagar.png"));
 		add(cerrarPrograma);
 	}
+	
+	public void actualizarNoticias() {
+
+	    Usuarios usuario = GuardarUsuario.getUsuarioActual();
+	    if (usuario == null) return;
+
+	    List<String> prefs = CargarPreferencias.cargarPreferencias(usuario.getId());
+
+	    noticiaInt.setVisible(false);
+	    noticiaInt_2.setVisible(false);
+	    noticiaInt_3.setVisible(false);
+
+	    try {
+	        if (prefs.contains("A1")) {
+	        	noticiaInt.setText(TituEconomia.cargarTitulares());
+	        	noticiaInt.setVisible(true);
+	        }
+
+	        if (prefs.contains("A2")) {
+	        	noticiaInt_2.setText(TituEconomia.cargarTitulares2());
+	        	noticiaInt_2.setVisible(true);
+	        }
+
+	        if (prefs.contains("A3")) {
+	        	noticiaInt_3.setText(TituEconomia.cargarTitulares3());
+	        	noticiaInt_3.setVisible(true);
+	        }
+
+	    } catch (IOException e) {
+	    
+	    	e.printStackTrace();
+	   
+	    }
+
+	}
+	
 }

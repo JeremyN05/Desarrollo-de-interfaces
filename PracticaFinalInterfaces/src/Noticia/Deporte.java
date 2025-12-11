@@ -5,10 +5,14 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.io.IOException;
+import java.util.List;
 
 import javax.swing.JTextArea;
 
 import App.GestionNoticias;
+import DatosUsuarios.CargarPreferencias;
+import DatosUsuarios.GuardarUsuario;
+import DatosUsuarios.Usuarios;
 import Titulares.TituDeporte;
 
 import javax.swing.ImageIcon;
@@ -19,8 +23,10 @@ import java.awt.event.ActionEvent;
 public class Deporte extends JPanel{
 	
 	private GestionNoticias gestion;
+	Usuarios usuario = GuardarUsuario.getUsuarioActual();
 	private JTextArea noticiaDep;
 	private JTextArea noticiaDep_2;
+	private JTextArea noticiaDep_3;
 	
 	public Deporte(GestionNoticias gestionNoticias) {
 		
@@ -45,18 +51,7 @@ public class Deporte extends JPanel{
 		noticiaDep.setFont(new Font("Arial", Font.PLAIN, 18));
 		noticiaDep.setEditable(false);
 		noticiaDep.setBackground(new Color(255, 160, 122));
-		noticiaDep.setBounds(41, 164, 617, 75);
-		
-		try {
-			
-			noticiaDep.setText(TituDeporte.cargarTitulares());
-		
-		} catch (IOException e) {
-			
-			e.printStackTrace();
-		
-		}
-		
+		noticiaDep.setBounds(41, 164, 617, 75);	
 		add(noticiaDep);
 		
 		JLabel As = new JLabel("As:");
@@ -71,18 +66,7 @@ public class Deporte extends JPanel{
 		noticiaDep_2.setFont(new Font("Arial", Font.PLAIN, 18));
 		noticiaDep_2.setEditable(false);
 		noticiaDep_2.setBackground(new Color(255, 160, 122));
-		noticiaDep_2.setBounds(41, 285, 617, 75);
-		
-		try {
-			
-			noticiaDep_2.setText(TituDeporte.cargarTitulares2());
-		
-		} catch (IOException e) {
-			
-			e.printStackTrace();
-		
-		}
-		
+		noticiaDep_2.setBounds(41, 285, 617, 75);		
 		add(noticiaDep_2);
 		
 		JLabel Sport = new JLabel("Sport:");
@@ -90,7 +74,7 @@ public class Deporte extends JPanel{
 		Sport.setBounds(41, 370, 86, 24);
 		add(Sport);
 		
-		JTextArea noticiaDep_3 = new JTextArea();
+		noticiaDep_3 = new JTextArea();
 		noticiaDep_3.setWrapStyleWord(true);
 		noticiaDep_3.setLineWrap(true);
 		noticiaDep_3.setText("UN SORTEO CONDICIONADO Y CON TRAMPAS");
@@ -98,17 +82,6 @@ public class Deporte extends JPanel{
 		noticiaDep_3.setEditable(false);
 		noticiaDep_3.setBackground(new Color(255, 160, 122));
 		noticiaDep_3.setBounds(41, 404, 617, 75);
-		
-		try {
-			
-			noticiaDep_3.setText(TituDeporte.cargarTitulares3());
-		
-		} catch (IOException e) {
-			
-			e.printStackTrace();
-		
-		}
-		
 		add(noticiaDep_3);
 		
 		JButton btnNewButton = new JButton("Atrás");
@@ -166,4 +139,40 @@ public class Deporte extends JPanel{
 		cerrarPrograma.setIcon(new ImageIcon("src/Imagenes/apagar.png"));
 		add(cerrarPrograma);	
 	}
+	
+	public void actualizarNoticias() {
+
+	    Usuarios usuario = GuardarUsuario.getUsuarioActual();
+	    if (usuario == null) return;
+
+	    List<String> prefs = CargarPreferencias.cargarPreferencias(usuario.getId());
+
+	    noticiaDep.setVisible(false);
+	    noticiaDep_2.setVisible(false);
+	    noticiaDep_3.setVisible(false);
+
+	    try {
+	        if (prefs.contains("A1")) {
+	        	noticiaDep.setText(TituDeporte.cargarTitulares());
+	        	noticiaDep.setVisible(true);
+	        }
+
+	        if (prefs.contains("A2")) {
+	        	noticiaDep_2.setText(TituDeporte.cargarTitulares2());
+	        	noticiaDep_2.setVisible(true);
+	        }
+
+	        if (prefs.contains("A3")) {
+	        	noticiaDep_3.setText(TituDeporte.cargarTitulares3());
+	        	noticiaDep_3.setVisible(true);
+	        }
+
+	    } catch (IOException e) {
+	    
+	    	e.printStackTrace();
+	   
+	    }
+
+	}
+	
 }

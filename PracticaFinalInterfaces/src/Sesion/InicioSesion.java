@@ -85,6 +85,13 @@ public class InicioSesion extends JPanel{
 				    GuardarUsuario.setUsuarioActual(usuarioLogueado);
 				    System.out.println("Usuario válido: " + usuarioLogueado.getNombre());
 
+				    gestionNoticias.economia.actualizarNoticias();
+				    gestionNoticias.deporte.actualizarNoticias();
+				    gestionNoticias.nacional.actualizarNoticias();
+				    gestionNoticias.internacional.actualizarNoticias();
+				    gestionNoticias.videojuegos.actualizarNoticias();
+                    gestionNoticias.anime.actualizarNoticias();
+				    
 				    if (usuarioLogueado.isAdmin()) {
 
 				    	gestionNoticias.mostrarMenuAdmin();
@@ -99,7 +106,7 @@ public class InicioSesion extends JPanel{
 				        
 				        } else {
 				        
-				        	gestionNoticias.mostrarPreferencia();
+				        	gestionNoticias.mostrarSeleccionFuentes();
 				       
 				        }
 				   

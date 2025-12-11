@@ -5,10 +5,15 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.io.IOException;
+import java.util.List;
 
 import javax.swing.JTextArea;
 
 import App.GestionNoticias;
+import DatosUsuarios.CargarPreferencias;
+import DatosUsuarios.GuardarUsuario;
+import DatosUsuarios.Usuarios;
+import Titulares.TituEconomia;
 import Titulares.TituVideojuegos;
 
 import javax.swing.ImageIcon;
@@ -19,6 +24,9 @@ import java.awt.event.ActionEvent;
 public class Videojuegos extends JPanel{
 	
 	private GestionNoticias gestion;
+	private JTextArea noticiaVid;
+	private JTextArea noticiaVid_2;
+	private JTextArea noticiaVid_3;
 	
 	public Videojuegos(GestionNoticias gestionNoticias) {
 		
@@ -37,7 +45,7 @@ public class Videojuegos extends JPanel{
 		lblAs.setBounds(41, 130, 52, 28);
 		add(lblAs);
 		
-		JTextArea noticiaVid = new JTextArea();
+		noticiaVid = new JTextArea();
 		noticiaVid.setWrapStyleWord(true);
 		noticiaVid.setText("LA QUALY DECISIVA: NORRIS TÍMIDO... ALONSO CUARTO EN Q1");
 		noticiaVid.setLineWrap(true);
@@ -45,17 +53,6 @@ public class Videojuegos extends JPanel{
 		noticiaVid.setEditable(false);
 		noticiaVid.setBackground(new Color(255, 160, 122));
 		noticiaVid.setBounds(41, 164, 617, 75);
-		
-		try {
-			
-			noticiaVid.setText(TituVideojuegos.cargarTitulares());
-		
-		} catch (IOException e) {
-			
-			e.printStackTrace();
-		
-		}
-		
 		add(noticiaVid);
 		
 		JLabel lblTheObjetive = new JLabel("The Objetive:");
@@ -63,7 +60,7 @@ public class Videojuegos extends JPanel{
 		lblTheObjetive.setBounds(41, 251, 196, 28);
 		add(lblTheObjetive);
 		
-		JTextArea noticiaVid_2 = new JTextArea();
+		noticiaVid_2 = new JTextArea();
 		noticiaVid_2.setWrapStyleWord(true);
 		noticiaVid_2.setText("LA QUALY DECISIVA: NORRIS TÍMIDO... ALONSO CUARTO EN Q1");
 		noticiaVid_2.setLineWrap(true);
@@ -71,20 +68,9 @@ public class Videojuegos extends JPanel{
 		noticiaVid_2.setEditable(false);
 		noticiaVid_2.setBackground(new Color(255, 160, 122));
 		noticiaVid_2.setBounds(41, 285, 617, 75);
-		
-		try {
-			
-			noticiaVid_2.setText(TituVideojuegos.cargarTitulares2());
-		
-		} catch (IOException e) {
-			
-			e.printStackTrace();
-		
-		}
-		
 		add(noticiaVid_2);
 		
-		JTextArea noticiaVid_3 = new JTextArea();
+		noticiaVid_3 = new JTextArea();
 		noticiaVid_3.setWrapStyleWord(true);
 		noticiaVid_3.setText("LA QUALY DECISIVA: NORRIS TÍMIDO... ALONSO CUARTO EN Q1");
 		noticiaVid_3.setLineWrap(true);
@@ -96,18 +82,7 @@ public class Videojuegos extends JPanel{
 		
 		JLabel lblMarcaGamer = new JLabel("Marca Videojuegos:");
 		lblMarcaGamer.setFont(new Font("Arial", Font.BOLD, 24));
-		lblMarcaGamer.setBounds(41, 370, 238, 28);
-		
-		try {
-			
-			noticiaVid_3.setText(TituVideojuegos.cargarTitulares3());
-		
-		} catch (IOException e) {
-			
-			e.printStackTrace();
-		
-		}
-		
+		lblMarcaGamer.setBounds(41, 370, 238, 28);		
 		add(lblMarcaGamer);
 		
 		JButton btnNewButton = new JButton("Atrás");
@@ -165,4 +140,40 @@ public class Videojuegos extends JPanel{
 		cerrarPrograma.setIcon(new ImageIcon("src/Imagenes/apagar.png"));
 		add(cerrarPrograma);
 	}
+	
+	public void actualizarNoticias() {
+
+	    Usuarios usuario = GuardarUsuario.getUsuarioActual();
+	    if (usuario == null) return;
+
+	    List<String> prefs = CargarPreferencias.cargarPreferencias(usuario.getId());
+
+	    noticiaVid.setVisible(false);
+	    noticiaVid_2.setVisible(false);
+	    noticiaVid_3.setVisible(false);
+
+	    try {
+	        if (prefs.contains("A1")) {
+	        	noticiaVid.setText(TituEconomia.cargarTitulares());
+	        	noticiaVid.setVisible(true);
+	        }
+
+	        if (prefs.contains("A2")) {
+	        	noticiaVid_2.setText(TituEconomia.cargarTitulares2());
+	        	noticiaVid_2.setVisible(true);
+	        }
+
+	        if (prefs.contains("A3")) {
+	        	noticiaVid_3.setText(TituEconomia.cargarTitulares3());
+	        	noticiaVid_3.setVisible(true);
+	        }
+
+	    } catch (IOException e) {
+	    
+	    	e.printStackTrace();
+	   
+	    }
+
+	}
+	
 }

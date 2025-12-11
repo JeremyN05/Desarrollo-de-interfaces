@@ -15,22 +15,22 @@ import Noticia.Economia;
 import Noticia.Internacional;
 import Noticia.Nacional;
 import Noticia.Noticia;
+import Noticia.SeleccionFuentes;
 import Noticia.Videojuegos;
-import Preferencias.Preferencia;
 import Sesion.InicioSesion;
 
 public class GestionNoticias extends JFrame{
 
 	private JPanel miPantallaCarga;
 	private JPanel miPanel;
-	private JPanel preferencia;
+	private JPanel eleccionFuentes;
 	private JPanel noticia;
-	private JPanel economia;
-	private JPanel deporte;
-	private JPanel nacional;
-	private JPanel internacional;
-	private JPanel videojuegos;
-	private JPanel anime;
+	public Economia economia;
+	public Deporte deporte;
+	public Nacional nacional;
+	public Internacional internacional;
+	public Videojuegos videojuegos;
+	public Anime anime;
 	private JPanel menuAdmin;
 	private JPanel agregarUsuario;
 	private JPanel eliminarUsuario;
@@ -78,7 +78,7 @@ public class GestionNoticias extends JFrame{
 
         miPantallaCarga = new PantallaCarga(this);
         miPanel = new InicioSesion(this);
-        preferencia = new Preferencia(this);
+        eleccionFuentes = new SeleccionFuentes(this);
         noticia = new Noticia(this);
         economia = new Economia(this);
         deporte = new Deporte(this);
@@ -90,7 +90,7 @@ public class GestionNoticias extends JFrame{
         agregarUsuario = new AgregarUsuario(this);
         eliminarUsuario = new EliminacionUsuario(this);
 
-        JPanel[] paneles = { miPantallaCarga, miPanel, preferencia, noticia, economia, deporte, nacional, internacional, videojuegos, anime, menuAdmin, agregarUsuario, eliminarUsuario };
+        JPanel[] paneles = { miPantallaCarga, miPanel, eleccionFuentes, noticia, economia, deporte, nacional, internacional, videojuegos, anime, menuAdmin, agregarUsuario, eliminarUsuario };
 
         for (JPanel panel : paneles) {
          
@@ -106,7 +106,7 @@ public class GestionNoticias extends JFrame{
 
     private void mostrarPanel(JPanel panel) {
         
-    	JPanel[] todos = { miPantallaCarga, miPanel, preferencia, noticia, economia, deporte, nacional, internacional, videojuegos, anime, menuAdmin, agregarUsuario, eliminarUsuario };
+    	JPanel[] todos = { miPantallaCarga, miPanel, eleccionFuentes, noticia, economia, deporte, nacional, internacional, videojuegos, anime, menuAdmin, agregarUsuario, eliminarUsuario };
         
         for (JPanel p : todos) {
            
@@ -121,8 +121,8 @@ public class GestionNoticias extends JFrame{
         mostrarPanel(miPanel);
     }
 
-    public void mostrarPreferencia() {
-        mostrarPanel(preferencia);
+    public void mostrarSeleccionFuentes() {
+        mostrarPanel(eleccionFuentes);
     }
 
     public void mostrarNoticia() {

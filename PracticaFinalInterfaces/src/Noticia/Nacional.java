@@ -5,10 +5,15 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.io.IOException;
+import java.util.List;
 
 import javax.swing.JTextArea;
 
 import App.GestionNoticias;
+import DatosUsuarios.CargarPreferencias;
+import DatosUsuarios.GuardarUsuario;
+import DatosUsuarios.Usuarios;
+import Titulares.TituAnime;
 import Titulares.TituNacional;
 
 import javax.swing.ImageIcon;
@@ -19,7 +24,9 @@ import java.awt.event.ActionEvent;
 public class Nacional extends JPanel{
 
 	private GestionNoticias gestion;
+	private JTextArea noticiaNac;
 	private JTextArea noticiaNac_2;
+	private JTextArea noticiaNac_3;
 
 
 	public Nacional(GestionNoticias gestionNoticias) {
@@ -39,57 +46,20 @@ public class Nacional extends JPanel{
 		publico.setBounds(41, 130, 107, 24);
 		add(publico);
 		
-		JTextArea noticiaNac = new JTextArea();
+		noticiaNac = new JTextArea();
 		noticiaNac.setWrapStyleWord(true);
 		noticiaNac.setText("URUGUAY Y ARABIA, CON ESPAÑA... Y EL CRUCE ¡CON EL GRUPO DE ARGENTINA!");
 		noticiaNac.setLineWrap(true);
 		noticiaNac.setFont(new Font("Arial", Font.PLAIN, 18));
 		noticiaNac.setEditable(false);
 		noticiaNac.setBackground(new Color(255, 160, 122));
-		noticiaNac.setBounds(41, 164, 617, 75);
-		
-		try {
-			
-			noticiaNac.setText(TituNacional.cargarTitulares());
-		
-		} catch (IOException e) {
-			
-			e.printStackTrace();
-		
-		}
-		
+		noticiaNac.setBounds(41, 164, 617, 75);		
 		add(noticiaNac);
 		
 		JLabel elDiario = new JLabel("elDiario:");
 		elDiario.setFont(new Font("Arial", Font.BOLD, 24));
 		elDiario.setBounds(41, 251, 107, 24);
 		add(elDiario);
-		
-		JTextArea noticiaNac_1 = new JTextArea();
-		noticiaNac_1.setWrapStyleWord(true);
-		noticiaNac_1.setText("URUGUAY Y ARABIA, CON ESPAÑA... Y EL CRUCE ¡CON EL GRUPO DE ARGENTINA!");
-		noticiaNac_1.setLineWrap(true);
-		noticiaNac_1.setFont(new Font("Arial", Font.PLAIN, 18));
-		noticiaNac_1.setEditable(false);
-		noticiaNac_1.setBackground(new Color(255, 160, 122));
-		noticiaNac_1.setBounds(41, 285, 616, 75);
-		
-		try {
-			
-			noticiaNac_1.setText(TituNacional.cargarTitulares2());
-		
-		} catch (IOException e) {
-			
-			e.printStackTrace();
-		
-		}
-		
-		add(noticiaNac_1);
-		
-		JLabel laRazon = new JLabel("La Razón:");
-		laRazon.setFont(new Font("Arial", Font.BOLD, 24));
-		laRazon.setBounds(41, 370, 122, 24);
-		add(laRazon);
 		
 		noticiaNac_2 = new JTextArea();
 		noticiaNac_2.setWrapStyleWord(true);
@@ -98,11 +68,26 @@ public class Nacional extends JPanel{
 		noticiaNac_2.setFont(new Font("Arial", Font.PLAIN, 18));
 		noticiaNac_2.setEditable(false);
 		noticiaNac_2.setBackground(new Color(255, 160, 122));
-		noticiaNac_2.setBounds(42, 404, 616, 75);
+		noticiaNac_2.setBounds(41, 285, 616, 75);
+		add(noticiaNac_2);
+		
+		JLabel laRazon = new JLabel("La Razón:");
+		laRazon.setFont(new Font("Arial", Font.BOLD, 24));
+		laRazon.setBounds(41, 370, 122, 24);
+		add(laRazon);
+		
+		noticiaNac_3 = new JTextArea();
+		noticiaNac_3.setWrapStyleWord(true);
+		noticiaNac_3.setText("URUGUAY Y ARABIA, CON ESPAÑA... Y EL CRUCE ¡CON EL GRUPO DE ARGENTINA!");
+		noticiaNac_3.setLineWrap(true);
+		noticiaNac_3.setFont(new Font("Arial", Font.PLAIN, 18));
+		noticiaNac_3.setEditable(false);
+		noticiaNac_3.setBackground(new Color(255, 160, 122));
+		noticiaNac_3.setBounds(42, 404, 616, 75);
 		
 		try {
 			
-			noticiaNac_2.setText(TituNacional.cargarTitulares3());
+			noticiaNac_3.setText(TituNacional.cargarTitulares3());
 		
 		} catch (IOException e) {
 			
@@ -110,7 +95,7 @@ public class Nacional extends JPanel{
 		
 		}
 		
-		add(noticiaNac_2);
+		add(noticiaNac_3);
 		
 		JButton btnNewButton = new JButton("Atrás");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -167,4 +152,40 @@ public class Nacional extends JPanel{
 		cerrarPrograma.setIcon(new ImageIcon("src/Imagenes/apagar.png"));
 		add(cerrarPrograma);
 	}
+	
+	public void actualizarNoticias() {
+
+	    Usuarios usuario = GuardarUsuario.getUsuarioActual();
+	    if (usuario == null) return;
+
+	    List<String> prefs = CargarPreferencias.cargarPreferencias(usuario.getId());
+
+	    noticiaNac.setVisible(false);
+	    noticiaNac_2.setVisible(false);
+	    noticiaNac_3.setVisible(false);
+
+	    try {
+	        if (prefs.contains("A1")) {
+	        	noticiaNac.setText(TituNacional.cargarTitulares());
+	        	noticiaNac.setVisible(true);
+	        }
+
+	        if (prefs.contains("A2")) {
+	        	noticiaNac_2.setText(TituNacional.cargarTitulares2());
+	        	noticiaNac_2.setVisible(true);
+	        }
+
+	        if (prefs.contains("A3")) {
+	        	noticiaNac_3.setText(TituNacional.cargarTitulares3());
+	        	noticiaNac_3.setVisible(true);
+	        }
+
+	    } catch (IOException e) {
+	    
+	    	e.printStackTrace();
+	   
+	    }
+
+	}
+	
 }

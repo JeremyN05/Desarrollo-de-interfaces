@@ -5,7 +5,6 @@ import javax.swing.JPanel;
 import App.GestionNoticias;
 import DatosUsuarios.CargarPreferencias;
 import DatosUsuarios.GuardarUsuario;
-import DatosUsuarios.LeerUsuario;
 import DatosUsuarios.Usuarios;
 import Mail.EnviarCorreo;
 
@@ -22,8 +21,10 @@ import java.awt.event.ActionEvent;
 public class Noticia extends JPanel{
 
 	private GestionNoticias gestion;
+	private static JButton btGuardarNoticias;
 	
 	public Noticia(GestionNoticias gestion) {
+		
 		setBackground(new Color(255, 160, 122));
 		
 		this.gestion = gestion;
@@ -51,7 +52,8 @@ public class Noticia extends JPanel{
 		Deportes.setBounds(274, 117, 144, 39);
 		add(Deportes);
 		
-		JButton btGuardarNoticias = new JButton("Guardar noticias");
+		btGuardarNoticias = new JButton("Guardar noticias");
+		btGuardarNoticias.setVisible(false);
 		btGuardarNoticias.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -62,7 +64,7 @@ public class Noticia extends JPanel{
 		btGuardarNoticias.setFont(new Font("Arial", Font.BOLD, 10));
 		btGuardarNoticias.setBorder(null);
 		btGuardarNoticias.setBackground(new Color(255, 160, 122));
-		btGuardarNoticias.setBounds(472, 28, 100, 20);
+		btGuardarNoticias.setBounds(138, 28, 100, 20);
 		add(btGuardarNoticias);
 		
 		JLabel Nacional = new JLabel("Nacional");
@@ -89,8 +91,20 @@ public class Noticia extends JPanel{
 
 			    List<String> cargarPreferencias = CargarPreferencias.cargarPreferencias(id);
 
-			    if (usuario.isAdmin() || cargarPreferencias.contains("E")) {
+			    if (usuario.isAdmin() || cargarPreferencias.contains("E1")) {
 			    
+			    	gestion.mostrarEconomia();
+			    
+			    }
+			    
+			    if (usuario.isAdmin() || cargarPreferencias.contains("E2")) {
+				    
+			    	gestion.mostrarEconomia();
+			    
+			    }
+			    
+			    if (usuario.isAdmin() || cargarPreferencias.contains("E3")) {
+				    
 			    	gestion.mostrarEconomia();
 			    
 			    }
@@ -120,7 +134,19 @@ public class Noticia extends JPanel{
 
 			    List<String> cargarPreferencias = CargarPreferencias.cargarPreferencias(id);
 				
-			    if (usuario.isAdmin() || cargarPreferencias.contains("D")) {
+			    if (usuario.isAdmin() || cargarPreferencias.contains("D1")) {
+				    
+			    	gestion.mostrarDeportes();
+			    
+			    }
+			    
+			    if (usuario.isAdmin() || cargarPreferencias.contains("D2")) {
+				    
+			    	gestion.mostrarDeportes();
+			    
+			    }
+			    
+			    if (usuario.isAdmin() || cargarPreferencias.contains("D3")) {
 				    
 			    	gestion.mostrarDeportes();
 			    
@@ -151,7 +177,19 @@ public class Noticia extends JPanel{
 
 			    List<String> cargarPreferencias = CargarPreferencias.cargarPreferencias(id);
 			    
-			    if (usuario.isAdmin() || cargarPreferencias.contains("N")) {
+			    if (usuario.isAdmin() || cargarPreferencias.contains("N1")) {
+				    
+			    	gestion.mostrarNacional();
+			    
+			    }
+			    
+			    if (usuario.isAdmin() || cargarPreferencias.contains("N2")) {
+				    
+			    	gestion.mostrarNacional();
+			    
+			    }
+			    
+			    if (usuario.isAdmin() || cargarPreferencias.contains("N3")) {
 				    
 			    	gestion.mostrarNacional();
 			    
@@ -203,7 +241,19 @@ public class Noticia extends JPanel{
 
 			    List<String> cargarPreferencias = CargarPreferencias.cargarPreferencias(id);
 			    
-			    if (usuario.isAdmin() || cargarPreferencias.contains("I")) {
+			    if (usuario.isAdmin() || cargarPreferencias.contains("I1")) {
+				    
+			    	gestion.mostrarInternacional();
+			    
+			    }
+			    
+			    if (usuario.isAdmin() || cargarPreferencias.contains("I2")) {
+				    
+			    	gestion.mostrarInternacional();
+			    
+			    }
+			    
+			    if (usuario.isAdmin() || cargarPreferencias.contains("I3")) {
 				    
 			    	gestion.mostrarInternacional();
 			    
@@ -234,7 +284,19 @@ public class Noticia extends JPanel{
 
 			    List<String> cargarPreferencias = CargarPreferencias.cargarPreferencias(id);
 			    
-			    if (usuario.isAdmin() || cargarPreferencias.contains("V")) {
+			    if (usuario.isAdmin() || cargarPreferencias.contains("V1")) {
+				    
+			    	gestion.mostrarVideojuegos();
+			    
+			    }
+			    
+			    if (usuario.isAdmin() || cargarPreferencias.contains("V2")) {
+				    
+			    	gestion.mostrarVideojuegos();
+			    
+			    }
+			    
+			    if (usuario.isAdmin() || cargarPreferencias.contains("V3")) {
 				    
 			    	gestion.mostrarVideojuegos();
 			    
@@ -265,7 +327,19 @@ public class Noticia extends JPanel{
 
 			    List<String> cargarPreferencias = CargarPreferencias.cargarPreferencias(id);
 			    
-			    if (usuario.isAdmin() || cargarPreferencias.contains("A")) {
+			    if (usuario.isAdmin() || cargarPreferencias.contains("A1")) {
+				    
+			    	gestion.mostrarAnime();
+			    
+			    }
+			    
+			    if (usuario.isAdmin() || cargarPreferencias.contains("A2")) {
+				    
+			    	gestion.mostrarAnime();
+			    
+			    }
+			    
+			    if (usuario.isAdmin() || cargarPreferencias.contains("A3")) {
 				    
 			    	gestion.mostrarAnime();
 			    
@@ -336,6 +410,10 @@ public class Noticia extends JPanel{
 				    
 			    	gestion.mostrarMenuAdmin();
 			    
+			    }else {
+			    	
+			    	gestion.mostrarInicioSesion();
+			    	
 			    }
 				
 			}
@@ -371,6 +449,7 @@ public class Noticia extends JPanel{
 		cerrarPrograma.setBackground(new Color(255, 160, 122));
 		cerrarPrograma.setBounds(509, 26, 28, 22);
 		add(cerrarPrograma);
-		
+	
 	}
+	
 }

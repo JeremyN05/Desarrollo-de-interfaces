@@ -5,11 +5,14 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.io.IOException;
+import java.util.List;
 
 import javax.swing.SwingConstants;
 
 import App.GestionNoticias;
-import Titulares.TituDeporte;
+import DatosUsuarios.CargarPreferencias;
+import DatosUsuarios.GuardarUsuario;
+import DatosUsuarios.Usuarios;
 import Titulares.TituEconomia;
 
 import javax.swing.JTextArea;
@@ -21,6 +24,9 @@ import java.awt.event.ActionEvent;
 public class Economia extends JPanel{
 	
 	private GestionNoticias gestion;
+	private JTextArea noticiaEc;
+	private JTextArea noticiaEc_2;
+	private JTextArea noticiaEc_3;
 	
 	public Economia(GestionNoticias gestionNoticias) {
 		
@@ -47,17 +53,6 @@ public class Economia extends JPanel{
 		noticiaEc.setWrapStyleWord(true);
 		noticiaEc.setLineWrap(true);
 		noticiaEc.setBounds(41, 164, 617, 75);
-		
-		try {
-			
-			noticiaEc.setText(TituEconomia.cargarTitulares());
-		
-		} catch (IOException e) {
-			
-			e.printStackTrace();
-		
-		}
-		
 		add(noticiaEc);
 		
 		JLabel cincoDias = new JLabel("CincoDías:");
@@ -65,24 +60,13 @@ public class Economia extends JPanel{
 		cincoDias.setBounds(41, 251, 143, 24);
 		add(cincoDias);
 		
-		JTextArea noticiaEc_2 = new JTextArea();
+		noticiaEc_2 = new JTextArea();
 		noticiaEc_2.setEditable(false);
 		noticiaEc_2.setFont(new Font("Arial", Font.PLAIN, 18));
 		noticiaEc_2.setWrapStyleWord(true);
 		noticiaEc_2.setLineWrap(true);
 		noticiaEc_2.setBackground(new Color(255, 160, 122));
-		noticiaEc_2.setBounds(41, 285, 617, 75);
-		
-		try {
-			
-			noticiaEc_2.setText(TituEconomia.cargarTitulares2());
-		
-		} catch (IOException e) {
-			
-			e.printStackTrace();
-		
-		}
-		
+		noticiaEc_2.setBounds(41, 285, 617, 75);		
 		add(noticiaEc_2);
 		
 		JLabel ecDig = new JLabel("Economía Digital:");
@@ -90,24 +74,13 @@ public class Economia extends JPanel{
 		ecDig.setBounds(41, 370, 220, 24);
 		add(ecDig);
 		
-		JTextArea noticiaEc_3 = new JTextArea();
+		noticiaEc_3 = new JTextArea();
 		noticiaEc_3.setEditable(false);
 		noticiaEc_3.setFont(new Font("Arial", Font.PLAIN, 18));
 		noticiaEc_3.setWrapStyleWord(true);
 		noticiaEc_3.setLineWrap(true);
 		noticiaEc_3.setBackground(new Color(255, 160, 122));
-		noticiaEc_3.setBounds(41, 404, 617, 75);
-		
-		try {
-			
-			noticiaEc_3.setText(TituEconomia.cargarTitulares3());
-		
-		} catch (IOException e) {
-			
-			e.printStackTrace();
-		
-		}
-		
+		noticiaEc_3.setBounds(41, 404, 617, 75);	
 		add(noticiaEc_3);
 		
 		JButton btnNewButton = new JButton("Atrás");
@@ -165,4 +138,40 @@ public class Economia extends JPanel{
 		cerrarPrograma.setIcon(new ImageIcon("src/Imagenes/apagar.png"));
 		add(cerrarPrograma);
 	}
+	
+	public void actualizarNoticias() {
+
+	    Usuarios usuario = GuardarUsuario.getUsuarioActual();
+	    if (usuario == null) return;
+
+	    List<String> prefs = CargarPreferencias.cargarPreferencias(usuario.getId());
+
+	    noticiaEc.setVisible(false);
+	    noticiaEc_2.setVisible(false);
+	    noticiaEc_3.setVisible(false);
+
+	    try {
+	        if (prefs.contains("A1")) {
+	            noticiaEc.setText(TituEconomia.cargarTitulares());
+	            noticiaEc.setVisible(true);
+	        }
+
+	        if (prefs.contains("A2")) {
+	            noticiaEc_2.setText(TituEconomia.cargarTitulares2());
+	            noticiaEc_2.setVisible(true);
+	        }
+
+	        if (prefs.contains("A3")) {
+	            noticiaEc_3.setText(TituEconomia.cargarTitulares3());
+	            noticiaEc_3.setVisible(true);
+	        }
+
+	    } catch (IOException e) {
+	    
+	    	e.printStackTrace();
+	   
+	    }
+
+	}
+	
 }

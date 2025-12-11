@@ -1,5 +1,4 @@
 **1,Pedro,2123Pedro,jeremy.narvaez.dosa@gmail.com,false,null**
->>>>>>> ab5cb93ec6b652c5b9eea6e374d86b02ebd8c8c1
 ##2,Kaneki,RyzeSan,Ilikecofee@gmail.com,true,null**
 **3,Miku,6tim,Merecíaganar@gmail.com,false,null**
 ##4,Kaouri,20150218,1primaverasinti@gmail.com,true,null**
