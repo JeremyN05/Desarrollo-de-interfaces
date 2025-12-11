@@ -46,7 +46,7 @@ public class Economia extends JPanel{
 		expansion.setBounds(41, 130, 143, 24);
 		add(expansion);
 		
-		JTextArea noticiaEc = new JTextArea();
+		noticiaEc = new JTextArea();
 		noticiaEc.setEditable(false);
 		noticiaEc.setFont(new Font("Arial", Font.PLAIN, 18));
 		noticiaEc.setBackground(new Color(255, 160, 122));
