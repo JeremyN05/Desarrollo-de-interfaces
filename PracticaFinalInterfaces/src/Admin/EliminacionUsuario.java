@@ -67,13 +67,7 @@ public class EliminacionUsuario extends JPanel{
 				
 				String correo = textField.getText();
 
-				boolean resultado = EliminarUsuario.eliminarUsuarioPorCorreo(correo);
-
-				if (resultado) {
-				    lblEstado.setText("Usuario eliminado correctamente.");
-				} else {
-				    lblEstado.setText("No existe un usuario con ese correo.");
-				}
+				EliminarUsuario.eliminarUsuarioPorCorreo(correo);
 				
 			}
 		});

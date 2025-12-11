@@ -8,17 +8,30 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
+import DatosUsuarios.GuardarUsuario;
+import DatosUsuarios.Usuarios;
+
 public class EliminarUsuario {
 
     private static final String USUARIOS_TXT = "src" + File.separator + "Usuarios.txt";
 
     public static boolean eliminarUsuarioPorCorreo(String correo) {
 
+        Usuarios usuarioActual = GuardarUsuario.getUsuarioActual();
+        
+        if (usuarioActual != null && usuarioActual.getGmail().equals(correo) && usuarioActual.isAdmin()) {
+        	
+            JOptionPane.showMessageDialog(null, "No puedes eliminar tu propia cuenta de administrador.");
+            return false;
+        }
+    	
         File archivo = new File(USUARIOS_TXT);
         
         if (!archivo.exists()) {
            
-        	System.out.println("El archivo de usuarios no existe.");
+            JOptionPane.showMessageDialog(null, "El archivo de usuarios no existe.");
             return false;
        
         }
@@ -70,7 +83,7 @@ public class EliminarUsuario {
             return false;
        
         }
-
+        JOptionPane.showMessageDialog(null, "Usuario eliminado correctamente");
         return true;
     }
 	

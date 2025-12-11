@@ -7,6 +7,10 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 
 import App.GestionNoticias;
+import DatosUsuarios.GuardarUsuario;
+import DatosUsuarios.Usuarios;
+import Mail.EnviarCorreo;
+import Noticia.Noticia;
 
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
@@ -95,16 +99,77 @@ public class MenuAdmin extends JPanel{
 		btEliminarUsu.setBounds(504, 162, 144, 144);
 		add(btEliminarUsu);
 		
-		JButton btnNewButton = new JButton("Atrás");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btNoticias_1 = new JButton("");
+		btNoticias_1.setIcon(new ImageIcon(MenuAdmin.class.getResource("/Imagenes/noticiasAdmin.png")));
+		btNoticias_1.setBorder(null);
+		btNoticias_1.setBackground(new Color(255, 160, 122));
+		btNoticias_1.setBounds(34, 376, 144, 144);
+		add(btNoticias_1);
+		
+		JButton cerrarSesion = new JButton("Cerrar Sesión");
+		cerrarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				gestionNoticias.mostrarInicioSesion();
 				
 			}
 		});
-		btnNewButton.setFont(new Font("Arial", Font.BOLD, 14));
-		btnNewButton.setBounds(41, 505, 101, 36);
-		add(btnNewButton);
+		cerrarSesion.setForeground(Color.BLACK);
+		cerrarSesion.setFont(new Font("Arial", Font.BOLD, 10));
+		cerrarSesion.setBorder(null);
+		cerrarSesion.setBackground(new Color(255, 160, 122));
+		cerrarSesion.setBounds(569, 24, 101, 20);
+		add(cerrarSesion);
+		
+		JButton cerrarPrograma = new JButton("");
+		cerrarPrograma.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				int opcion = javax.swing.JOptionPane.showConfirmDialog(
+                        
+                		MenuAdmin.this,
+                        "¿Está usted seguro de cerrar el programa?",
+                        "Confirmar salida",
+                        javax.swing.JOptionPane.YES_NO_OPTION,
+                        javax.swing.JOptionPane.WARNING_MESSAGE
+                );
+
+                if (opcion == javax.swing.JOptionPane.YES_OPTION) {
+                    System.exit(0);
+                
+                }
+				
+				System.exit(0);
+				
+			}
+		});
+		cerrarPrograma.setIcon(new ImageIcon("src/Imagenes/apagar.png"));
+		cerrarPrograma.setBorder(null);
+		cerrarPrograma.setBackground(new Color(255, 160, 122));
+		cerrarPrograma.setBounds(531, 24, 28, 21);
+		add(cerrarPrograma);
+		
+		JButton btEnviarCorreo = new JButton("Enviar correo");
+		btEnviarCorreo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Usuarios usuario = GuardarUsuario.getUsuarioActual();
+		        
+		        if (usuario == null) {
+		           
+		        	System.out.println("No hay usuario logueado");
+		            return;
+		        
+		        }
+				
+				EnviarCorreo.crearEMAIL(usuario);
+				
+			}
+		});
+		btEnviarCorreo.setFont(new Font("Arial", Font.BOLD, 10));
+		btEnviarCorreo.setBorder(null);
+		btEnviarCorreo.setBackground(new Color(255, 160, 122));
+		btEnviarCorreo.setBounds(34, 24, 101, 20);
+		add(btEnviarCorreo);
 	}
 }

@@ -3,6 +3,8 @@ package Admin;
 import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
@@ -19,7 +21,6 @@ public class AgregarUsuario extends JPanel{
 	private GestionNoticias gestion;
 	private JTextField nombreUsu;
 	private JTextField gmailUsu;
-	private JTextField admin;
 	private JPasswordField passwordField;
 	
 	public AgregarUsuario(GestionNoticias gestionNoticias) {
@@ -67,17 +68,6 @@ public class AgregarUsuario extends JPanel{
 		gmailUsu.setBounds(38, 347, 624, 29);
 		add(gmailUsu);
 		
-		JLabel lblNewLabel3 = new JLabel("Es admin, indique si o no:");
-		lblNewLabel3.setFont(new Font("Arial", Font.BOLD, 20));
-		lblNewLabel3.setBounds(38, 402, 256, 32);
-		add(lblNewLabel3);
-		
-		admin = new JTextField();
-		admin.setFont(new Font("Arial", Font.PLAIN, 14));
-		admin.setColumns(10);
-		admin.setBounds(38, 443, 624, 28);
-		add(admin);
-		
 		JButton btnNewButton = new JButton("Crear");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -85,25 +75,19 @@ public class AgregarUsuario extends JPanel{
 			    String nombre = nombreUsu.getText().trim();
 			    String correo = gmailUsu.getText().trim();
 			    String contrasena = new String(passwordField.getPassword()).trim();
-			    
-			    String adminText = admin.getText().trim().toLowerCase();
-			    boolean isAdmin = adminText.equalsIgnoreCase("Si");
 
 			    if(nombre.isEmpty() || correo.isEmpty() || contrasena.isEmpty()) {
 			        
-			    	System.out.println("Por favor, complete todos los campos");
+		            JOptionPane.showMessageDialog(null, "Por favor, rellene todos los campos");
 			        return;
 			    
 			    }
 
-			    CrearUsuario.crearUsuario(nombre, contrasena, correo, isAdmin);
-
-			    System.out.println("Usuario creado correctamente: " + nombre);
+			    CrearUsuario.crearUsuario(nombre, contrasena, correo);
 
 			    nombreUsu.setText("");
 			    gmailUsu.setText("");
 			    passwordField.setText("");
-			    admin.setText("");
 				
 			}
 		});

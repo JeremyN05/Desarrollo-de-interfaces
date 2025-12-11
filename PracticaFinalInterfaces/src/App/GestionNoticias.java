@@ -24,7 +24,7 @@ public class GestionNoticias extends JFrame{
 	private JPanel miPantallaCarga;
 	private JPanel miPanel;
 	private JPanel eleccionFuentes;
-	private JPanel noticia;
+	public Noticia noticia;
 	public Economia economia;
 	public Deporte deporte;
 	public Nacional nacional;

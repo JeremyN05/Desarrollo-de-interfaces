@@ -1,6 +1,7 @@
 package Mail;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -31,6 +32,8 @@ import Titulares.TituVideojuegos;
 
 public class EnviarCorreo{
 	
+	private static final String USUARIOS_TXT  = "src" + File.separator + "Usuarios.txt";
+	
     public static void sendEmail(Session session, String toEmail, String subject, String body){
        
     	try{
@@ -44,9 +47,7 @@ public class EnviarCorreo{
             msg.setSubject(subject, "UTF-8");
             msg.setText(body, "UTF-8");
             msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail, false));
-            System.out.println("MENSAJE CREADO");
             Transport.send(msg);
-            System.out.println("¡EMAIL ENVIADO!");
             
             JOptionPane.showMessageDialog(null, "Correo electrónico enviado correctamente."); //Ventana emergente indicando el envío del correo
         
@@ -67,8 +68,6 @@ public class EnviarCorreo{
         final String puerto = config.getProperty("puerto_ssl");
         final boolean tls = Boolean.parseBoolean(config.getProperty("tls"));
 
-        System.out.println("Configurando datos conexión SSL");
-
         Properties props = new Properties();
         props.put("mail.smtp.host", host);
         props.put("mail.smtp.port", puerto);
@@ -86,70 +85,168 @@ public class EnviarCorreo{
         };     
 
         Session session = Session.getDefaultInstance(props, auth);
-        System.out.println("Sesión Creada");
+        
+        List<Usuarios> usuarios = new ArrayList<>();
+        
+        try (BufferedReader br = new BufferedReader(new FileReader(USUARIOS_TXT))) {
+            
+        	String linea;
+            
+            while ((linea = br.readLine()) != null) {
+               
+            	if (linea.trim().isEmpty()) continue;
+               
+                String[] partes = linea.split(",");
+               
+                if (partes.length >= 5) {
+                	
+                	String idStr = partes[0].replaceAll("[^0-9]", "");
+                	int id = Integer.parseInt(idStr);
+               
+                	boolean isAdmin = partes[4].equalsIgnoreCase("true");
+                	
+                    usuarios.add(new Usuarios(id, partes[1], partes[2], partes[3], isAdmin, null));
+                
+                }
+           
+            }
+       
+        } catch (IOException e) {
+        
+        	e.printStackTrace();
+        
+        }
+        
+        StringBuilder resumen = new StringBuilder();
+        
+        resumen.append("Resumen de envío de correos:\n");
 
-        StringBuilder body = new StringBuilder();
-        body.append("ASUNTO: NOTICIAS DAM\n");
-        body.append("FECHA/HORA: ").append(LocalDateTime.now()).append("\n\n");
+        for (Usuarios u : usuarios) {
+            
+        	if (u.isAdmin()) continue;
 
-        List<String> prefs = CargarPreferencias.cargarPreferencias(usuario.getId());
-
-        for(String abrev : prefs) {
-            List<String> titulares = new ArrayList<>();
-            String categoria = "";
-
-            switch(abrev) {
-                case "E": categoria = "Economía"; break;
-                case "D": categoria = "Deportes"; break;
-                case "N": categoria = "Nacional"; break;
-                case "I": categoria = "Internacional"; break;
-                case "V": categoria = "Videojuegos"; break;
-                case "A": categoria = "Anime"; break;
+            if (u.getGmail() == null || u.getGmail().isBlank()) {
+              
+            	resumen.append(u.getNombre()).append(": no tiene correo válido.\n");
+                continue;
+            
             }
 
-            if(!categoria.isEmpty()) {
-                body.append("CATEGORÍA: ").append(categoria).append("\n");
+            List<String> prefs = CargarPreferencias.cargarPreferencias(u.getId());
+           
+            if (prefs == null || prefs.isEmpty()) {
+                
+            	resumen.append(u.getNombre()).append(": no tiene preferencias configuradas.\n");
+                continue;
+           
+            }
 
-                try {
-                    if(categoria.equals("Anime")) {
-                        titulares.add(TituAnime.cargarTitulares());
-                        titulares.add(TituAnime.cargarTitulares2());
-                        titulares.add(TituAnime.cargarTitulares3());
-                    } else if(categoria.equals("Videojuegos")) {
-                        titulares.add(TituVideojuegos.cargarTitulares());
-                        titulares.add(TituVideojuegos.cargarTitulares2());
-                        titulares.add(TituVideojuegos.cargarTitulares3());
-                    } else if(categoria.equals("Economía")) {
-                        titulares.add(TituEconomia.cargarTitulares());
-                        titulares.add(TituEconomia.cargarTitulares2());
-                        titulares.add(TituEconomia.cargarTitulares3());
-                    } else if(categoria.equals("Deportes")) {
-                        titulares.add(TituDeporte.cargarTitulares());
-                        titulares.add(TituDeporte.cargarTitulares2());
-                        titulares.add(TituDeporte.cargarTitulares3());
-                    } else if(categoria.equals("Nacional")) {
-                        titulares.add(TituNacional.cargarTitulares());
-                        titulares.add(TituNacional.cargarTitulares2());
-                        titulares.add(TituNacional.cargarTitulares3());
-                    } else if(categoria.equals("Internacional")) {
-                        titulares.add(TituInternacional.cargarTitulares());
-                        titulares.add(TituInternacional.cargarTitulares2());
-                        titulares.add(TituInternacional.cargarTitulares3());
+            StringBuilder body = new StringBuilder();
+            body.append("ASUNTO: NOTICIAS DAM\n");
+            body.append("FECHA/HORA: ").append(LocalDateTime.now()).append("\n\n");
+
+            for (String abrev : prefs) {
+                
+            	List<String> titulares = new ArrayList<>();
+                String categoria = "";
+
+                switch (abrev) {
+                    
+                case "E1": categoria = "Economía1"; break;
+                    case "E2": categoria = "Economía2"; break;
+                    case "E3": categoria = "Economía3"; break;
+                    
+                    case "D1": categoria = "Deportes1"; break;
+                    case "D2": categoria = "Deportes2"; break;
+                    case "D3": categoria = "Deportes3"; break;
+                    
+                    case "N1": categoria = "Nacional1"; break;
+                    case "N2": categoria = "Nacional2"; break;
+                    case "N3": categoria = "Nacional3"; break;
+                    
+                    case "I1": categoria = "Internacional1"; break;
+                    case "I2": categoria = "Internacional2"; break;
+                    case "I3": categoria = "Internacional3"; break;
+                    
+                    case "V1": categoria = "Videojuegos1"; break;
+                    case "V2": categoria = "Videojuegos2"; break;
+                    case "V3": categoria = "Videojuegos3"; break;
+                    
+                    case "A1": categoria = "Anime1"; break;
+                    case "A2": categoria = "Anime2"; break;
+                    case "A3": categoria = "Anime3"; break;
+                }
+
+                if (!categoria.isEmpty()) {
+                   
+                	body.append("CATEGORÍA: ").append(categoria).append("\n");
+
+                    try {
+                        
+                    	if (categoria.startsWith("Economía")) {
+                            if (categoria.equals("Economía1")) titulares.add(TituEconomia.cargarTitulares());
+                            if (categoria.equals("Economía2")) titulares.add(TituEconomia.cargarTitulares2());
+                            if (categoria.equals("Economía3")) titulares.add(TituEconomia.cargarTitulares3());
+                        
+                    	} else if (categoria.startsWith("Deportes")) {
+                            if (categoria.equals("Deportes1")) titulares.add(TituDeporte.cargarTitulares());
+                            if (categoria.equals("Deportes2")) titulares.add(TituDeporte.cargarTitulares2());
+                            if (categoria.equals("Deportes3")) titulares.add(TituDeporte.cargarTitulares3());
+                        
+                    	} else if (categoria.startsWith("Nacional")) {
+                            if (categoria.equals("Nacional1")) titulares.add(TituNacional.cargarTitulares());
+                            if (categoria.equals("Nacional2")) titulares.add(TituNacional.cargarTitulares2());
+                            if (categoria.equals("Nacional3")) titulares.add(TituNacional.cargarTitulares3());
+                       
+                    	} else if (categoria.startsWith("Internacional")) {
+                            if (categoria.equals("Internacional1")) titulares.add(TituInternacional.cargarTitulares());
+                            if (categoria.equals("Internacional2")) titulares.add(TituInternacional.cargarTitulares2());
+                            if (categoria.equals("Internacional3")) titulares.add(TituInternacional.cargarTitulares3());
+                        
+                    	} else if (categoria.startsWith("Videojuegos")) {
+                            if (categoria.equals("Videojuegos1")) titulares.add(TituVideojuegos.cargarTitulares());
+                            if (categoria.equals("Videojuegos2")) titulares.add(TituVideojuegos.cargarTitulares2());
+                            if (categoria.equals("Videojuegos3")) titulares.add(TituVideojuegos.cargarTitulares3());
+                       
+                    	} else if (categoria.startsWith("Anime")) {
+                            if (categoria.equals("Anime1")) titulares.add(TituAnime.cargarTitulares());
+                            if (categoria.equals("Anime2")) titulares.add(TituAnime.cargarTitulares2());
+                            if (categoria.equals("Anime3")) titulares.add(TituAnime.cargarTitulares3());
+                        
+                        }
+                   
+                    } catch (Exception e) {
+                     
+                    	e.printStackTrace();
+                   
                     }
-                } catch(Exception e){
-                    e.printStackTrace();
-                }
 
-                for(String t : titulares) {
-                    body.append("  - ").append(t).append("\n");
-                }
+                    for (String t : titulares) {
+                     
+                    	body.append("  - ").append(t).append("\n");
+                   
+                    }
 
-                body.append("\n");
+                    body.append("\n");
+               
+                }
+            
             }
+
+            try {
+              
+            	sendEmail(session, u.getGmail(), "NOTICIAS DAM", body.toString());
+                resumen.append(u.getNombre()).append(": correo enviado correctamente.\n");
+            
+            } catch (Exception e) {
+
+            	resumen.append(u.getNombre()).append(": no se pudo enviar el correo (" + e.getMessage() + ")\n");
+           
+            }
+        
         }
 
-        // Enviar correo
-        sendEmail(session, usuario.getGmail(), "NOTICIAS DAM", body.toString());
+        JOptionPane.showMessageDialog(null, resumen.toString(), "Resumen envío", JOptionPane.INFORMATION_MESSAGE);
     }
     
     public static Properties leerConfig(String rutaArchivo) {

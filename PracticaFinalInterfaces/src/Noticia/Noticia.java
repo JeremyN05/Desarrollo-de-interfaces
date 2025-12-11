@@ -64,7 +64,7 @@ public class Noticia extends JPanel{
 		btGuardarNoticias.setFont(new Font("Arial", Font.BOLD, 10));
 		btGuardarNoticias.setBorder(null);
 		btGuardarNoticias.setBackground(new Color(255, 160, 122));
-		btGuardarNoticias.setBounds(138, 28, 100, 20);
+		btGuardarNoticias.setBounds(34, 28, 100, 20);
 		add(btGuardarNoticias);
 		
 		JLabel Nacional = new JLabel("Nacional");
@@ -368,29 +368,6 @@ public class Noticia extends JPanel{
 		cerrarSesion.setBounds(582, 28, 101, 20);
 		add(cerrarSesion);
 		
-		JButton btEnviarCorreo = new JButton("Enviar correo");
-		btEnviarCorreo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				Usuarios usuario = GuardarUsuario.getUsuarioActual();
-		        
-		        if (usuario == null) {
-		           
-		        	System.out.println("No hay usuario logueado");
-		            return;
-		        
-		        }
-				
-				EnviarCorreo.crearEMAIL(usuario);
-				
-			}
-		});
-		btEnviarCorreo.setFont(new Font("Arial", Font.BOLD, 10));
-		btEnviarCorreo.setBackground(new Color(255, 160, 122));
-		btEnviarCorreo.setBorder(null);
-		btEnviarCorreo.setBounds(34, 28, 101, 20);
-		add(btEnviarCorreo);
-		
 		JButton btnNewButton = new JButton("Atrás");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -447,9 +424,28 @@ public class Noticia extends JPanel{
 		cerrarPrograma.setIcon(new ImageIcon("src/Imagenes/apagar.png"));
 		cerrarPrograma.setBorder(null);
 		cerrarPrograma.setBackground(new Color(255, 160, 122));
-		cerrarPrograma.setBounds(509, 26, 28, 22);
+		cerrarPrograma.setBounds(544, 28, 28, 22);
 		add(cerrarPrograma);
 	
 	}
+	
+    public void actualizarBotonGuardar() {
+        
+    	Usuarios usuario = GuardarUsuario.getUsuarioActual();
+       
+        if (usuario != null && !usuario.isAdmin()) {
+        
+        	btGuardarNoticias.setVisible(true);
+        
+        } else {
+        
+        	btGuardarNoticias.setVisible(false);
+        
+        }
+        
+        btGuardarNoticias.revalidate();
+        btGuardarNoticias.repaint();
+    
+    }
 	
 }

@@ -3,6 +3,7 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.imageio.ImageIO;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import java.awt.Component;
 import java.awt.Font;
@@ -11,6 +12,7 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 
 import javax.swing.SwingConstants;
@@ -59,6 +61,18 @@ public class PantallaCarga extends JPanel{
 				i++;
 				progressBar.setValue(i);
 				progressBar.setString(i + "%");
+				
+		        if (i == 80) {
+		            File usuarioFile = new File("src/Usuarios.txt");
+		            
+		            if (!usuarioFile.exists()) {
+		                
+		            	JOptionPane.showMessageDialog(null, "Error, no se encuentra el archivo Usuarios.txt");
+		            	System.exit(0);
+		            
+		            }
+		        
+		        }
 				
 				if(i >= 100) {
 					

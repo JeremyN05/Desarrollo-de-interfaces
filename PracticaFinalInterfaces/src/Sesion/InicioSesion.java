@@ -91,6 +91,8 @@ public class InicioSesion extends JPanel{
 				    gestionNoticias.internacional.actualizarNoticias();
 				    gestionNoticias.videojuegos.actualizarNoticias();
                     gestionNoticias.anime.actualizarNoticias();
+                    
+                    gestionNoticias.noticia.actualizarBotonGuardar();
 				    
 				    if (usuarioLogueado.isAdmin()) {
 
