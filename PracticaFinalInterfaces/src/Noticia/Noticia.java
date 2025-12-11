@@ -51,6 +51,20 @@ public class Noticia extends JPanel{
 		Deportes.setBounds(274, 117, 144, 39);
 		add(Deportes);
 		
+		JButton btGuardarNoticias = new JButton("Guardar noticias");
+		btGuardarNoticias.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				GuardarNoticias.guardarNoticias();
+				
+			}
+		});
+		btGuardarNoticias.setFont(new Font("Arial", Font.BOLD, 10));
+		btGuardarNoticias.setBorder(null);
+		btGuardarNoticias.setBackground(new Color(255, 160, 122));
+		btGuardarNoticias.setBounds(472, 28, 100, 20);
+		add(btGuardarNoticias);
+		
 		JLabel Nacional = new JLabel("Nacional");
 		Nacional.setForeground(new Color(0, 0, 0));
 		Nacional.setHorizontalAlignment(SwingConstants.CENTER);
@@ -277,7 +291,7 @@ public class Noticia extends JPanel{
 		cerrarSesion.setFont(new Font("Arial", Font.BOLD, 10));
 		cerrarSesion.setBorder(null);
 		cerrarSesion.setBackground(new Color(255, 160, 122));
-		cerrarSesion.setBounds(547, 28, 101, 20);
+		cerrarSesion.setBounds(582, 28, 101, 20);
 		add(cerrarSesion);
 		
 		JButton btEnviarCorreo = new JButton("Enviar correo");
