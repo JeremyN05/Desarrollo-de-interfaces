@@ -1,6 +1,0 @@
-url1=https://www.marca.com/
-class1=h2.ue-c-cover-content__headline
-url2=https://as.com/
-class2=h3.s_t a
-url3=https://www.sport.es/es/
-class3=a.ft-link

@@ -1,27 +1,27 @@
-<-------URLS------->
-<---Economía--->
-##E1
-##E2
-##E3
-<---Deporte--->
-##D1
-##D2
-##D3
-<---Nacional--->
-##N1
-##N2
-##N3
-<---Internacional--->
-##I1
-##I2
-##I3
-<---Videojuegos--->
-##V1
-##V2
-##V3
-<---Anime--->
-##A1
-##A2
-##A3
-<-------Preferencias------->
-id:1-E2,D1,D2,N2,I2,V2,A2
+##E1-https://www.expansion.com/-h2.ue-c-cover-content__headline
+##E2-http://libertaddigital.com/libremercado/-header h2
+##E3-https://www.economiadigital.es/-h2.entry-title a
+##D1-https://www.marca.com/-h2.ue-c-cover-content__headline
+##D2-https://as.com/-h3.s_t a
+##D3-https://www.sport.es/es/-a.ft-link
+##N1-https://www.publico.es-h2.title a
+##N2-https://www.eldiario.es-h2.ni-title a
+##N3-https://www.larazon.es-h2.article__title a
+##I1-https://cnnespanol.cnn.com-a.container__title-url h2
+##I2-https://www.larazon.es/internacional/-h2.article__title a
+##I3-https://www.telemundo.com-span.tease-card__headline
+##V1-https://www.gamereactor.es-h2.font-weight-bold
+##V2-https://theobjective.com/tecnologia/videojuegos/-h2.tno-article-general__content__title a
+##V3-https://www.marca.com/videojuegos.html-h2.ue-c-cover-content__headline
+##A1-https://somoskudasai.com-a.py-1
+##A2-https://elpais.com/noticias/anime/-h2.c_t a
+##A3-https://www.milenio.com/temas/anime-a.board-module__a
+<-----DatosSalidaCorreo----->
+email_salida=jeremy.narvaez.dosa@gmail.com
+email_pass=zemqstfootdrvsem
+smtp=smtp.gmail.com
+puerto_ssl=465
+tls=false
+
+
+id:1-E1,E2,D2,D3,N1,I1,I3,V1,A1,A2

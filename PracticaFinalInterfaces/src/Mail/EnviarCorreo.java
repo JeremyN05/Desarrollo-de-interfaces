@@ -53,7 +53,7 @@ public class EnviarCorreo{
         
     	} catch (Exception e) {
             
-    		e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Error al enviar el correo: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         
         }
     
@@ -61,7 +61,7 @@ public class EnviarCorreo{
     
     public static void crearEMAIL(Usuarios usuario) {
 
-        Properties config = leerConfig("src/Mail/DatosSalida.txt");
+    	Properties config = leerDatosCorreo("src/Data/Configuracion.txt");
         final String fromEmail = config.getProperty("email_salida");
         final String password = config.getProperty("email_pass");
         final String host = config.getProperty("smtp");
@@ -113,7 +113,7 @@ public class EnviarCorreo{
        
         } catch (IOException e) {
         
-        	e.printStackTrace();
+        	JOptionPane.showMessageDialog(null, "Error al leer Usuarios.txt: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         
         }
         
@@ -217,7 +217,7 @@ public class EnviarCorreo{
                    
                     } catch (Exception e) {
                      
-                    	e.printStackTrace();
+                    	JOptionPane.showMessageDialog(null, "Error al cargar titulares de " + categoria + ": " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                    
                     }
 
@@ -240,7 +240,7 @@ public class EnviarCorreo{
             
             } catch (Exception e) {
 
-            	resumen.append(u.getNombre()).append(": no se pudo enviar el correo (" + e.getMessage() + ")\n");
+				JOptionPane.showMessageDialog(null, "Error al enviar correo a " + u.getNombre() + ": " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
            
             }
         
@@ -249,38 +249,35 @@ public class EnviarCorreo{
         JOptionPane.showMessageDialog(null, resumen.toString(), "Resumen envío", JOptionPane.INFORMATION_MESSAGE);
     }
     
-    public static Properties leerConfig(String rutaArchivo) {
+    private static Properties leerDatosCorreo(String rutaArchivo) {
         Properties props = new Properties();
-
         try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivo))) {
-            
-        	String linea;
-           
-            while ((linea = br.readLine()) != null) {
-                
-            	linea = linea.trim();
-                
-                if (linea.isEmpty() || linea.startsWith("#")) {
-                	
-                	continue;
-                	
-                }
-                
-                String[] partes = linea.split("=", 2);
-                
-                if (partes.length == 2) {
-                    props.setProperty(partes[0].trim(), partes[1].trim());
-               
-                }
-          
-            }
-        
-        } catch (IOException e) {
-        
-        	e.printStackTrace();
-        
-        }
+            String linea;
+            boolean correo = false;
 
+            while ((linea = br.readLine()) != null) {
+                linea = linea.trim();
+
+                if (linea.equals("<-----DatosSalidaCorreo----->")) {
+                    correo = true;
+                    continue;
+                }
+
+                if (correo && linea.startsWith("<---") && !linea.equals("<-----DatosSalidaCorreo----->")) {
+                    break;
+                }
+
+                if (correo && linea.contains("=")) {
+                    String[] partes = linea.split("=", 2);
+                    props.setProperty(partes[0].trim(), partes[1].trim());
+                }
+            }
+
+        } catch (IOException e) {
+
+        	JOptionPane.showMessageDialog(null, "Error al leer Configuracion.txt: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+
+        }
         return props;
     }
 	

@@ -5,6 +5,7 @@ import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 import App.GestionNoticias;
@@ -12,6 +13,7 @@ import DatosUsuarios.CargarPreferencias;
 import DatosUsuarios.GuardarUsuario;
 import DatosUsuarios.LeerUsuario;
 import DatosUsuarios.Usuarios;
+import Noticia.Noticia;
 
 import java.awt.Font;
 
@@ -83,7 +85,7 @@ public class InicioSesion extends JPanel{
 				if (usuarioLogueado != null) {
 
 				    GuardarUsuario.setUsuarioActual(usuarioLogueado);
-				    System.out.println("Usuario válido: " + usuarioLogueado.getNombre());
+				    JOptionPane.showMessageDialog(null, "El usuario introducido es correcto");
 
 				    gestionNoticias.economia.actualizarNoticias();
 				    gestionNoticias.deporte.actualizarNoticias();
@@ -116,7 +118,7 @@ public class InicioSesion extends JPanel{
 
 				} else {
 				  
-					System.out.println("Usuario o contraseña incorrectos");
+					JOptionPane.showMessageDialog(null, "Usuario introducido incorrecto, el nombre o la contraseña es incorrecto");
 				
 				}
 				

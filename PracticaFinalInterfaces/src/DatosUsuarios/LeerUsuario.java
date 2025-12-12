@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 public class LeerUsuario {
 	
 	private static final String USUARIOS_TXT  = "src" + File.separator + "Usuarios.txt";
@@ -84,7 +86,7 @@ public class LeerUsuario {
         
         } catch (IOException e) {
            
-        	e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al leer el archivo de usuarios:\n" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         
         }
 

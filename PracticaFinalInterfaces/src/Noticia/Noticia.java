@@ -9,6 +9,8 @@ import DatosUsuarios.Usuarios;
 
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
@@ -81,7 +83,6 @@ public class Noticia extends JPanel{
 
 			    if (usuario == null) {
 			     
-			    	System.out.println("No hay usuario logueado");
 			        return;
 			    
 			    }
@@ -124,7 +125,6 @@ public class Noticia extends JPanel{
 
 			    if (usuario == null) {
 			     
-			    	System.out.println("No hay usuario logueado");
 			        return;
 			    
 			    }
@@ -167,7 +167,6 @@ public class Noticia extends JPanel{
 
 			    if (usuario == null) {
 			     
-			    	System.out.println("No hay usuario logueado");
 			        return;
 			    
 			    }
@@ -231,7 +230,6 @@ public class Noticia extends JPanel{
 
 			    if (usuario == null) {
 			     
-			    	System.out.println("No hay usuario logueado");
 			        return;
 			    
 			    }
@@ -274,7 +272,6 @@ public class Noticia extends JPanel{
 
 			    if (usuario == null) {
 			     
-			    	System.out.println("No hay usuario logueado");
 			        return;
 			    
 			    }
@@ -317,7 +314,6 @@ public class Noticia extends JPanel{
 
 			    if (usuario == null) {
 			     
-			    	System.out.println("No hay usuario logueado");
 			        return;
 			    
 			    }
@@ -375,7 +371,6 @@ public class Noticia extends JPanel{
 
 			    if (usuario == null) {
 			     
-			    	System.out.println("No hay usuario logueado");
 			        return;
 			    
 			    }
@@ -402,16 +397,16 @@ public class Noticia extends JPanel{
 		cerrarPrograma.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				int opcion = javax.swing.JOptionPane.showConfirmDialog(
+				int opcion = JOptionPane.showConfirmDialog(
                         
                 		Noticia.this,
                         "¿Está usted seguro de cerrar el programa?",
                         "Confirmar salida",
-                        javax.swing.JOptionPane.YES_NO_OPTION,
-                        javax.swing.JOptionPane.WARNING_MESSAGE
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.WARNING_MESSAGE
                 );
 
-                if (opcion == javax.swing.JOptionPane.YES_OPTION) {
+                if (opcion == JOptionPane.YES_OPTION) {
                    
                 	System.exit(0);
                 

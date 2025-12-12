@@ -58,7 +58,7 @@ public class EliminarUsuario {
 
         } catch (IOException e) {
            
-        	e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al leer el archivo de usuarios:\n" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE); 
             return false;
         
         }
@@ -79,7 +79,7 @@ public class EliminarUsuario {
         
         } catch (IOException e) {
            
-        	e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al actualizar el archivo de usuarios:\n" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             return false;
        
         }

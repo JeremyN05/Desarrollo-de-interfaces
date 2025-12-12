@@ -27,6 +27,13 @@ public class GuardarNoticias {
 	public static void guardarNoticias() {
 		
 		Usuarios usuario = GuardarUsuario.getUsuarioActual();
+		if (usuario == null) {
+			
+			JOptionPane.showMessageDialog(null, "No hay usuario activo.", "Error", JOptionPane.ERROR_MESSAGE);
+			return;
+		
+		}
+		
 		List<String> prefs = CargarPreferencias.cargarPreferencias(usuario.getId());
 		
 		File fichero = new File(GuardadoNoticias_txt);
@@ -39,7 +46,7 @@ public class GuardarNoticias {
 			
 			} catch (IOException e) {
 
-				System.err.println("Error no se pudo crear el archivo (NoticiasGuardadas.txt)");
+				JOptionPane.showMessageDialog(null, "No hay usuario activo.", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 			
 		}
@@ -124,7 +131,9 @@ public class GuardarNoticias {
                 	}
                 	
                 } catch(Exception e){
-                    e.printStackTrace();
+                    
+                	JOptionPane.showMessageDialog(null,"Error al cargar titulares de " + categoria + ":\n" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                
                 }
 
                 for(String t : titulares) {
@@ -144,7 +153,7 @@ public class GuardarNoticias {
         
         } catch(IOException e) {
         
-        	System.err.println("Error al guardar las noticias en el archivo.");
+        	JOptionPane.showMessageDialog(null, "Error al guardar las noticias en el archivo:\n" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
        
         }
 		

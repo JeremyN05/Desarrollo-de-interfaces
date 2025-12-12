@@ -14,6 +14,8 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
@@ -54,36 +56,37 @@ public class PantallaCarga extends JPanel{
 	    fondo.add(lblNewLabel);
 	    
 	    tiempo = new Timer(50, new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				i++;
-				progressBar.setValue(i);
-				progressBar.setString(i + "%");
-				
-		        if (i == 80) {
-		            File usuarioFile = new File("src/Usuarios.txt");
-		            
-		            if (!usuarioFile.exists()) {
-		                
-		            	JOptionPane.showMessageDialog(null, "Error, no se encuentra el archivo Usuarios.txt");
-		            	System.exit(0);
-		            
-		            }
-		        
-		        }
-				
-				if(i >= 100) {
-					
-					tiempo.stop();
-					gestion.mostrarInicioSesion();
-					
-				}
-				
-			}
-			
-		});
+	        @Override
+	        public void actionPerformed(ActionEvent e) {
+	            i++;
+	            progressBar.setValue(i);
+	            progressBar.setString(i + "%");
+
+	            if (i == 8) {
+	                File usuarioFile = new File("src/Usuarios.txt");
+	                File configFile = new File("src/Data/Configuracion.txt");
+
+	                if (!usuarioFile.exists()) {
+	                    JOptionPane.showMessageDialog(null, "Error, no se encuentra el archivo Usuarios.txt");
+	                    System.exit(0);
+	                }
+
+	                if (!configFile.exists()) {
+	                    JOptionPane.showMessageDialog(null, "Error, no se encuentra el archivo Configuracion.txt");
+	                    System.exit(0);
+	                }
+
+	                if (!tieneInternet()) {
+	                    JOptionPane.showMessageDialog(null, "No hay conexión a Internet. Algunas funciones no estarán disponibles.");
+	                }
+	            }
+
+	            if (i >= 100) {
+	                tiempo.stop();
+	                gestion.mostrarInicioSesion();
+	            }
+	        }
+	    });
 		
 	    tiempo.start();
 	    
@@ -124,4 +127,21 @@ public class PantallaCarga extends JPanel{
 		return panelConFondo;
 	}
 	
+	private boolean tieneInternet() {
+	    try {
+
+	        URL url = new java.net.URL("https://www.google.com");
+	        HttpURLConnection conn = (java.net.HttpURLConnection) url.openConnection();
+	        conn.setRequestMethod("HEAD");
+	        conn.setConnectTimeout(2000);
+	        conn.setReadTimeout(2000);
+	        
+	        int responseCode = conn.getResponseCode();
+	        return (200 <= responseCode && responseCode <= 399);
+	    
+	    } catch (IOException e) {
+	        return false;
+	   
+	    }
+	}
 }

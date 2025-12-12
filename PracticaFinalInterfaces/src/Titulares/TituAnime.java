@@ -3,7 +3,6 @@ package Titulares;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Properties;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -11,89 +10,41 @@ import org.jsoup.nodes.Element;
 
 public class TituAnime {
 
-	public static String cargarTitulares() throws IOException {
-		
-        Properties config = leerConfig("src/Titulares/URLAnime.txt");
-		
-		String web = config.getProperty("url1");
-		
-        Document document = Jsoup.connect(web).get();
-		
-        Element element = document.select(config.getProperty("class1")).get(0);
-		
-		String elementos = element.html().toUpperCase();
-        
-        return elementos;
-    
-	}
-	
-	public static String cargarTitulares2() throws IOException {
-		
-		Properties config = leerConfig("src/Titulares/URLAnime.txt");
-		
-		String web = config.getProperty("url2");
-		
-        Document document = Jsoup.connect(web).get();
-		
-        Element element = document.select(config.getProperty("class2")).get(0);
-		
-		String elementos = element.html().toUpperCase();
-        
-        return elementos;
-    
-	}
-	
-	public static String cargarTitulares3() throws IOException {
-		
-		Properties config = leerConfig("src/Titulares/URLAnime.txt");
-		
-		String web = config.getProperty("url3");
-		
-        Document document = Jsoup.connect(web).get();
-		
-        Element element = document.select(config.getProperty("class3")).get(0);
-		
-		String elementos = element.html().toUpperCase();
-        
-        return elementos;
-    
-	}
-	
-	public static Properties leerConfig(String rutaArchivo) {
-		
-        Properties props = new Properties();
-
-        try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivo))) {
-           
-        	String linea;
-           
-            while ((linea = br.readLine()) != null) {
-                
-            	linea = linea.trim();
-                
-                if (linea.isEmpty() || linea.startsWith("#")) {
-                	
-                	 continue;
-                	
-                }
-               
-                String[] partes = linea.split("=", 2);
-               
-                if (partes.length == 2) {
-                  
-                	props.setProperty(partes[0].trim(), partes[1].trim());
-                
-                }
-            
-            }
-       
-        } catch (IOException e) {
-       
-        	e.printStackTrace();
-        
-        }
-
-        return props;
+    public static String cargarTitulares() throws IOException {
+        return cargarTitular("A1");
     }
-	
+
+    public static String cargarTitulares2() throws IOException {
+        return cargarTitular("A2");
+    }
+
+    public static String cargarTitulares3() throws IOException {
+        return cargarTitular("A3");
+    }
+
+    private static String cargarTitular(String codigo) throws IOException {
+        String[] datos = leerConfig(codigo);
+        if (datos == null) return "Titular no disponible";
+
+        Document document = Jsoup.connect(datos[0]).get();
+        Element element = document.select(datos[1]).first();
+
+        return element != null ? element.text().toUpperCase() : "Titular no disponible";
+   
+    }
+
+    private static String[] leerConfig(String codigo) throws IOException {
+        try (BufferedReader br = new BufferedReader(new FileReader("src/Data/Configuracion.txt"))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                linea = linea.trim();
+                if (linea.startsWith("##" + codigo)) {
+                    String[] partes = linea.split("-", 3);
+                    return new String[]{partes[1], partes[2]};
+                }
+            }
+        }
+        return null;
+    }
 }
+

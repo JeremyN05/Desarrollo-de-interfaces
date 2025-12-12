@@ -42,7 +42,7 @@ public class CrearUsuario {
             
         } catch (IOException e) {
          
-        	e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al crear el usuario:\n" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE); 
         
         }
    

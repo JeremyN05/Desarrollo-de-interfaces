@@ -1,7 +1,6 @@
 package Noticia;
 
 import javax.swing.JPanel;
-
 import App.GestionNoticias;
 import DatosUsuarios.CargarPreferencias;
 import DatosUsuarios.GuardarUsuario;
@@ -13,229 +12,152 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.io.IOException;
 import java.util.List;
-
 import javax.swing.JTextArea;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.swing.JOptionPane;
 
-public class Anime extends JPanel{
-	
-	private GestionNoticias gestion;
-	private JTextArea noticiaAn;
-	private JTextArea noticiaAn_2;
-	private JTextArea noticiaAn_3;
-	
-	public Anime(GestionNoticias gestionNoticias) {
-		
-		this.gestion = gestionNoticias;
-		
-		setBackground(new Color(255, 160, 122));
-		setLayout(null);
-		
-		JLabel lblNoticiasAnime = new JLabel("Noticias Anime");
-		lblNoticiasAnime.setFont(new Font("Arial", Font.BOLD, 30));
-		lblNoticiasAnime.setBounds(240, 62, 230, 36);
-		add(lblNoticiasAnime);
-		
-		JLabel kudasai = new JLabel("Kudasai:");
-		kudasai.setFont(new Font("Arial", Font.BOLD, 24));
-		kudasai.setBounds(41, 130, 110, 24);
-		add(kudasai);
-		
-		noticiaAn = new JTextArea();
-		noticiaAn.setWrapStyleWord(true);
-		noticiaAn.setText("");
-		noticiaAn.setLineWrap(true);
-		noticiaAn.setFont(new Font("Arial", Font.PLAIN, 18));
-		noticiaAn.setEditable(false);
-		noticiaAn.setBackground(new Color(255, 160, 122));
-		noticiaAn.setBounds(41, 164, 617, 75);
+public class Anime extends JPanel {
 
-		Usuarios usuario = GuardarUsuario.getUsuarioActual();
-		
-		if (usuario != null) {
-		    
-			List<String> prefs = CargarPreferencias.cargarPreferencias(usuario.getId());
+    private GestionNoticias gestion;
+    private JTextArea noticiaAn;
+    private JTextArea noticiaAn_2;
+    private JTextArea noticiaAn_3;
+    private JLabel lblKudasai;
+    private JLabel lblElPais;
+    private JLabel lblMilenio;
 
-		    if (prefs.contains("A1")) {
-		      
-		    	try {
-		         
-		    		noticiaAn.setText(TituAnime.cargarTitulares());
-		        
-		    	} catch (IOException e) {
-		           
-		    		e.printStackTrace();
-		        
-		    	}
-		    
-		    }
-		
-		}
-		
-		add(noticiaAn);
-		
-		JLabel elPais = new JLabel("ElPais:");
-		elPais.setFont(new Font("Arial", Font.BOLD, 24));
-		elPais.setBounds(41, 251, 90, 24);
-		add(elPais);
-		
-		noticiaAn_2 = new JTextArea();
-		noticiaAn_2.setWrapStyleWord(true);
-		noticiaAn_2.setText("");
-		noticiaAn_2.setLineWrap(true);
-		noticiaAn_2.setFont(new Font("Arial", Font.PLAIN, 18));
-		noticiaAn_2.setEditable(false);
-		noticiaAn_2.setBackground(new Color(255, 160, 122));
-		noticiaAn_2.setBounds(41, 285, 617, 75);
+    public Anime(GestionNoticias gestionNoticias) {
+        this.gestion = gestionNoticias;
 
-		if (usuario != null) {
-		    
-			List<String> prefs = CargarPreferencias.cargarPreferencias(usuario.getId());
+        setBackground(new Color(255, 160, 122));
+        setLayout(null);
 
-		    if (prefs.contains("A2")) {
-		      
-				try {
-					
-					noticiaAn_2.setText(TituAnime.cargarTitulares2());
-				
-				} catch (IOException e) {
-					
-					e.printStackTrace();
-				
-				}
-		    
-		    }
-		
-		}
-		
-		add(noticiaAn_2);
-		
-		JLabel milenio = new JLabel("Milenio:");
-		milenio.setFont(new Font("Arial", Font.BOLD, 24));
-		milenio.setBounds(41, 370, 101, 24);
-		add(milenio);
-		
-		noticiaAn_3 = new JTextArea();
-		noticiaAn_3.setWrapStyleWord(true);
-		noticiaAn_3.setText("");
-		noticiaAn_3.setLineWrap(true);
-		noticiaAn_3.setFont(new Font("Arial", Font.PLAIN, 18));
-		noticiaAn_3.setEditable(false);
-		noticiaAn_3.setBackground(new Color(255, 160, 122));
-		noticiaAn_3.setBounds(41, 404, 617, 75);
-		
-		if (usuario != null) {
-		    
-			List<String> prefs = CargarPreferencias.cargarPreferencias(usuario.getId());
+        JLabel lblNoticiasAnime = new JLabel("Noticias Anime");
+        lblNoticiasAnime.setFont(new Font("Arial", Font.BOLD, 30));
+        lblNoticiasAnime.setBounds(240, 62, 230, 36);
+        add(lblNoticiasAnime);
 
-		    if (prefs.contains("A3")) {
-		      
-				try {
-					
-					noticiaAn_3.setText(TituAnime.cargarTitulares3());
-				
-				} catch (IOException e) {
-					
-					e.printStackTrace();
-				
-				}
-		    
-		    }
-		
-		}
-		
-		add(noticiaAn_3);
-		
-		JButton btnNewButton = new JButton("Atrás");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				gestionNoticias.mostrarNoticia();
-				
-			}
-		});
-		btnNewButton.setFont(new Font("Arial", Font.BOLD, 14));
-		btnNewButton.setBounds(41, 490, 101, 36);
-		add(btnNewButton);
-		
-		JButton cerrarSesion = new JButton("Cerrar Sesión");
-		cerrarSesion.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				gestionNoticias.mostrarInicioSesion();
-				
-			}
-		});
-		cerrarSesion.setBackground(new Color(255, 160, 122));
-		cerrarSesion.setFont(new Font("Arial", Font.BOLD, 10));
-		cerrarSesion.setBorder(null);
-		cerrarSesion.setForeground(new Color(0, 0, 0));
-		cerrarSesion.setBounds(557, 28, 101, 20);
-		add(cerrarSesion);
-		
-		JButton cerrarPrograma = new JButton("");
-		cerrarPrograma.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				int opcion = javax.swing.JOptionPane.showConfirmDialog(
-                        
-                		Anime.this,
-                        "¿Está usted seguro de cerrar el programa?",
-                        "Confirmar salida",
-                        javax.swing.JOptionPane.YES_NO_OPTION,
-                        javax.swing.JOptionPane.WARNING_MESSAGE
-                );
+        lblKudasai = new JLabel("Kudasai:");
+        lblKudasai.setFont(new Font("Arial", Font.BOLD, 24));
+        lblKudasai.setBounds(41, 130, 110, 24);
+        add(lblKudasai);
 
-                if (opcion == javax.swing.JOptionPane.YES_OPTION) {
-                    System.exit(0);
-                
-                }
-				
-			}
-		});
-		cerrarPrograma.setBorder(null);
-		cerrarPrograma.setBackground(new Color(255, 160, 122));
-		cerrarPrograma.setBounds(519, 28, 28, 22);
-		cerrarPrograma.setIcon(new ImageIcon("src/Imagenes/apagar.png"));
-		add(cerrarPrograma);
-	}
-	
-	public void actualizarNoticias() {
+        noticiaAn = new JTextArea();
+        noticiaAn.setWrapStyleWord(true);
+        noticiaAn.setLineWrap(true);
+        noticiaAn.setFont(new Font("Arial", Font.PLAIN, 18));
+        noticiaAn.setEditable(false);
+        noticiaAn.setBackground(new Color(255, 160, 122));
+        noticiaAn.setBounds(41, 164, 617, 75);
+        add(noticiaAn);
 
-	    Usuarios usuario = GuardarUsuario.getUsuarioActual();
-	    if (usuario == null) return;
+        lblElPais = new JLabel("ElPais:");
+        lblElPais.setFont(new Font("Arial", Font.BOLD, 24));
+        lblElPais.setBounds(41, 251, 90, 24);
+        add(lblElPais);
 
-	    List<String> prefs = CargarPreferencias.cargarPreferencias(usuario.getId());
+        noticiaAn_2 = new JTextArea();
+        noticiaAn_2.setWrapStyleWord(true);
+        noticiaAn_2.setLineWrap(true);
+        noticiaAn_2.setFont(new Font("Arial", Font.PLAIN, 18));
+        noticiaAn_2.setEditable(false);
+        noticiaAn_2.setBackground(new Color(255, 160, 122));
+        noticiaAn_2.setBounds(41, 285, 617, 75);
+        add(noticiaAn_2);
 
-	    noticiaAn.setVisible(false);
-	    noticiaAn_2.setVisible(false);
-	    noticiaAn_3.setVisible(false);
+        lblMilenio = new JLabel("Milenio:");
+        lblMilenio.setFont(new Font("Arial", Font.BOLD, 24));
+        lblMilenio.setBounds(41, 370, 101, 24);
+        add(lblMilenio);
 
-	    try {
-	        if (usuario.isAdmin() || prefs.contains("A1")) {
-	        	noticiaAn.setText(TituAnime.cargarTitulares());
-	        	noticiaAn.setVisible(true);
-	        }
+        noticiaAn_3 = new JTextArea();
+        noticiaAn_3.setWrapStyleWord(true);
+        noticiaAn_3.setLineWrap(true);
+        noticiaAn_3.setFont(new Font("Arial", Font.PLAIN, 18));
+        noticiaAn_3.setEditable(false);
+        noticiaAn_3.setBackground(new Color(255, 160, 122));
+        noticiaAn_3.setBounds(41, 404, 617, 75);
+        add(noticiaAn_3);
 
-	        if (usuario.isAdmin() || prefs.contains("A2")) {
-	        	noticiaAn_2.setText(TituAnime.cargarTitulares2());
-	        	noticiaAn_2.setVisible(true);
-	        }
+        JButton btnNewButton = new JButton("Atrás");
+        btnNewButton.addActionListener(e -> gestionNoticias.mostrarNoticia());
+        btnNewButton.setFont(new Font("Arial", Font.BOLD, 14));
+        btnNewButton.setBounds(41, 490, 101, 36);
+        add(btnNewButton);
 
-	        if (usuario.isAdmin() || prefs.contains("A3")) {
-	        	noticiaAn_3.setText(TituAnime.cargarTitulares3());
-	            noticiaAn_3.setVisible(true);
-	        }
+        JButton cerrarSesion = new JButton("Cerrar Sesión");
+        cerrarSesion.addActionListener(e -> gestionNoticias.mostrarInicioSesion());
+        cerrarSesion.setBackground(new Color(255, 160, 122));
+        cerrarSesion.setFont(new Font("Arial", Font.BOLD, 10));
+        cerrarSesion.setBorder(null);
+        cerrarSesion.setForeground(new Color(0, 0, 0));
+        cerrarSesion.setBounds(557, 28, 101, 20);
+        add(cerrarSesion);
 
-	    } catch (IOException e) {
-	    
-	    	e.printStackTrace();
-	   
-	    }
+        JButton cerrarPrograma = new JButton("");
+        cerrarPrograma.addActionListener(e -> {
+            int opcion = JOptionPane.showConfirmDialog(
+                    Anime.this,
+                    "¿Está usted seguro de cerrar el programa?",
+                    "Confirmar salida",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.WARNING_MESSAGE
+            );
+            if (opcion == JOptionPane.YES_OPTION) {
+                System.exit(0);
+            }
+        });
+        cerrarPrograma.setBorder(null);
+        cerrarPrograma.setBackground(new Color(255, 160, 122));
+        cerrarPrograma.setBounds(519, 28, 28, 22);
+        cerrarPrograma.setIcon(new ImageIcon("src/Imagenes/apagar.png"));
+        add(cerrarPrograma);
 
-	}
-	
+        actualizarNoticias();
+    }
+
+    public void actualizarNoticias() {
+        Usuarios usuario = GuardarUsuario.getUsuarioActual();
+        if (usuario == null) return;
+
+        List<String> prefs = CargarPreferencias.cargarPreferencias(usuario.getId());
+
+        noticiaAn.setVisible(false);
+        noticiaAn_2.setVisible(false);
+        noticiaAn_3.setVisible(false);
+        lblKudasai.setVisible(false);
+        lblElPais.setVisible(false);
+        lblMilenio.setVisible(false);
+
+        try {
+            if (usuario.isAdmin() || prefs.contains("A1")) {
+                noticiaAn.setText(TituAnime.cargarTitulares());
+                noticiaAn.setVisible(true);
+                lblKudasai.setVisible(true);
+            }
+
+            if (usuario.isAdmin() || prefs.contains("A2")) {
+                noticiaAn_2.setText(TituAnime.cargarTitulares2());
+                noticiaAn_2.setVisible(true);
+                lblElPais.setVisible(true);
+            }
+
+            if (usuario.isAdmin() || prefs.contains("A3")) {
+                noticiaAn_3.setText(TituAnime.cargarTitulares3());
+                noticiaAn_3.setVisible(true);
+                lblMilenio.setVisible(true);
+            }
+
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Error al cargar titulares de Anime: " + e.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE
+            );
+        }
+    }
 }
+
+

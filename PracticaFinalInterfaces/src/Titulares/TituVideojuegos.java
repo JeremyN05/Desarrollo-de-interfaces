@@ -1,53 +1,47 @@
 package Titulares;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
 public class TituVideojuegos {
 
-	public static String cargarTitulares() throws IOException {
-		
-		String web = "https://as.com/meristation/juegos/free-fire/noticias/";
-		
-        Document document = Jsoup.connect(web).get();
-		
-        Element element = document.select("h2.s__tl a").get(0);
-		
-		String elementos = element.html().toUpperCase();
-        
-        return elementos;
-    
-	}
-	
-	public static String cargarTitulares2() throws IOException {
-		
-		String web = "https://theobjective.com/tecnologia/videojuegos/";
-		
-        Document document = Jsoup.connect(web).get();
-		
-        Element element = document.select("h2.tno-article-general__content__title a").get(0);
-		
-		String elementos = element.html().toUpperCase();
-        
-        return elementos;
-    
-	}
-	
-	public static String cargarTitulares3() throws IOException {
-		
-		String web = "https://www.marca.com/videojuegos.html";
-		
-        Document document = Jsoup.connect(web).get();
-		
-        Element element = document.select("h2.ue-c-cover-content__headline").get(0);
-		
-		String elementos = element.html().toUpperCase();
-        
-        return elementos;
-    
-	}
-	
+    public static String cargarTitulares() throws IOException {
+        return cargarTitular("V1");
+    }
+
+    public static String cargarTitulares2() throws IOException {
+        return cargarTitular("V2");
+    }
+
+    public static String cargarTitulares3() throws IOException {
+        return cargarTitular("V3");
+    }
+
+    private static String cargarTitular(String codigo) throws IOException {
+        String[] datos = leerConfig(codigo);
+        if (datos == null) return "Titular no disponible";
+
+        Document document = Jsoup.connect(datos[0]).get();
+        Element element = document.select(datos[1]).first();
+
+        return element != null ? element.text().toUpperCase() : "Titular no disponible";
+    }
+
+    private static String[] leerConfig(String codigo) throws IOException {
+        try (BufferedReader br = new BufferedReader(new FileReader("src/Data/Configuracion.txt"))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                linea = linea.trim();
+                if (linea.startsWith("##" + codigo)) {
+                    String[] partes = linea.split("-", 3);
+                    return new String[]{partes[1], partes[2]};
+                }
+            }
+        }
+        return null;
+    }
 }

@@ -1,6 +1,0 @@
-url1=https://somoskudasai.com
-class1=a.py-1
-url2=https://elpais.com/noticias/anime/
-class2=h2.c_t a
-url3=https://www.milenio.com/temas/anime
-class3=a.board-module__a

@@ -143,11 +143,11 @@ public class SeleccionFuentes extends JPanel{
 		videojuegos.setBounds(322, 306, 108, 20);
 		add(videojuegos);
 		
-		JCheckBox meristation = new JCheckBox(" Meristation");
-		meristation.setFont(new Font("Arial", Font.PLAIN, 12));
-		meristation.setBackground(new Color(255, 160, 122));
-		meristation.setBounds(324, 336, 92, 23);
-		add(meristation);
+		JCheckBox gamerReactor = new JCheckBox(" GamerReactor");
+		gamerReactor.setFont(new Font("Arial", Font.PLAIN, 12));
+		gamerReactor.setBackground(new Color(255, 160, 122));
+		gamerReactor.setBounds(324, 336, 106, 23);
+		add(gamerReactor);
 		
 		JCheckBox theobjetive = new JCheckBox(" The Objetive");
 		theobjetive.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -296,7 +296,7 @@ public class SeleccionFuentes extends JPanel{
 	
 			    }
 			    
-			    if (meristation.isSelected()) {
+			    if (gamerReactor.isSelected()) {
 			    	
 			    	prefs.add("V1");
 	
@@ -332,7 +332,8 @@ public class SeleccionFuentes extends JPanel{
 	
 			    }
 			    
-			    GuardarPreferencias.guardarPreferencias(usuario, prefs);
+			    GuardarPreferencias.guardarPreferencias(usuario.getId(), prefs);
+
 			    
                 gestion.mostrarNoticia();
 			    
