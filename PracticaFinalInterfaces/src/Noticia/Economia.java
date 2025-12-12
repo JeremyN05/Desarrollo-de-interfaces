@@ -13,6 +13,7 @@ import App.GestionNoticias;
 import DatosUsuarios.CargarPreferencias;
 import DatosUsuarios.GuardarUsuario;
 import DatosUsuarios.Usuarios;
+import Titulares.TituDeporte;
 import Titulares.TituEconomia;
 
 import javax.swing.JTextArea;
@@ -55,10 +56,10 @@ public class Economia extends JPanel{
 		noticiaEc.setBounds(41, 164, 617, 75);
 		add(noticiaEc);
 		
-		JLabel cincoDias = new JLabel("CincoDías:");
-		cincoDias.setFont(new Font("Arial", Font.BOLD, 24));
-		cincoDias.setBounds(41, 251, 143, 24);
-		add(cincoDias);
+		JLabel libertadDigi = new JLabel("Libertad Digital:");
+		libertadDigi.setFont(new Font("Arial", Font.BOLD, 24));
+		libertadDigi.setBounds(41, 251, 190, 24);
+		add(libertadDigi);
 		
 		noticiaEc_2 = new JTextArea();
 		noticiaEc_2.setEditable(false);
@@ -92,7 +93,7 @@ public class Economia extends JPanel{
 			}
 		});
 		btnNewButton.setFont(new Font("Arial", Font.BOLD, 14));
-		btnNewButton.setBounds(41, 505, 102, 36);
+		btnNewButton.setBounds(41, 490, 102, 36);
 		add(btnNewButton);
 		
 		JButton cerrarSesion = new JButton("Cerrar Sesión");
@@ -127,9 +128,7 @@ public class Economia extends JPanel{
                     System.exit(0);
                 
                 }
-				
-				System.exit(0);
-				
+
 			}
 		});
 		cerrarPrograma.setBorder(null);
@@ -151,17 +150,17 @@ public class Economia extends JPanel{
 	    noticiaEc_3.setVisible(false);
 
 	    try {
-	        if (prefs.contains("A1")) {
+	        if (usuario.isAdmin() || prefs.contains("A1")) {
 	            noticiaEc.setText(TituEconomia.cargarTitulares());
 	            noticiaEc.setVisible(true);
 	        }
 
-	        if (prefs.contains("A2")) {
+	        if (usuario.isAdmin() || prefs.contains("A2")) {
 	            noticiaEc_2.setText(TituEconomia.cargarTitulares2());
 	            noticiaEc_2.setVisible(true);
 	        }
 
-	        if (prefs.contains("A3")) {
+	        if (usuario.isAdmin() || prefs.contains("A3")) {
 	            noticiaEc_3.setText(TituEconomia.cargarTitulares3());
 	            noticiaEc_3.setVisible(true);
 	        }

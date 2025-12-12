@@ -62,7 +62,7 @@ public class Deporte extends JPanel{
 		noticiaDep_2 = new JTextArea();
 		noticiaDep_2.setLineWrap(true);
 		noticiaDep_2.setWrapStyleWord(true);
-		noticiaDep_2.setText("UN SORTEO CONDICIONADO Y CON TRAMPAS");
+		noticiaDep_2.setText("");
 		noticiaDep_2.setFont(new Font("Arial", Font.PLAIN, 18));
 		noticiaDep_2.setEditable(false);
 		noticiaDep_2.setBackground(new Color(255, 160, 122));
@@ -77,7 +77,7 @@ public class Deporte extends JPanel{
 		noticiaDep_3 = new JTextArea();
 		noticiaDep_3.setWrapStyleWord(true);
 		noticiaDep_3.setLineWrap(true);
-		noticiaDep_3.setText("UN SORTEO CONDICIONADO Y CON TRAMPAS");
+		noticiaDep_3.setText("");
 		noticiaDep_3.setFont(new Font("Arial", Font.PLAIN, 18));
 		noticiaDep_3.setEditable(false);
 		noticiaDep_3.setBackground(new Color(255, 160, 122));
@@ -93,7 +93,7 @@ public class Deporte extends JPanel{
 			}
 		});
 		btnNewButton.setFont(new Font("Arial", Font.BOLD, 14));
-		btnNewButton.setBounds(41, 505, 102, 36);
+		btnNewButton.setBounds(41, 490, 102, 36);
 		add(btnNewButton);
 		
 		JButton cerrarSesion = new JButton("Cerrar Sesión");
@@ -129,8 +129,6 @@ public class Deporte extends JPanel{
                 
                 }
 				
-				System.exit(0);
-				
 			}
 		});
 		cerrarPrograma.setBorder(null);
@@ -152,17 +150,17 @@ public class Deporte extends JPanel{
 	    noticiaDep_3.setVisible(false);
 
 	    try {
-	        if (prefs.contains("A1")) {
+	        if (usuario.isAdmin() || prefs.contains("A1")) {
 	        	noticiaDep.setText(TituDeporte.cargarTitulares());
 	        	noticiaDep.setVisible(true);
 	        }
 
-	        if (prefs.contains("A2")) {
+	        if (usuario.isAdmin() || prefs.contains("A2")) {
 	        	noticiaDep_2.setText(TituDeporte.cargarTitulares2());
 	        	noticiaDep_2.setVisible(true);
 	        }
 
-	        if (prefs.contains("A3")) {
+	        if (usuario.isAdmin() || prefs.contains("A3")) {
 	        	noticiaDep_3.setText(TituDeporte.cargarTitulares3());
 	        	noticiaDep_3.setVisible(true);
 	        }

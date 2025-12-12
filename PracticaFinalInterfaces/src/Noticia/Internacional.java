@@ -47,7 +47,7 @@ public class Internacional extends JPanel{
 		
 		noticiaInt = new JTextArea();
 		noticiaInt.setWrapStyleWord(true);
-		noticiaInt.setText("ALONSO EL INVITADO SORPRESA EN LA PELEA POR EL TÍTULO");
+		noticiaInt.setText("");
 		noticiaInt.setLineWrap(true);
 		noticiaInt.setFont(new Font("Arial", Font.PLAIN, 18));
 		noticiaInt.setEditable(false);
@@ -62,7 +62,7 @@ public class Internacional extends JPanel{
 		
 		noticiaInt_2 = new JTextArea();
 		noticiaInt_2.setWrapStyleWord(true);
-		noticiaInt_2.setText("UN SORTEO CONDICIONADO Y CON TRAMPAS");
+		noticiaInt_2.setText("");
 		noticiaInt_2.setLineWrap(true);
 		noticiaInt_2.setFont(new Font("Arial", Font.PLAIN, 18));
 		noticiaInt_2.setEditable(false);
@@ -77,7 +77,7 @@ public class Internacional extends JPanel{
 		
 		noticiaInt_3 = new JTextArea();
 		noticiaInt_3.setWrapStyleWord(true);
-		noticiaInt_3.setText("UN SORTEO CONDICIONADO Y CON TRAMPAS");
+		noticiaInt_3.setText("");
 		noticiaInt_3.setLineWrap(true);
 		noticiaInt_3.setFont(new Font("Arial", Font.PLAIN, 18));
 		noticiaInt_3.setEditable(false);
@@ -94,7 +94,7 @@ public class Internacional extends JPanel{
 			}
 		});
 		btnNewButton.setFont(new Font("Arial", Font.BOLD, 14));
-		btnNewButton.setBounds(41, 505, 101, 36);
+		btnNewButton.setBounds(41, 490, 101, 36);
 		add(btnNewButton);
 		
 		JButton cerrarSesion = new JButton("Cerrar Sesión");
@@ -129,9 +129,7 @@ public class Internacional extends JPanel{
                     System.exit(0);
                 
                 }
-				
-				System.exit(0);
-				
+
 			}
 		});
 		cerrarPrograma.setBorder(null);
@@ -153,18 +151,18 @@ public class Internacional extends JPanel{
 	    noticiaInt_3.setVisible(false);
 
 	    try {
-	        if (prefs.contains("A1")) {
-	        	noticiaInt.setText(TituEconomia.cargarTitulares());
+	        if (usuario.isAdmin() || prefs.contains("A1")) {
+	        	noticiaInt.setText(TituInternacional.cargarTitulares());
 	        	noticiaInt.setVisible(true);
 	        }
 
-	        if (prefs.contains("A2")) {
-	        	noticiaInt_2.setText(TituEconomia.cargarTitulares2());
+	        if (usuario.isAdmin() || prefs.contains("A2")) {
+	        	noticiaInt_2.setText(TituInternacional.cargarTitulares2());
 	        	noticiaInt_2.setVisible(true);
 	        }
 
-	        if (prefs.contains("A3")) {
-	        	noticiaInt_3.setText(TituEconomia.cargarTitulares3());
+	        if (usuario.isAdmin() || prefs.contains("A3")) {
+	        	noticiaInt_3.setText(TituInternacional.cargarTitulares3());
 	        	noticiaInt_3.setVisible(true);
 	        }
 

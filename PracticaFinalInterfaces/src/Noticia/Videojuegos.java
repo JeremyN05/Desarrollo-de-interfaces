@@ -47,7 +47,7 @@ public class Videojuegos extends JPanel{
 		
 		noticiaVid = new JTextArea();
 		noticiaVid.setWrapStyleWord(true);
-		noticiaVid.setText("LA QUALY DECISIVA: NORRIS TÍMIDO... ALONSO CUARTO EN Q1");
+		noticiaVid.setText("");
 		noticiaVid.setLineWrap(true);
 		noticiaVid.setFont(new Font("Arial", Font.PLAIN, 18));
 		noticiaVid.setEditable(false);
@@ -62,7 +62,7 @@ public class Videojuegos extends JPanel{
 		
 		noticiaVid_2 = new JTextArea();
 		noticiaVid_2.setWrapStyleWord(true);
-		noticiaVid_2.setText("LA QUALY DECISIVA: NORRIS TÍMIDO... ALONSO CUARTO EN Q1");
+		noticiaVid_2.setText("");
 		noticiaVid_2.setLineWrap(true);
 		noticiaVid_2.setFont(new Font("Arial", Font.PLAIN, 18));
 		noticiaVid_2.setEditable(false);
@@ -72,7 +72,7 @@ public class Videojuegos extends JPanel{
 		
 		noticiaVid_3 = new JTextArea();
 		noticiaVid_3.setWrapStyleWord(true);
-		noticiaVid_3.setText("LA QUALY DECISIVA: NORRIS TÍMIDO... ALONSO CUARTO EN Q1");
+		noticiaVid_3.setText("");
 		noticiaVid_3.setLineWrap(true);
 		noticiaVid_3.setFont(new Font("Arial", Font.PLAIN, 18));
 		noticiaVid_3.setEditable(false);
@@ -94,7 +94,7 @@ public class Videojuegos extends JPanel{
 			}
 		});
 		btnNewButton.setFont(new Font("Arial", Font.BOLD, 14));
-		btnNewButton.setBounds(41, 505, 101, 36);
+		btnNewButton.setBounds(41, 490, 101, 36);
 		add(btnNewButton);
 		
 		JButton cerrarSesion = new JButton("Cerrar Sesión");
@@ -130,8 +130,6 @@ public class Videojuegos extends JPanel{
                 
                 }
 				
-				System.exit(0);
-				
 			}
 		});
 		cerrarPrograma.setBorder(null);
@@ -153,18 +151,18 @@ public class Videojuegos extends JPanel{
 	    noticiaVid_3.setVisible(false);
 
 	    try {
-	        if (prefs.contains("A1")) {
-	        	noticiaVid.setText(TituEconomia.cargarTitulares());
+	        if (usuario.isAdmin() || prefs.contains("A1")) {
+	        	noticiaVid.setText(TituVideojuegos.cargarTitulares());
 	        	noticiaVid.setVisible(true);
 	        }
 
-	        if (prefs.contains("A2")) {
-	        	noticiaVid_2.setText(TituEconomia.cargarTitulares2());
+	        if (usuario.isAdmin() || prefs.contains("A2")) {
+	        	noticiaVid_2.setText(TituVideojuegos.cargarTitulares2());
 	        	noticiaVid_2.setVisible(true);
 	        }
 
-	        if (prefs.contains("A3")) {
-	        	noticiaVid_3.setText(TituEconomia.cargarTitulares3());
+	        if (usuario.isAdmin() || prefs.contains("A3")) {
+	        	noticiaVid_3.setText(TituVideojuegos.cargarTitulares3());
 	        	noticiaVid_3.setVisible(true);
 	        }
 

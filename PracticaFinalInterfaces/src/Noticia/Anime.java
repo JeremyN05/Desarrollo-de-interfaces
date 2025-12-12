@@ -46,7 +46,7 @@ public class Anime extends JPanel{
 		
 		noticiaAn = new JTextArea();
 		noticiaAn.setWrapStyleWord(true);
-		noticiaAn.setText("¡ALONSO ENTRA CUARTO EN Q3!");
+		noticiaAn.setText("");
 		noticiaAn.setLineWrap(true);
 		noticiaAn.setFont(new Font("Arial", Font.PLAIN, 18));
 		noticiaAn.setEditable(false);
@@ -84,7 +84,7 @@ public class Anime extends JPanel{
 		
 		noticiaAn_2 = new JTextArea();
 		noticiaAn_2.setWrapStyleWord(true);
-		noticiaAn_2.setText("¡ALONSO ENTRA CUARTO EN Q3!");
+		noticiaAn_2.setText("");
 		noticiaAn_2.setLineWrap(true);
 		noticiaAn_2.setFont(new Font("Arial", Font.PLAIN, 18));
 		noticiaAn_2.setEditable(false);
@@ -120,7 +120,7 @@ public class Anime extends JPanel{
 		
 		noticiaAn_3 = new JTextArea();
 		noticiaAn_3.setWrapStyleWord(true);
-		noticiaAn_3.setText("¡ALONSO ENTRA CUARTO EN Q3!");
+		noticiaAn_3.setText("");
 		noticiaAn_3.setLineWrap(true);
 		noticiaAn_3.setFont(new Font("Arial", Font.PLAIN, 18));
 		noticiaAn_3.setEditable(false);
@@ -158,7 +158,7 @@ public class Anime extends JPanel{
 			}
 		});
 		btnNewButton.setFont(new Font("Arial", Font.BOLD, 14));
-		btnNewButton.setBounds(41, 505, 101, 36);
+		btnNewButton.setBounds(41, 490, 101, 36);
 		add(btnNewButton);
 		
 		JButton cerrarSesion = new JButton("Cerrar Sesión");
@@ -194,8 +194,6 @@ public class Anime extends JPanel{
                 
                 }
 				
-				System.exit(0);
-				
 			}
 		});
 		cerrarPrograma.setBorder(null);
@@ -217,17 +215,17 @@ public class Anime extends JPanel{
 	    noticiaAn_3.setVisible(false);
 
 	    try {
-	        if (prefs.contains("A1")) {
+	        if (usuario.isAdmin() || prefs.contains("A1")) {
 	        	noticiaAn.setText(TituAnime.cargarTitulares());
 	        	noticiaAn.setVisible(true);
 	        }
 
-	        if (prefs.contains("A2")) {
+	        if (usuario.isAdmin() || prefs.contains("A2")) {
 	        	noticiaAn_2.setText(TituAnime.cargarTitulares2());
 	        	noticiaAn_2.setVisible(true);
 	        }
 
-	        if (prefs.contains("A3")) {
+	        if (usuario.isAdmin() || prefs.contains("A3")) {
 	        	noticiaAn_3.setText(TituAnime.cargarTitulares3());
 	            noticiaAn_3.setVisible(true);
 	        }

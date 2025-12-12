@@ -10,7 +10,6 @@ import App.GestionNoticias;
 import DatosUsuarios.GuardarUsuario;
 import DatosUsuarios.Usuarios;
 import Mail.EnviarCorreo;
-import Noticia.Noticia;
 
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
@@ -98,13 +97,6 @@ public class MenuAdmin extends JPanel{
 		btEliminarUsu.setBackground(new Color(255, 160, 122));
 		btEliminarUsu.setBounds(504, 162, 144, 144);
 		add(btEliminarUsu);
-		
-		JButton btNoticias_1 = new JButton("");
-		btNoticias_1.setIcon(new ImageIcon(MenuAdmin.class.getResource("/Imagenes/noticiasAdmin.png")));
-		btNoticias_1.setBorder(null);
-		btNoticias_1.setBackground(new Color(255, 160, 122));
-		btNoticias_1.setBounds(34, 376, 144, 144);
-		add(btNoticias_1);
 		
 		JButton cerrarSesion = new JButton("Cerrar Sesión");
 		cerrarSesion.addActionListener(new ActionListener() {

@@ -48,7 +48,7 @@ public class Nacional extends JPanel{
 		
 		noticiaNac = new JTextArea();
 		noticiaNac.setWrapStyleWord(true);
-		noticiaNac.setText("URUGUAY Y ARABIA, CON ESPAÑA... Y EL CRUCE ¡CON EL GRUPO DE ARGENTINA!");
+		noticiaNac.setText("");
 		noticiaNac.setLineWrap(true);
 		noticiaNac.setFont(new Font("Arial", Font.PLAIN, 18));
 		noticiaNac.setEditable(false);
@@ -63,7 +63,7 @@ public class Nacional extends JPanel{
 		
 		noticiaNac_2 = new JTextArea();
 		noticiaNac_2.setWrapStyleWord(true);
-		noticiaNac_2.setText("URUGUAY Y ARABIA, CON ESPAÑA... Y EL CRUCE ¡CON EL GRUPO DE ARGENTINA!");
+		noticiaNac_2.setText("");
 		noticiaNac_2.setLineWrap(true);
 		noticiaNac_2.setFont(new Font("Arial", Font.PLAIN, 18));
 		noticiaNac_2.setEditable(false);
@@ -78,7 +78,7 @@ public class Nacional extends JPanel{
 		
 		noticiaNac_3 = new JTextArea();
 		noticiaNac_3.setWrapStyleWord(true);
-		noticiaNac_3.setText("URUGUAY Y ARABIA, CON ESPAÑA... Y EL CRUCE ¡CON EL GRUPO DE ARGENTINA!");
+		noticiaNac_3.setText("");
 		noticiaNac_3.setLineWrap(true);
 		noticiaNac_3.setFont(new Font("Arial", Font.PLAIN, 18));
 		noticiaNac_3.setEditable(false);
@@ -106,7 +106,7 @@ public class Nacional extends JPanel{
 			}
 		});
 		btnNewButton.setFont(new Font("Arial", Font.BOLD, 14));
-		btnNewButton.setBounds(41, 505, 102, 36);
+		btnNewButton.setBounds(41, 490, 102, 36);
 		add(btnNewButton);
 		
 		JButton cerrarSesion = new JButton("Cerrar Sesión");
@@ -141,9 +141,7 @@ public class Nacional extends JPanel{
                     System.exit(0);
                 
                 }
-				
-				System.exit(0);
-				
+
 			}
 		});
 		cerrarPrograma.setBorder(null);
@@ -165,17 +163,17 @@ public class Nacional extends JPanel{
 	    noticiaNac_3.setVisible(false);
 
 	    try {
-	        if (prefs.contains("A1")) {
+	        if (usuario.isAdmin() || prefs.contains("A1")) {
 	        	noticiaNac.setText(TituNacional.cargarTitulares());
 	        	noticiaNac.setVisible(true);
 	        }
 
-	        if (prefs.contains("A2")) {
+	        if (usuario.isAdmin() || prefs.contains("A2")) {
 	        	noticiaNac_2.setText(TituNacional.cargarTitulares2());
 	        	noticiaNac_2.setVisible(true);
 	        }
 
-	        if (prefs.contains("A3")) {
+	        if (usuario.isAdmin() || prefs.contains("A3")) {
 	        	noticiaNac_3.setText(TituNacional.cargarTitulares3());
 	        	noticiaNac_3.setVisible(true);
 	        }

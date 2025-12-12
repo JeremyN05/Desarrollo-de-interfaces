@@ -44,6 +44,9 @@ public class GestionNoticias extends JFrame{
         setIconImage(Toolkit.getDefaultToolkit().getImage("src/Imagenes/noticias.png"));
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         
+        AcercaDe acercaDe = new AcercaDe();
+        setJMenuBar(acercaDe.getMenuBar());
+        
         addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent e) {

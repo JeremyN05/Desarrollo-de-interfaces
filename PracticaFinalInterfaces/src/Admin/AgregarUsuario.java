@@ -92,7 +92,7 @@ public class AgregarUsuario extends JPanel{
 			}
 		});
 		btnNewButton.setFont(new Font("Arial", Font.BOLD, 14));
-		btnNewButton.setBounds(566, 502, 98, 42);
+		btnNewButton.setBounds(566, 462, 98, 42);
 		add(btnNewButton);
 		
 		JButton atras = new JButton("Atrás");
@@ -104,7 +104,7 @@ public class AgregarUsuario extends JPanel{
 			}
 		});
 		atras.setFont(new Font("Arial", Font.BOLD, 14));
-		atras.setBounds(38, 503, 97, 41);
+		atras.setBounds(38, 462, 97, 41);
 		add(atras);
 		
 		JButton cerrarSesion = new JButton("Cerrar Sesión");
