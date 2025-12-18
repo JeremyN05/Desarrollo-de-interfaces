@@ -13,7 +13,6 @@ import DatosUsuarios.CargarPreferencias;
 import DatosUsuarios.GuardarUsuario;
 import DatosUsuarios.LeerUsuario;
 import DatosUsuarios.Usuarios;
-import Noticia.Noticia;
 
 import java.awt.Font;
 

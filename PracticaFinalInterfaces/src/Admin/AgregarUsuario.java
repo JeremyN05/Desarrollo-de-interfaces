@@ -72,22 +72,30 @@ public class AgregarUsuario extends JPanel{
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-			    String nombre = nombreUsu.getText().trim();
-			    String correo = gmailUsu.getText().trim();
-			    String contrasena = new String(passwordField.getPassword()).trim();
+				String nombre = nombreUsu.getText().trim();
+				String correo = gmailUsu.getText().trim();
+				String contrasena = new String(passwordField.getPassword()).trim();
 
-			    if(nombre.isEmpty() || correo.isEmpty() || contrasena.isEmpty()) {
-			        
-		            JOptionPane.showMessageDialog(null, "Por favor, rellene todos los campos");
-			        return;
-			    
-			    }
+				if (nombre.isEmpty() || correo.isEmpty() || contrasena.isEmpty()) {
+				   
+					JOptionPane.showMessageDialog(null, "Por favor, rellene todos los campos");
+				    return;
+				
+				}
 
-			    CrearUsuario.crearUsuario(nombre, contrasena, correo);
+				if (!correo.contains("@")) {
+				 
+					JOptionPane.showMessageDialog(null, "El correo debe contener un '@'");
+				    return;
+				
+				}
 
-			    nombreUsu.setText("");
-			    gmailUsu.setText("");
-			    passwordField.setText("");
+				CrearUsuario.crearUsuario(nombre, contrasena, correo);
+
+				nombreUsu.setText("");
+				gmailUsu.setText("");
+				passwordField.setText("");
+
 				
 			}
 		});

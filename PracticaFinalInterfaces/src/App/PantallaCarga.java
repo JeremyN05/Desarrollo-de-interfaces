@@ -34,7 +34,6 @@ public class PantallaCarga extends JPanel{
 		this.gestion = gestion;
 		
 	    setLayout(null);
-	    
 
 	    fondo = (JPanel) buscarImagen();
 	    fondo.setLayout(null);
@@ -56,29 +55,54 @@ public class PantallaCarga extends JPanel{
 	    fondo.add(lblNewLabel);
 	    
 	    tiempo = new Timer(50, new ActionListener() {
-	        @Override
+	       
+	    	@Override
 	        public void actionPerformed(ActionEvent e) {
-	            i++;
+	           
+	    		i++;
 	            progressBar.setValue(i);
 	            progressBar.setString(i + "%");
 
-	            if (i == 8) {
-	                File usuarioFile = new File("src/Usuarios.txt");
-	                File configFile = new File("src/Data/Configuracion.txt");
+	            if (i == 80) {
+	              
+	            	File ficheroUsuario = new File("src/Usuarios.txt");
+	                File FicheroConfiguracion = new File("src/Data/Configuracion.txt");
 
-	                if (!usuarioFile.exists()) {
+	                if (!ficheroUsuario.exists()) {
 	                    JOptionPane.showMessageDialog(null, "Error, no se encuentra el archivo Usuarios.txt");
 	                    System.exit(0);
 	                }
 
-	                if (!configFile.exists()) {
-	                    JOptionPane.showMessageDialog(null, "Error, no se encuentra el archivo Configuracion.txt");
+	                if (!FicheroConfiguracion.exists()) {
+	                    
+	                	JOptionPane.showMessageDialog(null, "Error, no se encuentra el archivo Configuracion.txt");
 	                    System.exit(0);
 	                }
 
 	                if (!tieneInternet()) {
-	                    JOptionPane.showMessageDialog(null, "No hay conexión a Internet. Algunas funciones no estarán disponibles.");
+	                   
+	                	JOptionPane.showMessageDialog(null, "No hay conexión a Internet. Las noticias no se podrán visualizar.");
+	                	System.exit(0);
 	                }
+	                
+	                File imgNoticiaFondo = new File("src/NoticiaFondo.jpg");
+	                
+	                if(!imgNoticiaFondo.exists()) {
+	                	
+	                	JOptionPane.showMessageDialog(null, "Error, no se encuentra la imagen NoticiaFondo");
+	                	System.exit(0);
+	                }
+	                
+	                File imgEsconder = new File("src/esconder.png");
+	                
+	                if(!imgEsconder.exists()) {
+	                	
+	                	JOptionPane.showMessageDialog(null, "Error, no se encuentra la imagen esconder");
+	                	System.exit(0);
+	                }
+	                
+	                comprobarImagenes();
+	            
 	            }
 
 	            if (i >= 100) {
@@ -103,7 +127,7 @@ public class PantallaCarga extends JPanel{
 			
 		}catch(IOException e) {
 			
-			e.printStackTrace();
+        	JOptionPane.showMessageDialog(null, "Error: no existe la imagen NoticaFondo.png");
 			
 		}
 		
@@ -144,4 +168,48 @@ public class PantallaCarga extends JPanel{
 	   
 	    }
 	}
+	
+	private void comprobarImagenes() {
+	    
+		File carpeta = new File("src/Imagenes");
+
+	    if (!carpeta.exists() || !carpeta.isDirectory()) {
+	     
+	    	JOptionPane.showMessageDialog(null, "Error: no se encuentra la carpeta 'Imagenes'.");
+	        System.exit(0);
+	    
+	    }
+
+	    File[] archivos = carpeta.listFiles();
+	    
+	    if (archivos == null) {
+	    
+	    	JOptionPane.showMessageDialog(null, "Error: no se pudieron listar los archivos de la carpeta 'Imagenes'.");
+	        System.exit(0);
+	   
+	    }
+
+	    String[] imagenesEsperadas = {
+	     
+	    		"agregarUsu.png", "apagar.png", "eliminarUsu.png", "IconoAnime.png",
+	        "IconoDeportes.png", "IconoEconomia.png", "IconoInternacional.png", "IconoNacional.png",
+	        "IconoVideojuegos.png", "noticias.png", "noticiasAdmin.png"
+	    
+	    };
+
+	    for (String nombreImagen : imagenesEsperadas) {
+	        
+	    	File img = new File(carpeta, nombreImagen);
+	        
+	        if (!img.exists() || !img.isFile()) {
+	         
+	        	JOptionPane.showMessageDialog(null, "Error: no se encuentra la imagen '" + nombreImagen + "'.");
+	            System.exit(0);
+	       
+	        }
+	   
+	    }
+	
+	}
+
 }

@@ -1,9 +1,12 @@
 package App;
 
 import java.awt.Toolkit;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import Admin.AgregarUsuario;
@@ -47,9 +50,9 @@ public class GestionNoticias extends JFrame{
         AcercaDe acercaDe = new AcercaDe();
         setJMenuBar(acercaDe.getMenuBar());
         
-        addWindowListener(new java.awt.event.WindowAdapter() {
+        addWindowListener(new WindowAdapter() {
             @Override
-            public void windowClosing(java.awt.event.WindowEvent e) {
+            public void windowClosing(WindowEvent e) {
 
                 if (miPantallaCarga.isVisible()) {
                    
@@ -57,16 +60,16 @@ public class GestionNoticias extends JFrame{
                 
                 }
 
-                int opcion = javax.swing.JOptionPane.showConfirmDialog(
+                int opcion = JOptionPane.showConfirmDialog(
                         
                 		GestionNoticias.this,
                         "¿Está usted seguro de cerrar el programa?",
                         "Confirmar salida",
-                        javax.swing.JOptionPane.YES_NO_OPTION,
-                        javax.swing.JOptionPane.WARNING_MESSAGE
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.WARNING_MESSAGE
                 );
 
-                if (opcion == javax.swing.JOptionPane.YES_OPTION) {
+                if (opcion == JOptionPane.YES_OPTION) {
                     System.exit(0);
                 
                 }
@@ -102,7 +105,8 @@ public class GestionNoticias extends JFrame{
             layeredPane.add(panel);
         
         }
-
+        
+        setUndecorated(true);
         miPantallaCarga.setVisible(true);
    
 	}
@@ -121,50 +125,97 @@ public class GestionNoticias extends JFrame{
 
 
     public void mostrarInicioSesion() {
+        dispose();
+        setUndecorated(false);
+        setVisible(true);
         mostrarPanel(miPanel);
     }
 
     public void mostrarSeleccionFuentes() {
+        dispose();
+        setUndecorated(false);
+        setVisible(true);
+        mostrarPanel(miPanel);
         mostrarPanel(eleccionFuentes);
     }
 
     public void mostrarNoticia() {
+        dispose();
+        setUndecorated(false);
+        setVisible(true);
+        mostrarPanel(miPanel);
         mostrarPanel(noticia);
     }
 
     public void mostrarEconomia() {
+        dispose();
+        setUndecorated(false);
+        setVisible(true);
+        mostrarPanel(miPanel);
         mostrarPanel(economia);
     }
 
     public void mostrarDeportes() {
+        dispose();
+        setUndecorated(false);
+        setVisible(true);
+        mostrarPanel(miPanel);
         mostrarPanel(deporte);
     }
 
     public void mostrarNacional() {
+        dispose();
+        setUndecorated(false);
+        setVisible(true);
+        mostrarPanel(miPanel);
         mostrarPanel(nacional);
     }
 
     public void mostrarInternacional() {
+        dispose();
+        setUndecorated(false);
+        setVisible(true);
+        mostrarPanel(miPanel);
         mostrarPanel(internacional);
     }
 
     public void mostrarVideojuegos() {
+        dispose();
+        setUndecorated(false);
+        setVisible(true);
+        mostrarPanel(miPanel);
         mostrarPanel(videojuegos);
     }
 
     public void mostrarAnime() {
+        dispose();
+        setUndecorated(false);
+        setVisible(true);
+        mostrarPanel(miPanel);
         mostrarPanel(anime);
     }
 
     public void mostrarMenuAdmin() {
+        dispose();
+        setUndecorated(false);
+        setVisible(true);
+        mostrarPanel(miPanel);
         mostrarPanel(menuAdmin);
     }
     
     public void AgregarUsuario() {
+        dispose();
+        setUndecorated(false);
+        setVisible(true);
+        mostrarPanel(miPanel);
         mostrarPanel(agregarUsuario);
     }
     
     public void EliminarUsuario() {
+        dispose();
+        setUndecorated(false);
+        setVisible(true);
+        mostrarPanel(miPanel);
         mostrarPanel(eliminarUsuario);
     }
     

@@ -3,6 +3,8 @@ package Admin;
 import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
@@ -117,13 +119,13 @@ public class MenuAdmin extends JPanel{
 		cerrarPrograma.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				int opcion = javax.swing.JOptionPane.showConfirmDialog(
+				int opcion = JOptionPane.showConfirmDialog(
                         
                 		MenuAdmin.this,
                         "¿Está usted seguro de cerrar el programa?",
                         "Confirmar salida",
-                        javax.swing.JOptionPane.YES_NO_OPTION,
-                        javax.swing.JOptionPane.WARNING_MESSAGE
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.WARNING_MESSAGE
                 );
 
                 if (opcion == javax.swing.JOptionPane.YES_OPTION) {
