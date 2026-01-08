@@ -90,7 +90,7 @@ public class InicioSesion extends JPanel{
 				    gestionNoticias.deporte.actualizarNoticias();
 				    gestionNoticias.nacional.actualizarNoticias();
 				    gestionNoticias.internacional.actualizarNoticias();
-				    gestionNoticias.videojuegos.actualizarNoticias();
+				    gestionNoticias.videojuego.actualizarNoticias();
                     gestionNoticias.anime.actualizarNoticias();
                     
                     gestionNoticias.noticia.actualizarBotonGuardar();

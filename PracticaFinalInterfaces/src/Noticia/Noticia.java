@@ -114,7 +114,7 @@ public class Noticia extends JPanel{
 		btEconomia.setBackground(new Color(255, 160, 122));
 		btEconomia.setBorder(null);
 		btEconomia.setBounds(48, 155, 112, 112);
-		btEconomia.setIcon(new ImageIcon("src/Imagenes/iconoEconomia.png"));
+		btEconomia.setIcon(new ImageIcon("src/Imagenes/IconoEconomia.png"));
 		add(btEconomia);
 		
 		JButton btDeportes = new JButton("");
@@ -156,7 +156,7 @@ public class Noticia extends JPanel{
 		btDeportes.setBorder(null);
 		btDeportes.setBackground(new Color(255, 160, 122));
 		btDeportes.setBounds(288, 155, 112, 112);
-		btDeportes.setIcon(new ImageIcon("src/Imagenes/iconoDeportes.png"));
+		btDeportes.setIcon(new ImageIcon("src/Imagenes/IconoDeportes.png"));
 		add(btDeportes);
 		
 		JButton btNacional = new JButton("");
@@ -198,7 +198,7 @@ public class Noticia extends JPanel{
 		btNacional.setBackground(new Color(255, 160, 122));
 		btNacional.setBorder(null);
 		btNacional.setBounds(520, 155, 112, 112);
-		btNacional.setIcon(new ImageIcon("src/Imagenes/iconoNacional.png"));
+		btNacional.setIcon(new ImageIcon("src/Imagenes/IconoNacional.png"));
 		add(btNacional);
 		
 		JLabel Internacional = new JLabel("Internacional");

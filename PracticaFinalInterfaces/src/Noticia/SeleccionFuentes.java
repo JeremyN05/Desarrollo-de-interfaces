@@ -101,7 +101,7 @@ public class SeleccionFuentes extends JPanel{
 		diarioPublico.setBounds(534, 198, 110, 23);
 		add(diarioPublico);
 		
-		JCheckBox elDiario = new JCheckBox(" El Diario");
+		JCheckBox elDiario = new JCheckBox(" 20Minutos");
 		elDiario.setFont(new Font("Arial", Font.PLAIN, 12));
 		elDiario.setBackground(new Color(255, 160, 122));
 		elDiario.setBounds(534, 230, 110, 23);
@@ -143,7 +143,7 @@ public class SeleccionFuentes extends JPanel{
 		videojuegos.setBounds(322, 306, 108, 20);
 		add(videojuegos);
 		
-		JCheckBox gamerReactor = new JCheckBox(" GamerReactor");
+		JCheckBox gamerReactor = new JCheckBox(" CNN Español");
 		gamerReactor.setFont(new Font("Arial", Font.PLAIN, 12));
 		gamerReactor.setBackground(new Color(255, 160, 122));
 		gamerReactor.setBounds(324, 336, 106, 23);

@@ -26,7 +26,7 @@ public class Nacional extends JPanel {
     private JTextArea noticiaNac_2;
     private JTextArea noticiaNac_3;
     private JLabel lblPublico;
-    private JLabel lblElDiario;
+    private JLabel lbl20Minutos;
     private JLabel lblLaRazon;
 
     public Nacional(GestionNoticias gestionNoticias) {
@@ -54,10 +54,10 @@ public class Nacional extends JPanel {
         noticiaNac.setBounds(41, 164, 617, 75);
         add(noticiaNac);
 
-        lblElDiario = new JLabel("elDiario:");
-        lblElDiario.setFont(new Font("Arial", Font.BOLD, 24));
-        lblElDiario.setBounds(41, 251, 107, 24);
-        add(lblElDiario);
+        lbl20Minutos = new JLabel("20Minutos:");
+        lbl20Minutos.setFont(new Font("Arial", Font.BOLD, 24));
+        lbl20Minutos.setBounds(41, 251, 137, 24);
+        add(lbl20Minutos);
 
         noticiaNac_2 = new JTextArea();
         noticiaNac_2.setWrapStyleWord(true);
@@ -120,6 +120,7 @@ public class Nacional extends JPanel {
     }
 
     public void actualizarNoticias() {
+    	
         Usuarios usuario = GuardarUsuario.getUsuarioActual();
         if (usuario == null) return;
 
@@ -129,27 +130,35 @@ public class Nacional extends JPanel {
         noticiaNac_2.setVisible(false);
         noticiaNac_3.setVisible(false);
         lblPublico.setVisible(false);
-        lblElDiario.setVisible(false);
+        lbl20Minutos.setVisible(false);
         lblLaRazon.setVisible(false);
 
         try {
-            if (usuario.isAdmin() || prefs.contains("N1")) {
-                noticiaNac.setText(TituNacional.cargarTitulares());
+            
+        	if (usuario.isAdmin() || prefs.contains("N1")) {
+             
+        		noticiaNac.setText(TituNacional.cargarTitulares());
                 noticiaNac.setVisible(true);
                 lblPublico.setVisible(true);
-            }
+           
+        	}
 
             if (usuario.isAdmin() || prefs.contains("N2")) {
-                noticiaNac_2.setText(TituNacional.cargarTitulares2());
+             
+            	noticiaNac_2.setText(TituNacional.cargarTitulares2());
                 noticiaNac_2.setVisible(true);
-                lblElDiario.setVisible(true);
+                lbl20Minutos.setVisible(true);
+           
             }
 
             if (usuario.isAdmin() || prefs.contains("N3")) {
-                noticiaNac_3.setText(TituNacional.cargarTitulares3());
+              
+            	noticiaNac_3.setText(TituNacional.cargarTitulares3());
                 noticiaNac_3.setVisible(true);
                 lblLaRazon.setVisible(true);
+           
             }
+       
         } catch (IOException e) {
 
             JOptionPane.showMessageDialog(

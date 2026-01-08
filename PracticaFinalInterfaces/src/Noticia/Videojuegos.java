@@ -25,7 +25,7 @@ public class Videojuegos extends JPanel {
     private JTextArea noticiaVid;
     private JTextArea noticiaVid_2;
     private JTextArea noticiaVid_3;
-    private JLabel lblGamerReactor;
+    private JLabel lblCNN;
     private JLabel lblTheObjetive;
     private JLabel lblMarca;
 
@@ -40,10 +40,10 @@ public class Videojuegos extends JPanel {
         lblTitulo.setBounds(202, 62, 313, 36);
         add(lblTitulo);
 
-        lblGamerReactor = new JLabel("GamerReactor:");
-        lblGamerReactor.setFont(new Font("Arial", Font.BOLD, 24));
-        lblGamerReactor.setBounds(41, 130, 185, 28);
-        add(lblGamerReactor);
+        lblCNN = new JLabel("CNN Español:");
+        lblCNN.setFont(new Font("Arial", Font.BOLD, 24));
+        lblCNN.setBounds(41, 130, 185, 28);
+        add(lblCNN);
 
         noticiaVid = new JTextArea();
         noticiaVid.setWrapStyleWord(true);
@@ -128,28 +128,36 @@ public class Videojuegos extends JPanel {
         noticiaVid.setVisible(false);
         noticiaVid_2.setVisible(false);
         noticiaVid_3.setVisible(false);
-        lblGamerReactor.setVisible(false);
+        lblCNN.setVisible(false);
         lblTheObjetive.setVisible(false);
         lblMarca.setVisible(false);
 
         try {
-            if (usuario.isAdmin() || prefs.contains("V1")) {
-                noticiaVid.setText(TituVideojuegos.cargarTitulares());
+           
+        	if (usuario.isAdmin() || prefs.contains("V1")) {
+            
+            	noticiaVid.setText(TituVideojuegos.cargarTitulares());
                 noticiaVid.setVisible(true);
-                lblGamerReactor.setVisible(true);
+                lblCNN.setVisible(true);
+           
             }
 
             if (usuario.isAdmin() || prefs.contains("V2")) {
-                noticiaVid_2.setText(TituVideojuegos.cargarTitulares2());
+           
+            	noticiaVid_2.setText(TituVideojuegos.cargarTitulares2());
                 noticiaVid_2.setVisible(true);
                 lblTheObjetive.setVisible(true);
+           
             }
 
             if (usuario.isAdmin() || prefs.contains("V3")) {
-                noticiaVid_3.setText(TituVideojuegos.cargarTitulares3());
+            
+            	noticiaVid_3.setText(TituVideojuegos.cargarTitulares3());
                 noticiaVid_3.setVisible(true);
                 lblMarca.setVisible(true);
+           
             }
+       
         } catch (IOException e) {
             
             JOptionPane.showMessageDialog(

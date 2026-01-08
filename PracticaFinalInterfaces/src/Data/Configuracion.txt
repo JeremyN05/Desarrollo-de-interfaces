@@ -5,12 +5,12 @@
 ##D2-https://as.com/-h3.s_t a
 ##D3-https://www.sport.es/es/-a.ft-link
 ##N1-https://www.publico.es-h2.title a
-##N2-https://www.eldiario.es-h2.ni-title a
+##N2-https://www.20minutos.es/nacional/-div.u-grid-col-span-2 div article div h2 a
 ##N3-https://www.larazon.es-h2.article__title a
 ##I1-https://cnnespanol.cnn.com-a.container__title-url h2
 ##I2-https://www.larazon.es/internacional/-h2.article__title a
-##I3-https://www.telemundo.com-span.tease-card__headline
-##V1-https://www.gamereactor.es-h2.font-weight-bold
+##I3-https://www.telemundo.com-h2.cover-spread__headline a
+##V1-https://cnnespanol.cnn.com/cultura/videojuegos-span.container__headline-text
 ##V2-https://theobjective.com/tecnologia/videojuegos/-h2.tno-article-general__content__title a
 ##V3-https://www.marca.com/videojuegos.html-h2.ue-c-cover-content__headline
 ##A1-https://somoskudasai.com-a.py-1
@@ -25,3 +25,4 @@ tls=false
 
 
 id:1-E1,E2,D2,D3,N1,I1,I3,V1,A1,A2
+id:4-E2,D1,D2,D3,N2,N3,I1,I3,V1,V2,A2

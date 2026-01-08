@@ -22,26 +22,41 @@ public class TituNacional {
     }
 
     private static String cargarTitular(String codigo) throws IOException {
-        String[] datos = leerConfig(codigo);
-        if (datos == null) return "Titular no disponible";
+        
+    	String[] datos = leerConfig(codigo);
+        
+    	if (datos == null) return "Titular no disponible";
 
         Document document = Jsoup.connect(datos[0]).get();
         Element element = document.select(datos[1]).first();
 
         return element != null ? element.text().toUpperCase() : "Titular no disponible";
+   
     }
 
     private static String[] leerConfig(String codigo) throws IOException {
-        try (BufferedReader br = new BufferedReader(new FileReader("src/Data/Configuracion.txt"))) {
-            String linea;
-            while ((linea = br.readLine()) != null) {
-                linea = linea.trim();
-                if (linea.startsWith("##" + codigo)) {
-                    String[] partes = linea.split("-", 3);
+        
+    	try (BufferedReader br = new BufferedReader(new FileReader("src/Data/Configuracion.txt"))) {
+           
+    		String linea;
+            
+    		while ((linea = br.readLine()) != null) {
+             
+    			linea = linea.trim();
+              
+    			if (linea.startsWith("##" + codigo)) {
+                 
+    				String[] partes = linea.split("-", 3);
                     return new String[]{partes[1], partes[2]};
-                }
-            }
-        }
-        return null;
+               
+    			}
+          
+    		}
+       
+    	}
+      
+    	return null;
+   
     }
+
 }

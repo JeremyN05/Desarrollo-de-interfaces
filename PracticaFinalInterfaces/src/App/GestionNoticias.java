@@ -32,7 +32,7 @@ public class GestionNoticias extends JFrame{
 	public Deporte deporte;
 	public Nacional nacional;
 	public Internacional internacional;
-	public Videojuegos videojuegos;
+	public Videojuegos videojuego;
 	public Anime anime;
 	private JPanel menuAdmin;
 	private JPanel agregarUsuario;
@@ -90,13 +90,13 @@ public class GestionNoticias extends JFrame{
         deporte = new Deporte(this);
         nacional = new Nacional(this);
         internacional = new Internacional(this);
-        videojuegos = new Videojuegos(this);
+        videojuego = new Videojuegos(this);
         anime = new Anime(this);
         menuAdmin = new MenuAdmin(this);
         agregarUsuario = new AgregarUsuario(this);
         eliminarUsuario = new EliminacionUsuario(this);
 
-        JPanel[] paneles = { miPantallaCarga, miPanel, eleccionFuentes, noticia, economia, deporte, nacional, internacional, videojuegos, anime, menuAdmin, agregarUsuario, eliminarUsuario };
+        JPanel[] paneles = { miPantallaCarga, miPanel, eleccionFuentes, noticia, economia, deporte, nacional, internacional, videojuego, anime, menuAdmin, agregarUsuario, eliminarUsuario };
 
         for (JPanel panel : paneles) {
          
@@ -113,7 +113,7 @@ public class GestionNoticias extends JFrame{
 
     private void mostrarPanel(JPanel panel) {
         
-    	JPanel[] todos = { miPantallaCarga, miPanel, eleccionFuentes, noticia, economia, deporte, nacional, internacional, videojuegos, anime, menuAdmin, agregarUsuario, eliminarUsuario };
+    	JPanel[] todos = { miPantallaCarga, miPanel, eleccionFuentes, noticia, economia, deporte, nacional, internacional, videojuego, anime, menuAdmin, agregarUsuario, eliminarUsuario };
         
         for (JPanel p : todos) {
            
@@ -184,7 +184,7 @@ public class GestionNoticias extends JFrame{
         setUndecorated(false);
         setVisible(true);
         mostrarPanel(miPanel);
-        mostrarPanel(videojuegos);
+        mostrarPanel(videojuego);
     }
 
     public void mostrarAnime() {
