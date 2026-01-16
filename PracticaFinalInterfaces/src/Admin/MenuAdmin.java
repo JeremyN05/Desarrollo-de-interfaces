@@ -52,7 +52,7 @@ public class MenuAdmin extends JPanel{
 				
 			}
 		});
-		btNoticias.setIcon(new ImageIcon(MenuAdmin.class.getResource("/Imagenes/noticiasAdmin.png")));
+		btNoticias.setIcon(new ImageIcon(("src/Imagenes/noticiasAdmin.png")));
 		btNoticias.setBorder(null);
 		btNoticias.setBackground(new Color(255, 160, 122));
 		btNoticias.setBounds(34, 162, 144, 144);
@@ -73,7 +73,8 @@ public class MenuAdmin extends JPanel{
 				
 			}
 		});
-		btAgregarUsu.setIcon(new ImageIcon(MenuAdmin.class.getResource("/Imagenes/agregarUsu.png")));
+			
+		btAgregarUsu.setIcon(new ImageIcon(("src/Imagenes/agregarUsu.png")));
 		btAgregarUsu.setBorder(null);
 		btAgregarUsu.setBackground(new Color(255, 160, 122));
 		btAgregarUsu.setBounds(274, 162, 144, 144);
@@ -94,7 +95,7 @@ public class MenuAdmin extends JPanel{
 				
 			}
 		});
-		btEliminarUsu.setIcon(new ImageIcon(MenuAdmin.class.getResource("/Imagenes/eliminarUsu.png")));
+		btEliminarUsu.setIcon(new ImageIcon(("src/Imagenes/eliminarUsu.png")));
 		btEliminarUsu.setBorder(null);
 		btEliminarUsu.setBackground(new Color(255, 160, 122));
 		btEliminarUsu.setBounds(504, 162, 144, 144);

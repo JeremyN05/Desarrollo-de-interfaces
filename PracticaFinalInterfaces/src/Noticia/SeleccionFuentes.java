@@ -3,10 +3,13 @@ package Noticia;
 import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
 import App.GestionNoticias;
+import DatosUsuarios.CargarPreferencias;
 import DatosUsuarios.GuardarPreferencias;
 import DatosUsuarios.GuardarUsuario;
 import DatosUsuarios.Usuarios;
@@ -333,10 +336,17 @@ public class SeleccionFuentes extends JPanel{
 			    }
 			    
 			    GuardarPreferencias.guardarPreferencias(usuario.getId(), prefs);
-
 			    
+			    JOptionPane.showMessageDialog(null, "Preferencias guardadas correctamente, cargando titulares.");
+			    
+			    gestionNoticias.economia.actualizarNoticias();
+			    gestionNoticias.deporte.actualizarNoticias();
+			    gestionNoticias.nacional.actualizarNoticias();
+			    gestionNoticias.internacional.actualizarNoticias();
+			    gestionNoticias.videojuego.actualizarNoticias();
+                gestionNoticias.anime.actualizarNoticias();
+                
                 gestion.mostrarNoticia();
-			    
 			}
 		});
 		btnNewButton_1.setFont(new Font("Arial", Font.BOLD, 16));

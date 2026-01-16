@@ -203,7 +203,7 @@ public class PantallaCarga extends JPanel{
 	        
 	        if (!img.exists() || !img.isFile()) {
 	         
-	        	JOptionPane.showMessageDialog(null, "Error: no se encuentra la imagen '" + nombreImagen + "'.");
+	        	JOptionPane.showMessageDialog(null, "Error: no se encuentran una o varias imágenes, por favor revise que las imágenes estén correctas");
 	            System.exit(0);
 	       
 	        }

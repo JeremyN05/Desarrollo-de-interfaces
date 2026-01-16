@@ -6,33 +6,47 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 public class CargarPreferencias {
 
     private static final String CONFIG = "src/Data/Configuracion.txt";
 
     public static List<String> cargarPreferencias(int idUsuario) {
-        List<String> prefs = new ArrayList<>();
+        
+    	List<String> prefs = new ArrayList<>();
+        
         String prefix = "id:" + idUsuario + "-";
 
         try (BufferedReader br = new BufferedReader(new FileReader(CONFIG))) {
-            String linea;
+            
+        	String linea;
+            
             while ((linea = br.readLine()) != null) {
-                linea = linea.trim();
+                
+            	linea = linea.trim();
 
                 if (linea.startsWith(prefix)) {
-                    String datos = linea.substring(prefix.length());
+                   
+                	String datos = linea.substring(prefix.length());
                     String[] lista = datos.split(",");
 
                     for (String s : lista) {
-                        s = s.trim().toUpperCase();
+                      
+                    	s = s.trim().toUpperCase();
                         if (!s.isEmpty()) prefs.add(s);
+                   
                     }
 
                     break;
                 }
+                
             }
+        
         } catch (IOException e) {
-            e.printStackTrace();
+        	
+        	JOptionPane.showMessageDialog(null, "Error" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+       
         }
 
         return prefs;

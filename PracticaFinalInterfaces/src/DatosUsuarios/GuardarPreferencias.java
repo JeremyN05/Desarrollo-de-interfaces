@@ -3,6 +3,8 @@ package DatosUsuarios;
 import java.io.*;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 public class GuardarPreferencias {
 
     private static final String CARPETA = "src/Data";
@@ -26,7 +28,8 @@ public class GuardarPreferencias {
             }
 
         } catch (IOException e) {
-            e.printStackTrace();
+        	JOptionPane.showMessageDialog(null, "Error al enviar correo a " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        	
         }
     }
 }

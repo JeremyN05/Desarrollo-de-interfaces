@@ -114,7 +114,7 @@ public class Noticia extends JPanel{
 		btEconomia.setBackground(new Color(255, 160, 122));
 		btEconomia.setBorder(null);
 		btEconomia.setBounds(48, 155, 112, 112);
-		btEconomia.setIcon(new ImageIcon("src/Imagenes/IconoEconomia.png"));
+		btEconomia.setIcon(new ImageIcon(("src/Imagenes/IconoEconomia.png")));
 		add(btEconomia);
 		
 		JButton btDeportes = new JButton("");
@@ -156,7 +156,7 @@ public class Noticia extends JPanel{
 		btDeportes.setBorder(null);
 		btDeportes.setBackground(new Color(255, 160, 122));
 		btDeportes.setBounds(288, 155, 112, 112);
-		btDeportes.setIcon(new ImageIcon("src/Imagenes/IconoDeportes.png"));
+		btDeportes.setIcon(new ImageIcon(("src/Imagenes/IconoDeportes.png")));
 		add(btDeportes);
 		
 		JButton btNacional = new JButton("");
@@ -198,7 +198,7 @@ public class Noticia extends JPanel{
 		btNacional.setBackground(new Color(255, 160, 122));
 		btNacional.setBorder(null);
 		btNacional.setBounds(520, 155, 112, 112);
-		btNacional.setIcon(new ImageIcon("src/Imagenes/IconoNacional.png"));
+		btNacional.setIcon(new ImageIcon(("src/Imagenes/IconoNacional.png")));
 		add(btNacional);
 		
 		JLabel Internacional = new JLabel("Internacional");
@@ -261,7 +261,7 @@ public class Noticia extends JPanel{
 		btInternacional.setBorder(null);
 		btInternacional.setBackground(new Color(255, 160, 122));
 		btInternacional.setBounds(48, 348, 112, 112);
-		btInternacional.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/IconoInternacional.png")));
+		btInternacional.setIcon(new ImageIcon(("src/Imagenes/IconoInternacional.png")));
 		add(btInternacional);
 		
 		JButton btVideojuegos = new JButton("");
@@ -303,7 +303,7 @@ public class Noticia extends JPanel{
 		btVideojuegos.setBorder(null);
 		btVideojuegos.setBackground(new Color(255, 160, 122));
 		btVideojuegos.setBounds(288, 348, 112, 112);
-		btVideojuegos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/IconoVideojuegos.png")));
+		btVideojuegos.setIcon(new ImageIcon(("src/Imagenes/IconoVideojuegos.png")));
 		add(btVideojuegos);
 		
 		JButton btAnime = new JButton("");
@@ -345,7 +345,7 @@ public class Noticia extends JPanel{
 		btAnime.setBackground(new Color(255, 160, 122));
 		btAnime.setBorder(null);
 		btAnime.setBounds(520, 348, 112, 112);
-		btAnime.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/IconoAnime.png")));
+		btAnime.setIcon(new ImageIcon(("src/Imagenes/IconoAnime.png")));
 		add(btAnime);
 		
 		JButton cerrarSesion = new JButton("Cerrar Sesión");
